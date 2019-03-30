@@ -1,0 +1,47 @@
+.container {
+  padding: 0rpx;
+  margin: 0rpx;
+}
+
+.wrap_one {
+  width: 100%;
+  padding: 0rpx;
+  margin: 0rpx;
+}
+
+.top-wrap {
+  width: 100%;
+  height: 200rpx;
+  padding: 0rpx;
+  margin: 0rpx;
+  background-color: #eee;
+  display: felx;
+  justify-content: center;
+  align-items: center;
+}
+
+.word-wrap {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text_word {
+  height: 50%;
+  line-height: 100rpx;
+  font-size: 50rpx;
+  font-weight: 800;
+  color: rgb(0, 197, 68);
+  display: block;
+}
+
+.text_describe {
+  display: block;
+  height: 30%;
+  line-height: 30rpx;
+  font-size: 30rpx;
+  font-weight: 400;
+  color: #777;
+}
