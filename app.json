@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/share/index",
+    "pages/home/index",
+    "pages/lab/index",
+    "pages/me/index",
+    "pages/notice/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#0081FF",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#7f8389",
+    "selectedColor": "#0081FF",
+    "borderStyle": "white",
+    "backgroundColor": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "tabimg/home.png",
+        "selectedIconPath": "tabimg/home-sel.png"
+      },
+      {
+        "pagePath": "pages/share/index",
+        "text": "借嘛",
+        "iconPath": "tabimg/share.png",
+        "selectedIconPath": "tabimg/share-sel.png"
+      },
+      {
+        "pagePath": "pages/notice/index",
+        "text": "通知",
+        "iconPath": "tabimg/notice.png",
+        "selectedIconPath": "tabimg/notice-sel.png"
+      },
+      {
+        "pagePath": "pages/me/index",
+        "text": "个人页",
+        "iconPath": "tabimg/aboutme.png",
+        "selectedIconPath": "tabimg/aboutme-sel.png"
+      }
+    ]
+  }
+}

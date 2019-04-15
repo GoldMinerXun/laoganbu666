@@ -1,0 +1,86 @@
+/**index.wxss**/
+
+page {
+  height: 100%;
+  background-color: rgb(250, 250, 250);
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  padding: 0rpx;
+}
+
+.share-head {
+  width: 100%;
+  height: 500rpx;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+  background: linear-gradient(to top, #a1c4fd, #c2e9fb);
+  text-align: center;
+  font-size: 50rpx;
+}
+
+.tabnav {
+  width: 100%;
+}
+
+i-tab-bar {
+  width: 100%;
+}
+
+.body {
+  width: 100%;
+  height: 100%;
+  margin-top: 20rpx;
+}
+
+.body-wrap {
+  width: 100%;
+}
+
+.body-item {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20rpx;
+  border-bottom: 1rpx solid #ddd;
+  border-top: 1rpx solid #ddd;
+  padding: 20rpx 5rpx;
+}
+
+.tag-wrap {
+  display: flex;
+  flex-direction: row;
+}
+
+.tag-item {
+  padding: 0 10rpx;
+  text-align: center;
+  background: linear-gradient(to right, rgb(0, 144, 227), rgb(26, 209, 233));
+  border-radius: 30rpx;
+  margin-right: 10rpx;
+  color: white;
+  box-shadow: 0 2px 3px #888;
+  height: 30rpx;
+  font-size: 10px;
+}
+
+.card-item {
+  margin-bottom: 20rpx;
+}
+
+.share-ask{
+  width: 100rpx;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 60rpx;
+  font-weight: 500;
+  background-color: orange;
+  position: fixed;
+  right: 20rpx;
+  bottom: 200rpx;
+  border-radius: 50%;
+  box-shadow: 0 5rpx 15rpx #888;
+  opacity: 0.8;
+}

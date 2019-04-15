@@ -1,0 +1,178 @@
+/* pages/aboutme/index.wxss */
+
+page {
+  width: 100%;
+  background-color: rgb(250, 250, 250);
+}
+
+.me-wrap {
+  width: 100%;
+  position: relative;
+  top: 0rpx;
+}
+
+.me-top-div {
+  width: 100%;
+  height: 400rpx;
+  text-align: center;
+  background: linear-gradient(-180deg, rgb(23, 173, 254), rgb(2, 209, 253));
+}
+
+.me-top-circle {
+  position: absolute;
+  top: 300rpx;
+  width: 100%;
+  height: 200rpx;
+  background-color: rgb(2, 209, 253);
+  border-radius: 40%;
+  z-index: -10;
+}
+
+.me-top-info-wrap {
+  position: absolute;
+  top: 20rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.me-top-avator {
+  width: 220rpx;
+  height: 220rpx;
+  border-radius: 50%;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.me-top-avator image {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+}
+
+.me-top-name {
+  margin-top: 20rpx;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.me-top-signature {
+  margin-top: 10rpx;
+  font-weight: 300;
+  font-size: 30rpx;
+  display: flex;
+  justify-content: center;
+  line-height: 40rpx;
+}
+
+.me-top-signature image {
+  height: 40rpx;
+  width: 40rpx;
+  margin-right: 15rpx;
+}
+
+.me-lab {
+  height: 150rpx;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  background-color: white;
+  border-radius: 100rpx;
+  line-height: 150rpx;
+  font-size: 40rpx;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0rpx 10rpx 10rpx rgb(217, 252, 252);
+  position: relative;
+}
+
+.me-lab image {
+  height: 60rpx;
+  width: 50rpx;
+  margin-right: 30rpx;
+}
+
+.me-btn-wrap {
+  margin-top: 50rpx;
+}
+
+.btn {
+  height: 100rpx;
+  width: 100%;
+  background-color: white;
+  border: none;
+  outline: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 40rpx;
+  font-size: 40rpx;
+  font-weight: 300;
+  position: relative;
+  box-sizing: border-box;
+  margin-bottom: 5rpx;
+}
+
+.img-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100rpx;
+  margin-right: 30rpx;
+  margin-left: 50rpx;
+  position: relative;
+}
+
+.img1 {
+  height: 70rpx;
+  width: 70rpx;
+  z-index: 100;
+}
+
+.img2 {
+  height: 50rpx;
+  width: 50rpx;
+  margin-left: 4rpx;
+  z-index: 100;
+}
+
+.lab-right {
+  position: absolute;
+  right: 10rpx;
+  top: 44rpx;
+}
+
+.btn-right {
+  height: 50rpx;
+  width: 50rpx;
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+}
+
+.circle {
+  height: 35rpx;
+  width: 35rpx;
+  background-color: rgb(23, 173, 254);
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.i1circle {
+  position: absolute;
+  top: 10rpx;
+  left: 13rpx;
+}
+
+.i2circle {
+  position: absolute;
+  bottom: 0rpx;
+  left: 10rpx;
+}

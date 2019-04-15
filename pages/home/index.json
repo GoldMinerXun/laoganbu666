@@ -1,0 +1,17 @@
+{
+  "usingComponents": {
+    "i-tab-bar": "../../component/tab-bar/index",
+    "i-tab-bar-item": "../../component/tab-bar-item/index",
+    "i-tabs": "../../component/tabs/index",
+    "i-tab": "../../component/tab/index",
+    "i-collapse": "../../component/collapse/index",
+    "i-collapse-item": "../../component/collapse-item/index",
+    "i-panel": "../../component/panel/index",
+    "i-card": "../../component/card/index",
+    "i-notice-bar": "../../component/notice-bar/index",
+    "i-cell-group": "../../component/cell-group/index",
+    "i-cell": "../../component/cell/index",
+    "i-icon": "../../component/icon/index"
+  },
+  "navigationBarTitleText": "素材图库"
+}

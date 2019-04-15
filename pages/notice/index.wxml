@@ -1,0 +1,37 @@
+<!--pages/notice/index.wxml-->
+
+<view>
+  <i-card title="卡片标题" extra="额外内容" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg">
+    <view slot="content">内容不错</view>
+    <view slot="footer">尾部内容</view>
+  </i-card>
+</view>
+
+<view class='notice-'>
+  <i-steps>
+    <i-step status="finish" icon="barrage">
+      <view slot="title">
+        已完成
+      </view>
+      <view slot="content">
+        这里是该步骤的描述信息
+      </view>
+    </i-step>
+    <i-step status="process" icon="brush">
+      <view slot="title">
+        进行中
+      </view>
+      <view slot="content" icon="camera">
+        这里是该步骤的描述信息
+      </view>
+    </i-step>
+    <i-step icon="collection">
+      <view slot="title">
+        错误
+      </view>
+      <view slot="content">
+        这里是该步骤的描述信息
+      </view>
+    </i-step>
+  </i-steps>
+</view>

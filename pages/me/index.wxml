@@ -1,0 +1,38 @@
+<!--pages/aboutme/index.wxml-->
+<view class='me-wrap'>
+  <view class='me-top-div'></view>
+  <view class='me-top-circle'></view>
+  <view class='me-top-info-wrap'>
+    <view class='me-top-avator'>
+      <image src="{{userInfo.avatarUrl}}"></image>
+    </view>
+    <view class='me-top-name'>{{userInfo.nickName}}</view>
+    <view class='me-top-signature'>
+      <image src="./pen.png"></image>
+      {{signature}}</view>
+  </view>
+  <view class='me-lab' bindtap='handleChange'>
+    <image src="./time.png"></image>
+    实验室
+    <image class='lab-right' src="./right.png"></image>
+  </view>
+  
+  <view class='me-btn-wrap'>
+    <view class='btn qusetion'>
+      <view class='img-wrap'>
+        <view class='circle i1circle'></view>
+        <image class='img1' src="./i1.png"></image>
+      </view>
+      问题反馈
+      <image class='btn-right' src="./right.png"></image></view>
+    <view class='btn log-out'>
+      <view class='img-wrap'>
+      <view class='circle i2circle'></view>
+        <image class='img2' src="./i2.png"> </image>
+      </view>
+      退出
+      <image class='btn-right' src="./right.png"></image>
+      </view>
+  </view>
+
+</view>
