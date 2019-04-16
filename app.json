@@ -1,12 +1,17 @@
 {
   "pages": [
+    "pages/share/index",
     "pages/notice/index",
     "pages/home/index",
     "pages/lab/index",
     "pages/me/index",
+<<<<<<< HEAD
     "pages/logs/logs",
     "pages/share/index",
     "pages/notice-secondary/index"
+=======
+    "pages/logs/logs"
+>>>>>>> new
   ],
   "window": {
     "navigationBarBackgroundColor": "#0081FF",
