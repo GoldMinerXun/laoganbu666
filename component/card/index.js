@@ -22,10 +22,6 @@ Component({
             type: String,
             value: ''
         },
-        color : {
-            type : String,
-            value : ''
-        },
        
     }
 });

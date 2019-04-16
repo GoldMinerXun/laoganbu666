@@ -1,14 +1,19 @@
 <!--index.wxml-->
 <view class="container">
-
-  <view class='share-head'>
-    好多问题哦
+  
+  <view class='head'>
+  <view class='btn btn-left' >
+   问一问吧
+    <image src="./q.png"></image>
+ </view>
+  <view class='btn'>看一看吧
+  <image class='look' src="./l.png"></image>
   </view>
-
+  </view>
   <view class='body'>
     <view class='body-wrap'>
       <view class='card-item' wx:for="{{hot}}" wx:key="{{index}}">
-        <i-card class='i-card' title="{{item.title}}" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg" color="{{item.color}}">
+        <i-card class='i-card' title="{{item.title}}">
           <view slot="content" style='color:#aaa'> {{item.content}}</view>
           <view class='tag-wrap' slot="footer">
             <view class='tag' wx:for="{{item.tag}}" wx:key="{{index}}">
@@ -23,7 +28,5 @@
 
     </view>
   </view>
-
-  <view class='share-ask'>问</view>
 
 </view>

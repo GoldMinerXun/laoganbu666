@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/share/index",
     "pages/home/index",
     "pages/lab/index",
     "pages/me/index",
     "pages/notice/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/share/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#0081FF",
