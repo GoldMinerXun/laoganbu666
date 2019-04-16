@@ -1,0 +1,9 @@
+<!--pages/notice-secondary/index.wxml-->
+<import src="tempcomment.wxml" />
+<import src="templikes.wxml" />
+<import src="tempmycomment.wxml" />
+<import src="tempmyproblem.wxml" />
+
+<view class='notice-secondary-wrap'>
+  <template is="{{tempname}}"></template>
+</view>

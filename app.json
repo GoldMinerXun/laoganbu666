@@ -4,9 +4,9 @@
     "pages/home/index",
     "pages/lab/index",
     "pages/me/index",
-    
     "pages/logs/logs",
-    "pages/share/index"
+    "pages/share/index",
+    "pages/notice-secondary/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#0081FF",

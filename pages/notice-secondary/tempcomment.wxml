@@ -1,0 +1,4 @@
+
+<template name="tempcomment">
+  <view class='tempcomment-wrap'></view>
+</template>
