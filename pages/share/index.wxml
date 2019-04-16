@@ -1,15 +1,12 @@
 <!--index.wxml-->
 <view class="container">
-  
   <view class='head'>
-  <view class='btn btn-left' >
-   问一问吧
-    <image src="./q.png"></image>
- </view>
-  <view class='btn'>看一看吧
-  <image class='look' src="./l.png"></image>
+
+    <view class='share-head'>
+      好多问题哦o
+    </view>
   </view>
-  </view>
+
   <view class='body'>
     <view class='body-wrap'>
       <view class='card-item' wx:for="{{hot}}" wx:key="{{index}}">
