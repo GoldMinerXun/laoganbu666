@@ -2,9 +2,14 @@
 <view class="container">
   <view class='head'>
 
+<<<<<<< Updated upstream
     <view class='share-head'>
       好多问题哦o
     </view>
+=======
+  <view class='share-head'>
+    好多问题哦o
+>>>>>>> Stashed changes
   </view>
 
   <view class='body'>
