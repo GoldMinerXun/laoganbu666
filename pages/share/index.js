@@ -98,6 +98,6 @@ Page({
     
   },
   onReady:function(){
-    wx.hideLoading()
+    wx.hideToast()
   }
 })
