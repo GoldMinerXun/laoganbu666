@@ -1,37 +1,41 @@
 <!--pages/notice/index.wxml-->
-
-<view>
-  <i-card title="卡片标题" extra="额外内容" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg">
-    <view slot="content">内容不错</view>
-    <view slot="footer">尾部内容</view>
-  </i-card>
-</view>
-
-<view class='notice-'>
-  <i-steps>
-    <i-step status="finish" icon="barrage">
-      <view slot="title">
-        已完成
+<view class='notice-wrap'>
+  <view class='notice-one notice-comment-like'>
+    <view class='notice-two notice-comment'>
+      <view class='notice-img notice-comment-img'>
+        <image src='../../images/notice-img/otherscomment.png'></image>
       </view>
-      <view slot="content">
-        这里是该步骤的描述信息
+      <view class='notice-text notice-comment-text'>
+        评论
       </view>
-    </i-step>
-    <i-step status="process" icon="brush">
-      <view slot="title">
-        进行中
+    </view>
+    <view class='notice-line'></view>
+    <view class='notice-two notice-like'>
+      <view class='notice-img notice-like-img'>
+       <image src='../../images/notice-img/likes.png'></image>
       </view>
-      <view slot="content" icon="camera">
-        这里是该步骤的描述信息
+      <view class='notice-text notice-like-text'>
+        点赞
       </view>
-    </i-step>
-    <i-step icon="collection">
-      <view slot="title">
-        错误
+    </view>
+  </view>
+  <view class='notice-one notice-publish-problem-comment'>
+    <view class='notice-two notice-publish-problem'>
+      <view class='notice-img notice-publish-problem-img'>
+      <image src='../../images/notice-img/myproblem.png'></image>
       </view>
-      <view slot="content">
-        这里是该步骤的描述信息
+      <view class='notice-text notice-publish-problem-text'>
+        我发布的问题
       </view>
-    </i-step>
-  </i-steps>
+    </view>
+    <view class='notice-line'></view>
+    <view class='notice-two notice-publish-comment'>
+      <view class='notice-img notice-publish-comment-img'>
+      <image src='../../images/notice-img/comment.png'></image>
+      </view>
+      <view class='notice-text notice-publish-comment-text'>
+        我发布的评论
+      </view>
+    </view>
+  </view>
 </view>

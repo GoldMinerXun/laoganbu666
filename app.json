@@ -1,9 +1,10 @@
 {
   "pages": [
+    "pages/notice/index",
     "pages/home/index",
     "pages/lab/index",
     "pages/me/index",
-    "pages/notice/index",
+    
     "pages/logs/logs",
     "pages/share/index"
   ],
