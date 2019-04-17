@@ -37,7 +37,7 @@
 
   </view>
   <view class='notice-one notice-publish-problem-comment'>
-    <navigator open-type='navigateTo' url='../notice-secondary/index?title=我发布的问题&name=tempmycomment'>
+    <navigator open-type='navigateTo' url='../notice-secondary/index?title=我发布的问题&name=tempmyproblem'>
       <view class='notice-two notice-publish-problem'>
         <view class='notice-img notice-publish-problem-img'>
           <image src='../../images/notice-img/myproblem.png'></image>
@@ -52,7 +52,7 @@
     </navigator>
 
     <view class='notice-line'></view>
-    <navigator open-type='navigateTo' url='../notice-secondary/index?title=我发布的评论&name=tempmyproblem'>
+    <navigator open-type='navigateTo' url='../notice-secondary/index?title=我发布的评论&name=tempmycomment'>
       <view class='notice-two notice-publish-comment'>
         <view class='notice-img notice-publish-comment-img'>
           <image src='../../images/notice-img/comment.png'></image>

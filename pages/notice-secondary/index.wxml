@@ -5,5 +5,7 @@
 <import src="tempmyproblem.wxml" />
 
 <view class='notice-secondary-wrap'>
-  <template is="{{tempname}}"></template>
+  <block wx:for="{{content}}">
+  <template is="{{tempname}}" data="{{...item}}"></template>
+  </block>
 </view>
