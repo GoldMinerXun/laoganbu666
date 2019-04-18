@@ -1,0 +1,58 @@
+<!--pages/q_second/index.wxml-->
+<view class='q_second_container'>
+
+  <view class='detail-top'>
+    <view class='detail-top-wrap'>
+      <view class='detail-top-image-wrap'>
+        <image src="https://i.loli.net/2017/08/21/599a521472424.jpg"></image>
+      </view>
+      <view class='detail-top-author'>{{detail_author}}</view>
+      <view class='detail-level-wrap'>王者</view>
+    </view>
+  </view>
+
+  <view class='detail-min-wrap'>
+    <view class='detail-min-title'>{{tittle}}</view>
+    <view class='detail-min-tag-wrap'>
+      <view class='detail-tags' wx:for="{{tagsList}}" wx:key="{{index}}">{{item}}</view>
+    </view>
+    <view class='detail-min-content-wrap'>
+      <view class='detail-min-content' style='white-space:{{addAll}}'>{{question}}</view>
+      <view class='detail-min-btn' bindtap="addAll">{{addAll=='nowrap'? '点击查看全部' : '点击收起'}}</view>
+      <view class='detail-min-content-pic-wrap'>
+        <image wx:for="{{ansPicture}}" wx:key="{{index}}" src='{{item}}' class='detail-min-content-pic'></image>
+      </view>
+    </view>
+  </view>
+  <view class='detail-min-hr'></view>
+  <view class='detail-min-answer-sign'>回复区</view>
+  <view class='detail-bottom-answer-wrap'>
+    <view class='detail-ans-card' wx:for="{{ansList}}" wx:key="{{index}}">
+      <view class='detail-card-head'>
+        <view class='detail-card-head-avatar'>
+          <image src='https://i.loli.net/2017/08/21/599a521472424.jpg'></image>
+        </view>
+        <view class='detail-card-head-right'>
+          <view class='detail-card-head-right-name'>{{item.name}}</view>
+          <view class='detail-card-head-right-riqi'>{{item.riqi}}</view>
+        </view>
+        <view class='detail-card-head-right-admire'>
+          <image src='./dianzan.png'></image>
+        </view>
+      </view>
+      <view class='detail-card-body'>
+        <view class="{{item.image? 'detail-card-body-content-pic-wrap' : ''}}">
+          <image wx:for="{{item.image}}" wx:key="{{index}}" src='{{item}}'></image>
+        </view>
+        <view class='detail-card-body-content'>{{item.ans}}</view>
+      </view>
+      <view class="{{index==ansLength-1? '' : 'detail-card-body-hr'}}"></view>
+    </view>
+  </view>
+  <view class='detail-bottom-add'>点击加载更多</view>
+  <view class='detail-takeplace'></view>
+  <view class='detail-bottom-function'>
+    <input class='detail-bottom-inp' placeholder='点我添加评论'></input>
+    <button class='detail-bottom-btn'>发布</button>
+  </view>
+</view>

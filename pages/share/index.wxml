@@ -1,21 +1,5 @@
 <!--index.wxml-->
 <view class="container">
-<<<<<<< HEAD
-  <view class='head'>
-    <view class='share-head'>
-      好多问题哦o
-    </view>
-    <view class='body'>
-      <view class='body-wrap'>
-        <view class='card-item' wx:for="{{hot}}" wx:key="{{index}}">
-          <i-card class='i-card' title="{{item.title}}">
-            <view slot="content" style='color:#aaa'> {{item.content}}</view>
-            <view class='tag-wrap' slot="footer">
-              <view class='tag' wx:for="{{item.tag}}" wx:key="{{index}}">
-                <view class='tag-item'>
-                  {{item}}
-                </view>
-=======
 
   <view class='share-head'>
 
@@ -23,30 +7,29 @@
       <view class='sousuo-wrap'>
         <icon class='search_icon' size='18' type='search'></icon>
         <input name='content' class='search_input' type='text' value='' placeholder='请输入搜索关键词'></input>
-        <view class='share-hr'></view>
-        <button class='search_btn' form-type='submit'>搜索</button>   
+        <button class='search_btn' form-type='submit'>搜索</button>
       </view>
     </form>
 
   </view>
 
   <view class='body'>
+
     <view class='body-wrap'>
+
       <view class='card-item' wx:for="{{hot}}" wx:key="{{index}}">
+
         <i-card class='i-card' title="{{item.title}}" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg" color="{{item.color}}">
           <view slot="content" style='color:#aaa'> {{item.content}}</view>
           <view class='tag-wrap' slot="footer">
             <view class='tag' wx:for="{{item.tag}}" wx:key="{{index}}">
               <view class='tag-item'>
                 {{item}}
->>>>>>> new
               </view>
             </view>
+            </view>
           </i-card>
-
         </view>
-
       </view>
-    </view>
   </view>
 </view>
