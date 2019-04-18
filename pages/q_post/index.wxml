@@ -1,0 +1,18 @@
+<view class='post-container'>
+  <view class='post-text-wrap'>
+    <form>
+      <textarea class='post-text' maxlength="500" placeholder='请你在此描述详细问题' value='{{content}}' bindinput="charChange">
+      </textarea>
+      <view class='post-count'>{{now}}/{{max}}</view>
+    </form>
+  </view>
+  <view class='post-min'>
+    <view class='post-intro-left'>上传照片(最多三张)</view>
+    <view class='post-intro-min'></view>
+    <view class='post-intro-right'>
+      <image src='./lable.png' class='post-intro-image'></image>
+      <view class='post-intro-right-word'>添加标签</view>
+    </view>
+  </view>
+  <view class='post-bottom-wrap'><image src='./add_lable.png'></image></view>
+</view>

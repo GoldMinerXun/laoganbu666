@@ -131,7 +131,7 @@
   height: 0;
   width: 100%;
   margin-top: 25rpx;
-  border-bottom: solid 1px rgba(0, 0, 0, 0.3);
+  border-bottom: solid 1rpx rgba(0, 0, 0, 0.1);
 }
 
 .detail-min-answer-sign {

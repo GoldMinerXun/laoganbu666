@@ -90,7 +90,7 @@
   height: 40rpx;
   transform: rotate(30deg);
   background: linear-gradient(to right,#fc00ff,#00dbde);
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 .user_name{
