@@ -5,13 +5,9 @@
     "pages/home/index",
     "pages/lab/index",
     "pages/me/index",
-<<<<<<< HEAD
-    "pages/logs/logs",
-    "pages/share/index",
-    "pages/notice-secondary/index"
-=======
+
     "pages/logs/logs"
->>>>>>> new
+
   ],
   "window": {
     "navigationBarBackgroundColor": "#0081FF",
@@ -24,7 +20,7 @@
     "color": "#7f8389",
     "selectedColor": "#0081FF",
     "borderStyle": "white",
-    "backgroundColor": "white",
+    "backgroundColor": "#fff",
     "list": [
       {
         "pagePath": "pages/home/index",
