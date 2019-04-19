@@ -9,6 +9,7 @@
     <navigator open-type='navigateTo' url='../notice-secondary/index?title=评论&name=tempcomment'>
       <view class='notice-two notice-comment'>
         <view class='notice-img notice-comment-img'>
+        <view class='notice-img-circle'></view>
           <image src='../../images/notice-img/otherscomment.png'></image>
         </view>
         <view class='notice-text notice-comment-text'>
@@ -24,6 +25,7 @@
     <navigator open-type='navigateTo' url='../notice-secondary/index?title=点赞&name=templikes'>
       <view class='notice-two notice-like'>
         <view class='notice-img notice-like-img'>
+         <view class='notice-img-circle'></view>
           <image src='../../images/notice-img/likes.png'></image>
         </view>
         <view class='notice-text notice-like-text'>
@@ -40,6 +42,7 @@
     <navigator open-type='navigateTo' url='../notice-secondary/index?title=我发布的问题&name=tempmyproblem'>
       <view class='notice-two notice-publish-problem'>
         <view class='notice-img notice-publish-problem-img'>
+         <view class='notice-img-circle'></view>
           <image src='../../images/notice-img/myproblem.png'></image>
         </view>
         <view class='notice-text notice-publish-problem-text'>
@@ -55,6 +58,7 @@
     <navigator open-type='navigateTo' url='../notice-secondary/index?title=我发布的评论&name=tempmycomment'>
       <view class='notice-two notice-publish-comment'>
         <view class='notice-img notice-publish-comment-img'>
+         <view class='notice-img-circle'></view>
           <image src='../../images/notice-img/comment.png'></image>
         </view>
         <view class='notice-text notice-publish-comment-text'>

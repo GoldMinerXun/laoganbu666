@@ -12,27 +12,27 @@
       {{signature}}</view>
   </view>
   <view class='me-lab' bindtap='handleChange'>
-    <image src="./time.png"></image>
+    <image src="./time.png" class='lab-left' mode='widthFix'></image>
     实验室
     <image class='lab-right' src="./right.png"></image>
   </view>
-  
+
   <view class='me-btn-wrap'>
-    <view class='btn qusetion'>
+    <button class='btn qusetion' open-type='contact'>
       <view class='img-wrap'>
         <view class='circle i1circle'></view>
-        <image class='img1' src="./i1.png"></image>
+        <image class='img1' mode='widthFix' src="./i1.png"></image>
       </view>
       问题反馈
-      <image class='btn-right' src="./right.png"></image></view>
-    <view class='btn log-out'>
+      <image class='btn-right' src="./right.png"></image>
+    </button>
+    <navigator open-type='exit' target="miniProgram" class='btn log-out'>
       <view class='img-wrap'>
-      <view class='circle i2circle'></view>
-        <image class='img2' src="./i2.png"> </image>
+        <view class='circle i2circle'></view>
+        <image class='img2' mode='widthFix' src="./i2.png"> </image>
       </view>
       退出
       <image class='btn-right' src="./right.png"></image>
-      </view>
+    </navigator>
   </view>
-
 </view>

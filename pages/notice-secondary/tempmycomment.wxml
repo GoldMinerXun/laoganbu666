@@ -1,16 +1,12 @@
 <template name="tempmycomment">
-
   <view class='tempmycomment-wrap'>
+    <view class='tempmycomment-del-btn' bindtap='confirmdeletemycomment'>
+      <image class='tempcomment-img' mode='widthFix' src="./more.png"></image>
+    </view>
     <navigator class='tempcomment-text-wrap' url='{{url}}'>
       <view class='tempmycomment-title'>{{title}}</view>
       <view class='tempmycomment-simplecontent'>{{mycomment}}</view>
       <view class='tempmymycomment-time'>{{time}}</view>
     </navigator>
-    <view class='tempmycomment-del-btn'>
-      <image class='tempcomment-del-img' src='./del.png'></image>
-      删除
-      </view>
   </view>
-
-
 </template>

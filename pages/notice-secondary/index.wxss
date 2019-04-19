@@ -81,7 +81,7 @@ page {
   font-size: 30rpx;
   padding: 20rpx;
   box-sizing: border-box;
-  border-radius: 13rpx;
+  border-radius: 10rpx;
   margin-bottom: 30rpx;
 }
 
@@ -173,22 +173,44 @@ page {
 
 .tempmyproblem-wrap {
   width: 100%;
-  display: flex;
-  flex-direction: column;
   padding: 10rpx 20rpx;
+  box-sizing: border-box;
   margin-bottom: 20rpx;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.tempmyproblem-url {
+  width: 75%;
+}
+
+.navigator-hover {
   background-color: white;
 }
 
+.tempmyproblem-text-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .tempmyproblem-title {
-  font-weight: 600;
-  font-size: 35rpx;
+  font-weight: 500;
+  font-size: 32rpx;
   margin-bottom: 20rpx;
 }
 
 .tempmyproblem-simplecontent {
+  background-color: rgb(242, 242, 242);
   font-size: 30rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-radius: 13rpx;
   margin-bottom: 30rpx;
+  color: #999;
 }
 
 .tempmyproblem-time {
@@ -196,48 +218,43 @@ page {
   font-size: 28rpx;
   color: #aaa;
 }
-.tempmyproblem-del-wrap{
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+
+.tempmyproblem-del-wrap {
+  width: 10%;
 }
+
 .tempmyproblem-del-btn {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 40%;
-  width: 25%;
-  background-color: rgb(242, 242, 242);
-  padding: 10rpx 20rpx;
   box-sizing: border-box;
   font-size: 35rpx;
   line-height: 60rpx;
-  border-radius: 10rpx;
-  margin-right:60rpx;
 }
-.tempmyproblem-del-btn:active {
-  background-color: #ccc;
-  color: red;
-}
+
 .tempmyproblem-img {
-  height: 50rpx;
-  width: 50rpx;
-  margin-right: 20rpx;
+  width: 100%;
+  opacity: 0.6;
+}
+
+.tempmyproblem-img:active {
+  opacity: 1;
 }
 
 /* 我发布的评论模板 */
 
 .tempmycomment-wrap {
   width: 100%;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+  margin-bottom: 20rpx;
+  background-color: white;
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
   justify-content: space-around;
-  align-items: center;
-  padding: 20rpx 20rpx;
-  box-sizing: border-box;
-  box-shadow: 0rpx 10rpx 10rpx rgba(0, 0, 0, 0.03);
 }
 
 .tempcomment-text-wrap {
@@ -248,46 +265,42 @@ page {
 }
 
 .tempmycomment-title {
-  font-size: 30rpx;
-  font-weight: 600;
-  letter-spacing: 4rpx;
-  /* margin-bottom: 20rpx; */
+  font-weight: 500;
+  font-size: 32rpx;
+  margin-bottom: 20rpx;
 }
 
 .tempmycomment-simplecontent {
-  font-size: 28rpx;
-  font-weight: 300;
-  margin: 20rpx 0;
-}
-
-.tempmymycomment-time {
-  font-size: 28rpx;
+  background-color: rgb(242, 242, 242);
+  font-size: 30rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+  margin-bottom: 30rpx;
   color: #999;
 }
 
+.tempmymycomment-time {
+  box-sizing: border-box;
+  font-size: 28rpx;
+  color: #aaa;
+}
+
 .tempmycomment-del-btn {
+  width: 10%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 40%;
-  width: 25%;
-  background-color: white;
-  padding: 10rpx 20rpx;
   box-sizing: border-box;
   font-size: 35rpx;
   line-height: 60rpx;
-  border-radius: 10rpx;
-  margin-right: 20rpx;
 }
 
-.tempmycomment-del-btn:active {
-  background-color: rgb(242, 242, 242);
-  color: red;
+.tempcomment-img {
+  width: 100%;
+  opacity: 0.6;
 }
-
-.tempcomment-del-img {
-  height: 50rpx;
-  width: 50rpx;
-  margin-right: 20rpx;
+.tempcomment-img:active{
+  opacity: 1;
 }

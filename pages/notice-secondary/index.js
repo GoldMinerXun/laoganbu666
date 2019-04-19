@@ -14,7 +14,64 @@ Page({
     ],
 
   },
-  
+  confirmdeletemycomment:function(){
+    wx.showModal({
+
+      title: '删除我的评论',
+
+      content: '确定要删除吗，恢复不了了哦',
+
+      confirmText: '确认删除',
+
+      cancelText: '手滑了',
+      cancelColor:"#191970",
+      confirmColor:"#DC143C",
+
+      success: function (res) {
+
+        if (res.confirm) {
+
+          console.log('用户点击主操作')
+
+        } else if (res.cancel) {
+
+          console.log('用户点击次要操作')
+
+        }
+
+      }
+
+    })
+  }, 
+  confirmdeletemyproblem: function () {
+    wx.showModal({
+
+      title: '删除我的问题',
+
+      content: '确定要删除吗，恢复不了了哦',
+
+      confirmText: '确认删除',
+
+      cancelText: '手滑了',
+      cancelColor: "#191970",
+      confirmColor: "#DC143C",
+
+      success: function (res) {
+
+        if (res.confirm) {
+
+          console.log('用户点击主操作')
+
+        } else if (res.cancel) {
+
+          console.log('用户点击次要操作')
+
+        }
+
+      }
+
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -77,37 +134,37 @@ Page({
       var myproblem = [
         {
           myproblemtitle: "用汇编语言如何写出二进制乘法程序？",
-          mycontent: "用汇编语言如何写出二进制乘法程序？具体如何实现移位？".slice(0, 20) + "...",
+          mycontent: "用汇编语言如何写出二进制乘法程序？具体如何实现移位？".slice(0, 15) + "...",
           time: "2019年4月15日 10:11",
           url: ""
         }, {
           myproblemtitle: "用汇编语言如何写出二进制乘法程序？",
-          mycontent: "用汇编语言如何写出二进制乘法程序？具体如何实现移位？".slice(0, 20) + "...",
+          mycontent: "用汇编语言如何写出二进制乘法程序？具体如何实现移位？".slice(0, 15) + "...",
           time: "2019年4月15日 10:11",
           url: ""
         }, {
           myproblemtitle: "用汇编语言如何写出二进制乘法程序？",
-          mycontent: "用汇编语言如何写出二进制乘法程序？具体如何实现移位？".slice(0, 20) + "...",
+          mycontent: "用汇编语言如何写出二进制乘法程序？具体如何实现移位？".slice(0, 15) + "...",
           time: "2019年4月15日 10:11",
           url: ""
         }, {
           myproblemtitle: "用汇编语言如何写出二进制乘法程序？",
-          mycontent: "用汇编语言如何写出二进制乘法程序？具体如何实现移位？".slice(0, 20) + "...",
+          mycontent: "用汇编语言如何写出二进制乘法程序？具体如何实现移位？".slice(0, 15) + "...",
           time: "2019年4月15日 10:11",
           url: ""
         }, {
           myproblemtitle: "用汇编语言如何写出二进制乘法程序？",
-          mycontent: "用汇编语言如何写出二进制乘法程序？具体如何实现移位？".slice(0, 20) + "...",
+          mycontent: "用汇编语言如何写出二进制乘法程序？具体如何实现移位？".slice(0, 15) + "...",
           time: "2019年4月15日 10:11",
           url: ""
         }, {
           myproblemtitle: "用汇编语言如何写出二进制乘法程序？",
-          mycontent: "用汇编语言如何写出二进制乘法程序？具体如何实现移位？".slice(0, 20) + "...",
+          mycontent: "用汇编语言如何写出二进制乘法程序？具体如何实现移位？".slice(0, 15) + "...",
           time: "2019年4月15日 10:11",
           url: ""
         }, {
           myproblemtitle: "用汇编语言如何写出二进制乘法程序？",
-          mycontent: "用汇编语言如何写出二进制乘法程序？具体如何实现移位？".slice(0, 20) + "...",
+          mycontent: "用汇编语言如何写出二进制乘法程序？具体如何实现移位？".slice(0, 15) + "...",
           time: "2019年4月15日 10:11",
           url: ""
         }
@@ -118,7 +175,33 @@ Page({
           mycomment: "全是重点，好好复习叭",
           time: "2019/4/16 20:33",
           url:""
+        }, {
+          title: "软件工程的重点是什么？",
+          mycomment: "全是重点，好好复习叭",
+          time: "2019/4/16 20:33",
+          url: ""
+        }, {
+          title: "软件工程的重点是什么？",
+          mycomment: "全是重点，好好复习叭",
+          time: "2019/4/16 20:33",
+          url: ""
+        }, {
+          title: "软件工程的重点是什么？",
+          mycomment: "全是重点，好好复习叭",
+          time: "2019/4/16 20:33",
+          url: ""
+        }, {
+          title: "软件工程的重点是什么？",
+          mycomment: "全是重点，好好复习叭",
+          time: "2019/4/16 20:33",
+          url: ""
+        }, {
+          title: "软件工程的重点是什么？",
+          mycomment: "全是重点，好好复习叭",
+          time: "2019/4/16 20:33",
+          url: ""
         }
+
       ];
       var likemycomment=[
         {

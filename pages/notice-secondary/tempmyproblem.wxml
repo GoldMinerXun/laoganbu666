@@ -1,18 +1,16 @@
 <template name="tempmyproblem">
-
   <view class='tempmyproblem-wrap'>
-    <navigator url='{{url}}'>
-      <view class='tempmyproblem-title'>{{myproblemtitle}}</view>
-      <view class='tempmyproblem-simplecontent'>{{mycontent}}</view>
-      <view class='tempmyproblem-time'>{{time}}</view>
-    </navigator>
     <view class='tempmyproblem-del-wrap'>
-    <view class='tempmyproblem-del-btn'>
-    <image class='tempmyproblem-img' src="./del.png"></image>
-    删除</view>
+      <view class='tempmyproblem-del-btn' bindtap='confirmdeletemyproblem'>
+        <image class='tempmyproblem-img' src="./more.png" mode='widthFix'></image>
+      </view>
     </view>
-    
+    <navigator url='{{url}}' class='tempmyproblem-url'>
+      <view class='tempmyproblem-text-wrap'>
+        <view class='tempmyproblem-title'>{{myproblemtitle}}</view>
+        <view class='tempmyproblem-simplecontent'>{{mycontent}}</view>
+        <view class='tempmyproblem-time'>{{time}}</view>
+      </view>
+    </navigator>
   </view>
-
-
 </template>
