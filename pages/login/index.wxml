@@ -1,0 +1,28 @@
+<!--pages/login/index.wxml-->
+<view class='login-wrap'>
+  <view class='login-top-wrap'>
+    <view class='login-img-wrap'>
+      <image class='login-img' src="./login.png" mode='widthFix'></image>
+    </view>
+  </view>
+  <view class='login-line'></view>
+  <view class='login-warning-wrap'>
+    <text class='login-warning-title'>登陆后开发者将获得以下权限</text>
+    <text class='login-waring-content'>获得你的公开信息（昵称，头像等）</text>
+  </view>
+  <form class='login-info'>
+    <view class='login-row'>
+      <text class='login-text'>学号</text>
+      <input class='login-sno login-input' type='number' confirm-type='next' placeholder='请输入学号'></input>
+    </view>
+    <view class='login-row'>
+      <text class='login-text'>学院</text>
+      <input class='login-academic login-input' type='text' confirm-type='next' placeholder='请输入学院'></input>
+    </view>
+    <view class='login-row'>
+      <text class='login-text'>专业</text>
+      <input class='login-major login-input' type='text' confirm-type='done' placeholder='请输入专业'></input>
+    </view>
+    <button class='login-btn'>确认授权</button>
+  </form>
+</view>
