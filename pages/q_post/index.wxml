@@ -8,11 +8,18 @@
   </view>
   <view class='post-min'>
     <view class='post-intro-left'>上传照片(最多三张)</view>
-    <view class='post-intro-min'></view>
-    <view class='post-intro-right'>
+    <view class='post-intro-min'>
       <image src='./lable.png' class='post-intro-image'></image>
       <view class='post-intro-right-word'>添加标签</view>
     </view>
+    <view class='post-intro-right'><button>发布</button></view>
   </view>
-  <view class='post-bottom-wrap'><image src='./add_lable.png'></image></view>
+  <view class='post-bottom-wrap'>
+    <view class='post-bottom-wrap-a'>
+      <image src='./add_lable.png'></image>
+    </view>
+    <view class='post-picture-pre'>
+      
+    </view>
+  </view>
 </view>

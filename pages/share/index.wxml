@@ -32,4 +32,8 @@
         </view>
       </view>
   </view>
+
+  <view class='share-btn-fly'>
+    问
+  </view>
 </view>

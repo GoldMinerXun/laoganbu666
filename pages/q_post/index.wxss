@@ -45,13 +45,24 @@ page{
   line-height: 90rpx;
   color: #888;
 }
-.post-intro-min{
-  height: 90rpx;
-  flex:0.6;
-}
 .post-intro-right{
   height: 90rpx;
-  flex: 1;
+  flex:0.6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.post-intro-right button{
+  width: 150rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.post-intro-min button::after{
+  border: none;
+}
+.post-intro-min{
+  height: 90rpx;
+  flex: 0.8;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,9 +79,15 @@ page{
   background-size: cover;
 }
 .post-bottom-wrap{
+  width: 100%;
+  height: 150rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.post-bottom-wrap-a{
   width: 150rpx;
   height: 150rpx;
-  margin-left: 50rpx;
+  margin-left: 30rpx;
   border: dashed 1rpx rgba(218, 218, 218, 1);
   display: flex;
   align-items: center;
@@ -79,4 +96,16 @@ page{
 .post-bottom-wrap image{
   width: 100rpx;
   height: 100rpx;
+}
+.post-picture-pre{
+  width: 480rpx;
+  height: 150rpx;
+  margin-right: 30rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.post-picture-pre image{
+  width: 150rpx;
+  height: 150rpx;
+  background-size: cover;
 }

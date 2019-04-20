@@ -105,7 +105,21 @@ i-tab-bar {
   height: 30rpx;
   font-size: 10px;
 }
-
 .card-item {
   margin-bottom: 20rpx;
+}
+
+.share-btn-fly{
+  width: 110rpx;
+  height: 110rpx;
+  position: fixed;
+  right: 60rpx;
+  bottom: 120rpx;
+  background-color: skyblue;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 100rpx;
+  opacity: 0.9;
+  box-shadow: 0 3rpx 5rpx #888;
+  font-size: 50rpx;
 }

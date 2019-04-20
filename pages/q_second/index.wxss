@@ -231,7 +231,7 @@
 }
 
 .detail-bottom-inp{
-  width: 70%;
+  width: 60%;
   height: 80rpx;
   background-color: rgb(238,238,238);
   font-size: 30rpx;
@@ -284,4 +284,13 @@ botton::after{
   border-radius: 20rpx;
   padding-top: 30rpx;
   padding-bottom: 30rpx;
+}
+.detail-add-pic{
+  width: 80rpx;
+  height: 80rpx;
+  background-color: #eeeeee;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 80rpx;
+  border-radius: 50%;
 }

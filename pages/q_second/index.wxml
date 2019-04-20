@@ -53,6 +53,7 @@
   <view class='detail-takeplace'></view>
   <view class='detail-bottom-function'>
     <input class='detail-bottom-inp' placeholder='点我添加评论'></input>
+    <view class='detail-add-pic'>+</view>
     <button class='detail-bottom-btn'>发布</button>
   </view>
 </view>
