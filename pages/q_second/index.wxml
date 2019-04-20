@@ -10,7 +10,7 @@
       <view class='detail-level-wrap'>王者</view>
     </view>
   </view>
-
+  {{dbdata}}
   <view class='detail-min-wrap'>
     <view class='detail-min-title'>{{tittle}}</view>
     <view class='detail-min-tag-wrap'>
@@ -52,7 +52,7 @@
   <view class='detail-bottom-add'>点击加载更多</view>
   <view class='detail-takeplace'></view>
   <view class='detail-bottom-function'>
-    <input class='detail-bottom-inp' placeholder='点我添加评论'></input>
+    <input class='detail-bottom-inp' placeholder='点我添加评论' bindinput='handleInput'></input>
     <view class='detail-add-pic'>+</view>
     <button class='detail-bottom-btn'>发布</button>
   </view>

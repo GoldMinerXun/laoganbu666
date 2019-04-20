@@ -18,22 +18,24 @@
     <view class='body-wrap'>
 
       <view class='card-item' wx:for="{{hot}}" wx:key="{{index}}">
-
-        <i-card class='i-card' title="{{item.title}}" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg" color="{{item.color}}">
-          <view slot="content" style='color:#aaa'> {{item.content}}</view>
-          <view class='tag-wrap' slot="footer">
-            <view class='tag' wx:for="{{item.tag}}" wx:key="{{index}}">
-              <view class='tag-item'>
-                {{item}}
+        <navigator open-type='navigateTo' url='../q_second/index?title='>
+          <i-card class='i-card' title="{{item.title}}" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg" color="{{item.color}}">
+            <view slot="content" style='color:#aaa'> {{item.content}}</view>
+            <view class='tag-wrap' slot="footer">
+              <view class='tag' wx:for="{{item.tag}}" wx:key="{{index}}">
+                <view class='tag-item'>
+                  {{item}}
+                </view>
               </view>
             </view>
-            </view>
           </i-card>
-        </view>
+        </navigator>
       </view>
+    </view>
   </view>
-
-  <view class='share-btn-fly'>
-    问
-  </view>
+  <navigator open-type='navigateTo' url='../q_post/index'>
+    <view class='share-btn-fly'>
+      问
+    </view>
+  </navigator>
 </view>
