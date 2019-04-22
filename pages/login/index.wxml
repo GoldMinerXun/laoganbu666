@@ -13,16 +13,16 @@
   <form class='login-info'>
     <view class='login-row'>
       <text class='login-text'>学号</text>
-      <input class='login-sno login-input' type='number' confirm-type='next' placeholder='请输入学号'></input>
+      <input class='login-sno login-input' type='number' bindinput='inputSno' confirm-type='next' placeholder='请输入学号'></input>
     </view>
     <view class='login-row'>
       <text class='login-text'>学院</text>
-      <input class='login-academic login-input' type='text' confirm-type='next' placeholder='请输入学院'></input>
+      <input class='login-academic login-input' bindinput='inputAcademic' type='text' confirm-type='next' placeholder='请输入学院'></input>
     </view>
     <view class='login-row'>
       <text class='login-text'>专业</text>
-      <input class='login-major login-input' type='text' confirm-type='done' placeholder='请输入专业'></input>
+      <input class='login-major login-input' type='text' bindinput='inputMajor' confirm-type='done' placeholder='请输入专业'></input>
     </view>
-    <button class='login-btn'>确认授权</button>
+    <button class='login-btn' open-type='getUserInfo' bindgetuserinfo='bindgetuserinfo'>确认授权</button>
   </form>
 </view>

@@ -26,12 +26,12 @@
       问题反馈
       <image class='btn-right' src="./right.png"></image>
     </button>
-    <navigator open-type='exit' target="miniProgram" class='btn log-out'>
+    <navigator url='../login/index'  class='btn log-out'>
       <view class='img-wrap'>
         <view class='circle i2circle'></view>
         <image class='img2' mode='widthFix' src="./i2.png"> </image>
       </view>
-      退出
+      {{hasUserInfo?"退出":"登陆"}}
       <image class='btn-right' src="./right.png"></image>
     </navigator>
   </view>
