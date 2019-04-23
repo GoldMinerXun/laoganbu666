@@ -5,6 +5,7 @@ let academic = null;
 let major = null;
 let openid = null;
 let avatorurl = null;
+let wechat = require('./wechat.js');
 
 const db = wx.cloud.database();
 const userDB = db.collection('user');
@@ -41,46 +42,48 @@ Page({
     major = event.detail.value
   },
   bindgetuserinfo(e) {
-    console.log(e.detail.userInfo)
+    // console.log(e.detail.userInfo)
     var userInfo = e.detail.userInfo
-    app.globalData.userInfo = userInfo
     let that = this;
-    wx.login({
-      success(result) {
-        wx.cloud.callFunction({
-          name: 'index',
-          complete: res => {
-            openid = res.result.openId;
-          }
+    if(major&&academic&&sno){
+      wechat.login()
+        .then(data => {
+          return wechat.wxcloudcallfunction()
         })
-        wx.getUserInfo({
-          success(res) {
-            userDB.add({
-              data: {
-                avatorurl: userInfo.avatarUrl,
-                uname: userInfo.nickname,
-                sno: sno,
-                academic: academic,
-                major: major
-              },
-              success: function () {
-                wx.navigateBack()
-              },
-              fail:function(){
-                console.log(111)
-              }
-            })
-          },
-          error: function (err) {
-            console.log(err)
-          }
+        .then(data => {
+          app.globalData.openid = data.openid
+          return wechat.getUserInfo();
+        }).then(data=>{
+          app.globalData.userInfo = data.userInfo
+          console.log(app.globalData)
+          userDB.doc(app.globalData.openid).update({
+                data: {
+                  avatorurl: app.globalData.userInfo.avatarUrl,
+                  uname: app.globalData.userInfo.nickname,
+                  sno: sno,
+                  academic: academic,
+                  major: major
+                },
+                success: function () {
+                  wx.reLaunch({
+                    url: '../me/index',
+                  })
+                },
+                fail: function () {
+                  console.log(111)
+                }
+              })
         })
-      }
-
-    })
-
-
-
+        .catch(e => {
+          console.log(e);
+        })
+    }else{
+      wx.showToast({
+        title: `请补充完整您的信息`,
+        icon:'none',
+        duration:2000
+      })
+    }
   },
 
 
@@ -95,7 +98,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.hideToast()
   },
 
   /**

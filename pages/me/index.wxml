@@ -4,12 +4,17 @@
   <view class='me-top-circle'></view>
   <view class='me-top-info-wrap'>
     <view class='me-top-avator'>
-      <image src="{{userInfo.avatarUrl}}"></image>
+      <image src="{{userInfo.avatarUrl?userInfo.avatarUrl:'../../images/avator.png'}}"></image>
     </view>
-    <view class='me-top-name'>{{userInfo.nickName}}</view>
-    <view class='me-top-signature'>
+    <view class='me-top-name'>{{userInfo.nickName?userInfo.nickName:'知之儿'}}</view>
+    <button class='me-top-signature' open-type='getUserInfo' bindgetuserinfo='modalinput' >
       <image src="./pen.png"></image>
-      {{signature}}</view>
+      {{signature?signature:'知之为知之，不知为不知，是知也'}}
+    </button>
+    <modal id="modal" hidden="{{hiddenmodalput}}" title="签名" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">  
+      <input type='text' bindinput='inputsig' placeholder="不超过15字" auto-focus/>
+        
+  </modal>
   </view>
   <view class='me-lab' bindtap='handleChange'>
     <image src="./time.png" class='lab-left' mode='widthFix'></image>
@@ -26,13 +31,13 @@
       问题反馈
       <image class='btn-right' src="./right.png"></image>
     </button>
-    <navigator url='../login/index'  class='btn log-out'>
+    <view bindtap='isLogin' data-login='{{hasUserInfo}}' class='btn log-out'>
       <view class='img-wrap'>
         <view class='circle i2circle'></view>
         <image class='img2' mode='widthFix' src="./i2.png"> </image>
       </view>
       {{hasUserInfo?"退出":"登陆"}}
       <image class='btn-right' src="./right.png"></image>
-    </navigator>
+    </view>
   </view>
 </view>

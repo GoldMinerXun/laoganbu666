@@ -68,8 +68,12 @@ page {
   display: flex;
   justify-content: center;
   line-height: 40rpx;
+  background-color: rgba(0, 0, 0, 0);
 }
+.me-top-signature::after{
+  border: none;
 
+}
 .me-top-signature image {
   height: 40rpx;
   width: 40rpx;

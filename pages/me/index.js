@@ -1,5 +1,9 @@
 // pages/aboutme/index.js
 const app = getApp()
+let sig = ''
+let openid = ''
+const db = wx.cloud.database();
+const userDB = db.collection('user');
 Page({
 
   /**
@@ -8,12 +12,65 @@ Page({
   data: {
     tag: ["信用满分", "好评如潮"],
     level: "11.lev",
-    signature: "多行不义必自毙",
+    signature: "",
     userInfo: {},
     hasUserInfo: false,
+    hiddenmodalput: true,
+  },
+  inputsig: function (event) {
+    sig = event.detail.value
+  },
+  modalinput: function (e) {
+    this.setData({
+      hiddenmodalput: !this.data.hiddenmodalput
+    })
+  },
+  //取消按钮  
+  cancel: function () {
+    this.setData({
+      hiddenmodalput: true
+    });
+  },
+  //确认  
+  confirm: function () {
+    console.log(this.data.hasUserInfo)
+    this.setData({
+      hiddenmodalput: true
+    })
+    if (this.data.hasUserInfo) {
+      userDB.doc(app.globalData.openid).update({
+        data: {
+          signature: sig
+        },
+        success: function () {
+          wx.reLaunch({
+            url: '../me/index',
+          })
+        },
+        fail: function () {
+          wx.showModal({
+            title: '注意',
+            content: '修改失败，请重试',
+          })
+        }
+      })
+    }
+    else {
+      wx.showModal({
+        title: '注意',
+        content: '请先登陆',
+        success(res) {
+          wx.navigateTo({
+            url: '../login/index',
+          })
+        },
+        fail() {
+
+        }
+      })
+    }
 
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -37,44 +94,39 @@ Page({
     wx.setNavigationBarTitle({
       title: '个人中心',
     })
-
+    // 
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    }
-    //   } else if (this.data.canIUse) {
-    //     // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-    //     // 所以此处加入 callback 以防止这种情况
-    //     app.userInfoReadyCallback = res => {
-    //       this.setData({
-    //         userInfo: res.userInfo,
-    //         hasUserInfo: true
-    //       })
-    //     }
-    //   } else {
-    //     // 在没有 open-type=getUserInfo 版本的兼容处理
-    //     wx.getUserInfo({
-    //       success: res => {
-    //         app.globalData.userInfo = res.userInfo
-    //         this.setData({
-    //           userInfo: res.userInfo,
-    //           hasUserInfo: true
-    //         })
-    //       }
-    //     })
-    //   }
-    // },
-    // getUserInfo: function (e) {
-    //   console.log(e)
-    //   app.globalData.userInfo = e.detail.userInfo
-    //   this.setData({
-    //     userInfo: e.detail.userInfo,
-    //     hasUserInfo: true
-    //   })
-  },
+      console.log(app.globalData)
+      userDB.doc(app.globalData.openid).get().then(res=>{
+        this.setData({
+          signature:res.data.signature
+        })
+      })
+    } 
 
+
+  },
+  isLogin: function (e) {
+    // console.log(e.currentTarget.dataset.login)
+    var islogin = e.currentTarget.dataset.login
+    // 已经登陆&&未登陆
+    if (islogin) {
+      this.setData({
+        hasUserInfo: false,
+        userInfo: null,
+        signature:null
+      })
+    } else {
+      wx.navigateTo({
+        url: '../login/index',
+      })
+    }
+    // 
+  },
   onReady: function () {
     wx.hideToast()
   }
