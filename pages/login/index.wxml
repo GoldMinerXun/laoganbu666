@@ -15,14 +15,20 @@
       <text class='login-text'>学号</text>
       <input class='login-sno login-input' type='number' bindinput='inputSno' confirm-type='next' placeholder='请输入学号'></input>
     </view>
-    <view class='login-row'>
+    <view class="section">
+  <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+    <view class="picker">
+      <view class='login-row'>
       <text class='login-text'>学院</text>
-      <input class='login-academic login-input' bindinput='inputAcademic' type='text' confirm-type='next' placeholder='请输入学院'></input>
+      <view class='login-academic login-input'>{{multiArray[0][multiIndex[0]]}}</view>
     </view>
     <view class='login-row'>
       <text class='login-text'>专业</text>
-      <input class='login-major login-input' type='text' bindinput='inputMajor' confirm-type='done' placeholder='请输入专业'></input>
+      <view class='login-major login-input'>{{multiArray[1][multiIndex[1]]}}</view>
     </view>
+    </view>
+  </picker>
+</view>
     <button class='login-btn' open-type='getUserInfo' bindgetuserinfo='bindgetuserinfo'>确认授权</button>
   </form>
 </view>
