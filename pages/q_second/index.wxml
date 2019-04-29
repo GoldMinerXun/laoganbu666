@@ -6,21 +6,23 @@
       <view class='detail-top-image-wrap'>
         <image src="https://i.loli.net/2017/08/21/599a521472424.jpg"></image>
       </view>
-      <view class='detail-top-author'>{{detail_author}}</view>
+      <view class='detail-top-author'>{{}}</view>
       <view class='detail-level-wrap'>王者</view>
     </view>
   </view>
   {{dbdata}}
   <view class='detail-min-wrap'>
-    <view class='detail-min-title'>{{tittle}}</view>
+    <view class='detail-min-title'>标题：{{questionData.title}}</view>
     <view class='detail-min-tag-wrap'>
       <view class='detail-tags' wx:for="{{tagsList}}" wx:key="{{index}}">{{item}}</view>
     </view>
     <view class='detail-min-content-wrap'>
-      <view class='detail-min-content' style='white-space:{{addAll}}'>{{question}}</view>
-      <view class='detail-min-btn' bindtap="addAll">{{addAll=='nowrap'? '点击查看全部' : '点击收起'}}</view>
+      <view class='detail-min-content' style='white-space:{{addAll}}'>{{questionData.content}}</view>
+      <!-- <view class='detail-min-btn' bindtap="addAll">{{addAll=='nowrap'? '点击查看全部' : '点击收起'}}</view> -->
       <view class='detail-min-content-pic-wrap'>
-        <image wx:for="{{ansPicture}}" wx:key="{{index}}" src='{{item}}' class='detail-min-content-pic'></image>
+        <block wx:for="{{questionTempImage}}" wx:key="{{index}}">
+          <image src='{{item.tempFileURL}}' class='detail-min-content-pic' mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+        </block>
       </view>
     </view>
   </view>
@@ -52,8 +54,8 @@
   <view class='detail-bottom-add'>点击加载更多</view>
   <view class='detail-takeplace'></view>
   <view class='detail-bottom-function'>
-    <input class='detail-bottom-inp' placeholder='点我添加评论' bindinput='handleInput'></input>
-    <view class='detail-add-pic'>+</view>
-    <button class='detail-bottom-btn'>发布</button>
+    <input class='detail-bottom-inp' placeholder='点我回复(150字数限制)' bindinput='handleInput' maxlength='100'></input>
+    <view class='detail-add-pic' bindtap='addpic'>+</view>
+    <button class='detail-bottom-btn' bindtap='submitReview'>发布</button>
   </view>
 </view>

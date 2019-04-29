@@ -1,4 +1,7 @@
 <view class='post-container'>
+  <view class='post-title-input-wrap'>
+    <input class='post-title-input' placeholder='标题(15字以内)' maxlength='15' value='{{title}}' bindinput="titleChange"></input>
+  </view>
   <view class='post-text-wrap'>
     <form>
       <textarea class='post-text' maxlength="500" placeholder='请你在此描述详细问题' value='{{content}}' bindinput="charChange">
@@ -7,19 +10,30 @@
     </form>
   </view>
   <view class='post-min'>
+
     <view class='post-intro-left'>上传照片(最多三张)</view>
+
     <view class='post-intro-min'>
       <image src='./lable.png' class='post-intro-image'></image>
       <view class='post-intro-right-word'>添加标签</view>
     </view>
-    <view class='post-intro-right'><button>发布</button></view>
+
+    <view class='post-intro-right'>
+      <button bindtap='submitForm' type='primary'>发布</button>
+    </view>
+
   </view>
   <view class='post-bottom-wrap'>
-    <view class='post-bottom-wrap-a'>
+
+    <view class='post-bottom-wrap-a' bindtap='uploadpic'>
       <image src='./add_lable.png'></image>
     </view>
+
     <view class='post-picture-pre'>
-      
+      <block wx:for="{{tempFilePaths}}" wx:key="index">
+        <image src='{{item}}' mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+      </block>
     </view>
+
   </view>
 </view>

@@ -97,7 +97,7 @@ i-tab-bar {
 .tag-item {
   padding: 0 10rpx;
   text-align: center;
-  background: linear-gradient(to right, rgba(0, 144, 227,0.5), rgba(26, 209, 233,0.5));
+  background: linear-gradient(to right, rgb(0, 144, 227), rgb(26, 209, 233));
   border-radius: 30rpx;
   margin-right: 10rpx;
   color: white;

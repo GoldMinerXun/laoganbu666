@@ -18,37 +18,21 @@
   <view class='home-circle'></view>
 
   <view class='home-panel-wrap'>
-    <view class='home-panel-list'>
-      <view class='home-panel-picture'>
-        <image src='./1.png'></image>
-      </view>
-      <view class='home-panel-intro-wrap'>
-        <view class='home-panel-intro-title'>新买的耳机不想要了</view>
-        <view class='home-panel-intro-detail'>便宜出售便宜出售...</view>
-      </view>
-    </view>
-    <view class='home-hr'></view>
 
-    <view class='home-panel-list'>
-      <view class='home-panel-picture'>
-        <image src='./2.png'></image>
-      </view>
-      <view class='home-panel-intro-wrap'>
-        <view class='home-panel-intro-title'>只借不卖</view>
-        <view class='home-panel-intro-detail'>地址是在南三环中央大...</view>
-      </view>
-    </view>
-    <view class='home-hr'></view>
+    <block wx:for="{{hotList}}" wx:key="{{index}}">
 
-    <view class='home-panel-list'>
-      <view class='home-panel-picture'>
-        <image src='./3.png'></image>
+      <view class='home-panel-list' bindtap='jumpTo' data-id='{{item._id}}'>
+        <view class='home-panel-picture'>
+          <image src='{{imageUrl[index].tempFileURL}}'></image>
+        </view>
+        <view class='home-panel-intro-wrap'>
+          <view class='home-panel-intro-title'>{{item.title}}</view>
+          <view class='home-panel-intro-detail'>{{detailList[index]}}</view>
+        </view>
       </view>
-      <view class='home-panel-intro-wrap'>
-        <view class='home-panel-intro-title'>最新款存钱罐，保护你的财产安全...</view>
-        <view class='home-panel-intro-detail'>地址是在南三环中央大...</view>
-      </view>
-    </view>
+      <view class='home-hr'></view>
+
+    </block>
 
   </view>
 </view>
@@ -60,4 +44,6 @@
     全网通知重要信息：平台提供了一个良好的买卖环境，希望大家能够遵守平台规则，公平买卖。
   </view>
 </view>
-<view class='home-ad-wrap'><image src='./ad.png'></image></view>
+<view class='home-ad-wrap'>
+  <image src='./ad.png'></image>
+</view>

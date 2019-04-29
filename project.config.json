@@ -1,6 +1,6 @@
 {
 	"description": "项目配置文件",
-  "cloudfunctionRoot": "functions/",
+	"cloudfunctionRoot": "functions/index/index.js",
 	"packOptions": {
 		"ignore": []
 	},
@@ -10,7 +10,8 @@
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"autoAudits": false,
+		"nodeModules": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.6.4",
@@ -37,5 +38,10 @@
 			"current": -1,
 			"list": []
 		}
-	}
+	},
+  "permissions": {
+    "openapi": [
+      "templateMessage.send"
+    ]
+  }
 }
