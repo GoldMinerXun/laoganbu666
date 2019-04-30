@@ -4,10 +4,10 @@
   <view class='detail-top'>
     <view class='detail-top-wrap'>
       <view class='detail-top-image-wrap'>
-        <image src="https://i.loli.net/2017/08/21/599a521472424.jpg"></image>
+        <image src="{{qAvatarUrl}}"></image>
       </view>
-      <view class='detail-top-author'>{{}}</view>
-      <view class='detail-level-wrap'>王者</view>
+      <view class='detail-top-author'>{{qNickName}}</view>
+      <view class='detail-level-wrap'>{{}}</view>
     </view>
   </view>
   {{dbdata}}
@@ -18,7 +18,6 @@
     </view>
     <view class='detail-min-content-wrap'>
       <view class='detail-min-content' style='white-space:{{addAll}}'>{{questionData.content}}</view>
-      <!-- <view class='detail-min-btn' bindtap="addAll">{{addAll=='nowrap'? '点击查看全部' : '点击收起'}}</view> -->
       <view class='detail-min-content-pic-wrap'>
         <block wx:for="{{questionTempImage}}" wx:key="{{index}}">
           <image src='{{item.tempFileURL}}' class='detail-min-content-pic' mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
@@ -32,21 +31,21 @@
     <view class='detail-ans-card' wx:for="{{ansList}}" wx:key="{{index}}">
       <view class='detail-card-head'>
         <view class='detail-card-head-avatar'>
-          <image src='https://i.loli.net/2017/08/21/599a521472424.jpg'></image>
+          <image src='{{item.admireAvatarUrl}}'></image>
         </view>
         <view class='detail-card-head-right'>
-          <view class='detail-card-head-right-name'>{{item.name}}</view>
-          <view class='detail-card-head-right-riqi'>{{item.riqi}}</view>
+          <view class='detail-card-head-right-name'>{{item.admireNickName}}</view>
+          <view class='detail-card-head-right-riqi'>{{item.time}}</view>
         </view>
         <view class='detail-card-head-right-admire'>
           <image src='./dianzan.png'></image>
         </view>
       </view>
       <view class='detail-card-body'>
-        <view class="{{item.image? 'detail-card-body-content-pic-wrap' : ''}}">
-          <image wx:for="{{item.image}}" wx:key="{{index}}" src='{{item}}'></image>
+        <view class="{{item.compic? 'detail-card-body-content-pic-wrap' : ''}}">
+          <image wx:for="{{item.compic}}" wx:key="{{item}}" src='{{item}}' mode="aspectFill" data-idx="{{item}}" bindtap="handlePreview"></image>
         </view>
-        <view class='detail-card-body-content'>{{item.ans}}</view>
+        <view class='detail-card-body-content'>{{item.ccontent}}</view>
       </view>
       <view class="{{index==ansLength-1? '' : 'detail-card-body-hr'}}"></view>
     </view>

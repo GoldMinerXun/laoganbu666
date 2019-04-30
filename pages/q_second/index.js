@@ -11,55 +11,8 @@ Page({
     reviewData: '',
     tempFilePaths: new Array(),
     imagesList: new Array(),
-    ansPicture: [
-      'https://i.loli.net/2017/08/21/599a521472424.jpg',
-      'https://i.loli.net/2017/08/21/599a521472424.jpg',
-      'https://i.loli.net/2017/08/21/599a521472424.jpg'
-    ],
-    ansList: [{
-        name: 'wsx',
-        ans: '但说到这场戏时，俞飞鸿表现得很平静：',
-        riqi: '1 day ago',
-        image: ['https://i.loli.net/2017/08/21/599a521472424.jpg',
-          'https://i.loli.net/2017/08/21/599a521472424.jpg',
-          'https://i.loli.net/2017/08/21/599a521472424.jpg'
-        ]
-      },
-      {
-        name: 'zcq',
-        ans: '但说到这场戏时，俞飞鸿表现得很平静：她也谈到了自己的衣服：“只有在电影里才能尝试穿全黑的',
-        riqi: '1 day ago'
-      }, {
-        name: 'myc',
-        ans: '简单、纯粹，也冷，也温暖。但说到这场戏时，俞飞鸿表现得很平静：',
-        riqi: '1 day ago'
-      },
-      {
-        name: 'mgj',
-        ans: '被问及这个角色最打动她的地方时，但说到这场戏时，俞飞鸿表现得很平静：',
-        riqi: '1 day ago'
-      },
-      {
-        name: 'wsx',
-        ans: '她也谈到了自己的衣服,但说到这场戏时，俞飞鸿表现得很平静：',
-        riqi: '1 day ago'
-      }
-    ]
-  },
-  addAll: function() {
-    if (!this.data.sign) {
-      this.setData({
-        sign: !this.data.sign,
-        addAll: 'normal',
-        changeshou: '点击收起'
-      })
-    } else {
-      this.setData({
-        sign: !this.data.sign,
-        addAll: 'nowrap',
-        changeshou: '点击查看全部'
-      })
-    }
+    ansPicture: new Array(),
+    ansList: new Array()
   },
   /**
    * 生命周期函数--监听页面加载
@@ -76,53 +29,65 @@ Page({
       ansLength: this.data.ansList.length
     })
 
+    var that = this
+    wx.getUserInfo({
+      success: function(res) {
+        that.setData({
+          admireAvatarUrl: res.userInfo.avatarUrl,
+          admireNickName: res.userInfo.nickName
+        })
+      }
+    })
+
     db.collection("questions").where({
       _id: options.id
     }).get().then(
       res => {
-        questionData: res.data[0]
+        console.log(res)
+        const questionData = res.data[0]
         const fileList = res.data[0].images
+        const qAvatarUrl = res.data[0].qAvatarUrl
+        const qNickName = res.data[0].qNickName
         wx.cloud.getTempFileURL({
           fileList
         }).then(result => {
-          db.collection('comments').where({
-            qid: options.id
-          }).get().then(resultTwo => {
-            this.setData({
-              questionData: res.data[0],
-              questionTempImage: result.fileList,
-              qid: options.id
-            })
+          this.setData({
+            qUserId: res.data[0]._openid,
+            questionData: res.data[0],
+            questionTempImage: result.fileList,
+            qid: options.id,
+            qAvatarUrl : qAvatarUrl,
+            qNickName : qNickName
           })
         })
       })
 
-    // db.collection("comments").where({
-    //   _id: options.id
-    // }).get().then(
-    //   res => {
-    //     questionData: res.data[0]
-    //     const fileList = res.data[0].images
-    //     wx.cloud.getTempFileURL({
-    //       fileList
-    //     }).then(result => {
-    //       db.collection('comments').where({
-    //         qid: options.id
-    //       }).get().then(resultTwo => {
-    //         this.setData({
-    //           questionData: res.data[0],
-    //           questionTempImage: result.fileList,
-    //           qid: options.id
-    //         })
-    //       })
-    //     })
-    //   })
+    db.collection("comments").where({
+      qid: options.id
+    }).get().then(
+      res => {
+       res.data.map(item => {
+        const fileList = item.compic ? item.compic : false
+          if (fileList) {
+            wx.cloud.getTempFileURL({
+              fileList
+            }).then(res=>{
+              item.compic=res.fileList
+            })
+          }
+        })
+        console.log(res.data)
+        this.setData({
+          ansList: res.data
+        })
+      })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
+    wx.hideToast()
 
   },
 
@@ -168,6 +133,7 @@ Page({
 
   },
   handleInput: function(e) {
+    console.log(this.data)
     var len = e.detail.value.length
     if (len > 150) {
       return
@@ -177,12 +143,28 @@ Page({
       })
     }
   },
+  handlePreview(e) {
+    const index = e.target.dataset.idx
+    const fileList = new Array()
+    fileList.push(index)
+    wx.cloud.getTempFileURL({
+      fileList
+    }).then(result =>{
+      const temp = new Array()
+      const temps = result.fileList[0].tempFileURL
+      temp.push(temps)
+      wx.previewImage({
+        urls: temp,
+      })
+    })
+  },
   handleImagePreview(e) {
     const images = []
     this.data.questionTempImage.map(item => {
       images.push(item.tempFileURL)
     })
     const idx = e.target.dataset.idx
+    console.log(e.target.dataset.idx)
     wx.previewImage({
       current: images[idx], //当前预览的图片
       urls: images, //所有要预览的图片
@@ -209,6 +191,7 @@ Page({
       wx.showToast({
         title: '正在发送',
       })
+
       const arr = this.data.tempFilePaths.map(path => {
         const name = Math.random() * 1000000;
         const time = util.formatTime(new Date)
@@ -228,11 +211,15 @@ Page({
         Promise.all(arr).then(res => {
           db.collection('comments').add({
             data: {
-              qid: this.data.id,
+              qid: this.data.qid,
               time: util.formatTime(new Date),
               ccontent: this.data.reviewData,
               admire: new Array(),
-              compic: this.data.imagesList
+              compic: this.data.imagesList,
+              title: this.data.questionData.title,
+              qUserId: this.data.qUserId,
+              admireNickName: this.data.admireNickName,
+              admireAvatarUrl: this.data.admireAvatarUrl
             },
             success: function() {
               wx.showToast({
@@ -247,11 +234,14 @@ Page({
       } else {
         db.collection('comments').add({
           data: {
-            qid: this.data.id,
+            qid: this.data.qid,
             time: util.formatTime(new Date),
             ccontent: this.data.reviewData,
             admire: new Array(),
-            compic: new Array()
+            title: this.data.questionData.title,
+            qUserId: this.data.qUserId,
+            admireNickName: this.data.admireNickName,
+            admireAvatarUrl : this.data.admireAvatarUrl
           },
           success: function() {
             wx.showToast({
@@ -261,7 +251,7 @@ Page({
               mask: true
             })
           },
-          fail : function(){
+          fail: function() {
             wx.showToast({
               title: '发送失败',
             })

@@ -60,6 +60,15 @@ Page({
         url: '../me/index',
       })
     }
+    var that = this
+    wx.getUserInfo({
+      success: function (res) {
+        that.setData({
+          qAvatarUrl: res.userInfo.avatarUrl,
+          qNickName: res.userInfo.nickName
+        })
+      }
+    })
   },
   submitForm(e) {
 
@@ -96,7 +105,10 @@ Page({
               tags: [],
               time: util.formatTime(new Date()),
               type: false,
-              images: this.data.imagesList
+              images: this.data.imagesList,
+              qAvatarUrl: this.data.qAvatarUrl,
+              qNickName: this.data.qNickName
+
             },
             success: function() {
               wx.showToast({
@@ -130,7 +142,9 @@ Page({
             tags: [],
             time: util.formatTime(new Date()),
             type: false,
-            images: this.data.imagesList
+            images: this.data.imagesList,
+            qAvatarUrl: this.data.qAvatarUrl,
+            qNickName: this.data.qNickName
           },
           success: function() {
             wx.showToast({
