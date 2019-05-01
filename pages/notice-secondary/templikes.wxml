@@ -1,16 +1,17 @@
 <template name="templikes">
   <view class='templikes-wrap'>
     <view class='templikes-avator'>
-      <image class='templikes-avator-img' src="{{avator}}"></image>
+      <image class='templikes-avator-img' src="{{adimre.admireAvator}}"></image>
     </view>
     <view class='templikes-text-wrap'>
       <view class='templikes-name-time'>
-        <view class='templikes-name'>{{name}}</view>
+        <view class='templikes-name'>{{admire.admireNickName}}</view>
         <view class='templikes-time'>{{time}}</view>
       </view>
       <view class='templikes-showcontent'>赞了一下你的回答</view>
-      <view class='templikes-mycontent'>{{mycomment}}</view>
+      <view class='templikes-mycontent'>{{ccontent}}</view>
       <view class='templikes-line'></view>
     </view>
   </view>
+ 
 </template>

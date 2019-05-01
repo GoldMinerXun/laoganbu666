@@ -5,7 +5,6 @@ let openid = ''
 const db = wx.cloud.database();
 const userDB = db.collection('user');
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -94,21 +93,7 @@ Page({
     wx.setNavigationBarTitle({
       title: '个人中心',
     })
-    // 
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-      console.log(app.globalData)
-      userDB.doc(app.globalData.openid).get().then(res=>{
-        this.setData({
-          signature:res.data.signature
-        })
-      })
-    } 
-
-
+    
   },
   isLogin: function (e) {
     // console.log(e.currentTarget.dataset.login)
@@ -118,7 +103,7 @@ Page({
       this.setData({
         hasUserInfo: false,
         userInfo: null,
-        signature:null
+        signature: null
       })
     } else {
       wx.navigateTo({
@@ -129,5 +114,24 @@ Page({
   },
   onReady: function () {
     wx.hideToast()
+  },
+  onShow:function(){
+    if (app.globalData.openid) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true,
+        openid: app.globalData.openid
+      })
+      userDB.where({
+        _openid: app.globalData.openid
+      })
+        .get()
+        .then(res => {
+          sig = res.data[0].signature
+          this.setData({
+            signature: sig
+          })
+        })
+    }
   }
 })

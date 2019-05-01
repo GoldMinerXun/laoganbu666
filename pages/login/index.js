@@ -38,7 +38,7 @@ Page({
       ],
       [
         '计算机科学与技术', '网络工程'
-        
+
       ]
     ],
     objectMultiArray: [
@@ -84,20 +84,20 @@ Page({
       ]
     ],
     multiIndex: [0, 0],
-   
+
   },
   bindMultiPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    var academicindex=e.detail.value[0]
-    var majorindex=e.detail.value[1]
-    academic=this.data.multiArray[0][academicindex]
-    major=this.data.multiArray[1][majorindex]
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
+    var academicindex = e.detail.value[0]
+    var majorindex = e.detail.value[1]
+    academic = this.data.multiArray[0][academicindex]
+    major = this.data.multiArray[1][majorindex]
     this.setData({
       multiIndex: e.detail.value
     })
   },
   bindMultiPickerColumnChange: function (e) {
-    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+    // console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
     var data = {
       multiArray: this.data.multiArray,
       multiIndex: this.data.multiIndex
@@ -169,7 +169,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
 
-  // 先检查登陆信息已过期，如果过期，就重新授权登陆，反之跳转到首页
   onLoad: function (options) {
     wx.setNavigationBarTitle({
       title: '登陆',
@@ -197,23 +196,11 @@ Page({
           return wechat.getUserInfo();
         }).then(data => {
           app.globalData.userInfo = data.userInfo
-          console.log(app.globalData)
-          userDB.doc(app.globalData.openid).update({
-            data: {
-              avatorurl: app.globalData.userInfo.avatarUrl,
-              uname: app.globalData.userInfo.nickname,
-              sno: sno,
-              academic: academic,
-              major: major
-            },
-            success: function () {
-              wx.reLaunch({
-                url: '../me/index',
-              })
-            },
-            fail: function () {
-              console.log(111)
-            }
+          // console.log(app.globalData)
+          return wechat.updateUserInfo(app, major, sno, academic)
+        }).then(data => {
+          wx.navigateBack({
+            delta: 2
           })
         })
         .catch(e => {

@@ -16,7 +16,7 @@
       <input class='login-sno login-input' type='number' bindinput='inputSno' confirm-type='next' placeholder='请输入学号'></input>
     </view>
     <view class="section">
-  <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+  <picker mode="multiSelector" class='picker' bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
     <view class="picker">
       <view class='login-row'>
       <text class='login-text'>学院</text>

@@ -1,16 +1,22 @@
 <template name="tempmyproblem">
   <view class='tempmyproblem-wrap'>
     <view class='tempmyproblem-del-wrap'>
-      <view class='tempmyproblem-del-btn' bindtap='confirmdeletemyproblem'>
+      <view class='tempmyproblem-del-btn' bindtap='confirmdeletemyproblem' data-id='{{_id}}'>
         <image class='tempmyproblem-img' src="./more.png" mode='widthFix'></image>
       </view>
     </view>
     <navigator url='{{url}}' class='tempmyproblem-url'>
       <view class='tempmyproblem-text-wrap'>
-        <view class='tempmyproblem-title'>{{myproblemtitle}}</view>
-        <view class='tempmyproblem-simplecontent'>{{mycontent}}</view>
+        <view class='tempmyproblem-title'>{{title}}</view>
+        <view class='tempmyproblem-simplecontent'>{{slice.sub(content)}}</view>
         <view class='tempmyproblem-time'>{{time}}</view>
       </view>
+       <wxs module="slice">
+    var sub = function(val) {
+      return val.substring(0, 15)+"..." 
+    }
+    module.exports.sub = sub;
+  </wxs>
     </navigator>
   </view>
 </template>

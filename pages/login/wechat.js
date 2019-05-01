@@ -1,6 +1,8 @@
 /**
  * Promise化小程序接口
  */
+const db = wx.cloud.database();
+const userDB = db.collection('user');
 class Wechat {
   /**
    * 登陆
@@ -32,7 +34,20 @@ class Wechat {
       fail: reject
     }));
   };
-
+  // 登陆查数据库
+  static updateUserInfo(app,major,sno,academic){
+    return new Promise((resolve, reject) => userDB.doc(app.globalData.openid).update({
+      data: {
+        avatorurl: app.globalData.userInfo.avatarUrl,
+        uname: app.globalData.userInfo.nickname,
+        sno: sno,
+        academic: academic,
+        major: major
+      }, complete: res => {
+        resolve(res.result)
+      }
+    }))
+  }
 };
 
 module.exports = Wechat;

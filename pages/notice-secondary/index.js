@@ -1,6 +1,11 @@
 // pages/notice-secondary/index.js
+const app = getApp()
+const db = wx.cloud.database()
+const comments = db.collection('comments')
+const questions = db.collection('questions')
+var contentobj = [[], [], [], []]
+let promise = require('./promise.js');
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -9,280 +14,239 @@ Page({
     title: "",
     // 页面对应模板名
     tempname: "",
-    content: [
-
-    ],
+    // 页面对应的渲染内容
+    content: [],
+    refresh:false
+  },
+  deletemycomment: function (id) {
+    comments.doc(id).remove()
+      .then(console.log('删除成功'))
+      .catch(console.error)
+  },
+  confirmdeletemycomment: function (e) {
+    var openid=app.globalData.openid
+    var that = this
+    promise.showmodal()
+      .then(res => {
+        console.log(res)
+        if (res.confirm) {
+          that.deletemycomment(e.currentTarget.dataset.id)
+          return promise.showtoast()
+        }
+      })
+      .then(res => {
+        comments.where({
+          _openid: openid
+        })
+          .field({
+            _id: true,
+            title: true,
+            ccontent: true,
+            time: true
+          })
+          .get()
+          .then(res => {
+            // console.log(res.data)
+            // contentobj[0] = res.data
+            that.setData({
+              content:res.data
+            })
+          })
+      })
 
   },
-  confirmdeletemycomment:function(){
-    wx.showModal({
-
-      title: '删除我的评论',
-
-      content: '确定要删除吗，恢复不了了哦',
-
-      confirmText: '确认删除',
-
-      cancelText: '手滑了',
-      cancelColor:"#191970",
-      confirmColor:"#DC143C",
-
-      success: function (res) {
-
+  deletemyproblem:function(id){
+    questions.doc(id).remove()
+      .then(console.log('删除成功'))
+      .catch(console.error)
+  },
+  confirmdeletemyproblem: function (e) {
+    var openid = app.globalData.openid
+    var that = this
+    promise.showmodal()
+      .then(res => {
+        console.log(res)
         if (res.confirm) {
-
-          console.log('用户点击主操作')
-
-        } else if (res.cancel) {
-
-          console.log('用户点击次要操作')
-
+          that.deletemyproblem(e.currentTarget.dataset.id)
+          return promise.showtoast()
         }
-
-      }
-
-    })
-  }, 
-  confirmdeletemyproblem: function () {
-    wx.showModal({
-
-      title: '删除我的问题',
-
-      content: '确定要删除吗，恢复不了了哦',
-
-      confirmText: '确认删除',
-
-      cancelText: '手滑了',
-      cancelColor: "#191970",
-      confirmColor: "#DC143C",
-
-      success: function (res) {
-
-        if (res.confirm) {
-
-          console.log('用户点击主操作')
-
-        } else if (res.cancel) {
-
-          console.log('用户点击次要操作')
-
-        }
-
-      }
-
-    })
+      })
+      .then(res => {
+        console.log(2)
+        questions.where({
+          _openid: openid
+        })
+          .field({
+            _id: true,
+            title: true,
+            time: true,
+            content: true
+          })
+          .get()
+          .then(res => {
+            that.setData({
+              content:res.data
+            })
+          })
+      })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   //获取页面传递的参数
-  onLoad: function (options) {
-    var that=this
-    var getcontent=function(tempname,that) {
-      var comment = [
-        {
-          name: "可爱多",
-          avator: "./test-avator.png",
-          showcontent: "这里应该使用链表",
-          mycontent: "线性表就可以解决",
-          time: "2019年4月16日 20:07"
-        },
-        {
-          name: "可爱多",
-          avator: "./test-avator.png",
-          showcontent: "这里应该使用链表",
-          mycontent: "线性表就可以解决",
-          time: "2019年4月16日 20:07"
-        },
-        {
-          name: "可爱多",
-          avator: "./test-avator.png",
-          showcontent: "这里应该使用链表",
-          mycontent: "线性表就可以解决",
-          time: "2019年4月16日 20:07"
-        },
-        {
-          name: "可爱多",
-          avator: "./test-avator.png",
-          showcontent: "这里应该使用链表",
-          mycontent: "线性表就可以解决",
-          time: "2019/4/16 20:07"
-        },
-        {
-          name: "可爱多",
-          avator: "./test-avator.png",
-          showcontent: "这里应该使用链表",
-          mycontent: "线性表就可以解决",
-          time: "2019/4/16 20:07"
-        },
-        {
-          name: "可爱多",
-          avator: "./test-avator.png",
-          showcontent: "这里应该使用链表",
-          mycontent: "线性表就可以解决",
-          time: "2019/4/16 20:07"
-        },
-        {
-          name: "可爱多",
-          avator: "./test-avator.png",
-          showcontent: "这里应该使用链表",
-          mycontent: "线性表就可以解决",
-          time: "2019/4/16 20:07"
-        }
-        
-      ];
-      var myproblem = [
-        {
-          myproblemtitle: "用汇编语言如何写出二进制乘法程序？",
-          mycontent: "用汇编语言如何写出二进制乘法程序？具体如何实现移位？".slice(0, 15) + "...",
-          time: "2019年4月15日 10:11",
-          url: ""
-        }, {
-          myproblemtitle: "用汇编语言如何写出二进制乘法程序？",
-          mycontent: "用汇编语言如何写出二进制乘法程序？具体如何实现移位？".slice(0, 15) + "...",
-          time: "2019年4月15日 10:11",
-          url: ""
-        }, {
-          myproblemtitle: "用汇编语言如何写出二进制乘法程序？",
-          mycontent: "用汇编语言如何写出二进制乘法程序？具体如何实现移位？".slice(0, 15) + "...",
-          time: "2019年4月15日 10:11",
-          url: ""
-        }, {
-          myproblemtitle: "用汇编语言如何写出二进制乘法程序？",
-          mycontent: "用汇编语言如何写出二进制乘法程序？具体如何实现移位？".slice(0, 15) + "...",
-          time: "2019年4月15日 10:11",
-          url: ""
-        }, {
-          myproblemtitle: "用汇编语言如何写出二进制乘法程序？",
-          mycontent: "用汇编语言如何写出二进制乘法程序？具体如何实现移位？".slice(0, 15) + "...",
-          time: "2019年4月15日 10:11",
-          url: ""
-        }, {
-          myproblemtitle: "用汇编语言如何写出二进制乘法程序？",
-          mycontent: "用汇编语言如何写出二进制乘法程序？具体如何实现移位？".slice(0, 15) + "...",
-          time: "2019年4月15日 10:11",
-          url: ""
-        }, {
-          myproblemtitle: "用汇编语言如何写出二进制乘法程序？",
-          mycontent: "用汇编语言如何写出二进制乘法程序？具体如何实现移位？".slice(0, 15) + "...",
-          time: "2019年4月15日 10:11",
-          url: ""
-        }
-      ];
-      var mycomment = [
-        {
-          title: "软件工程的重点是什么？",
-          mycomment: "全是重点，好好复习叭",
-          time: "2019/4/16 20:33",
-          url:""
-        }, {
-          title: "软件工程的重点是什么？",
-          mycomment: "全是重点，好好复习叭",
-          time: "2019/4/16 20:33",
-          url: ""
-        }, {
-          title: "软件工程的重点是什么？",
-          mycomment: "全是重点，好好复习叭",
-          time: "2019/4/16 20:33",
-          url: ""
-        }, {
-          title: "软件工程的重点是什么？",
-          mycomment: "全是重点，好好复习叭",
-          time: "2019/4/16 20:33",
-          url: ""
-        }, {
-          title: "软件工程的重点是什么？",
-          mycomment: "全是重点，好好复习叭",
-          time: "2019/4/16 20:33",
-          url: ""
-        }, {
-          title: "软件工程的重点是什么？",
-          mycomment: "全是重点，好好复习叭",
-          time: "2019/4/16 20:33",
-          url: ""
-        }
+  getcontent: function (tempname, that, contentobj) {
 
-      ];
-      var likemycomment=[
-        {
-          name:"不吃香菜",
-          avator:"./test-avator.png",
-          mycomment:"全是重点，好好复习叭",
-          time:"2019年4月17日 20:10"
-        },
-        {
-          name: "不吃香菜",
-          avator: "./test-avator.png",
-          mycomment: "全是重点，好好复习叭",
-          time: "2019年4月17日 20:10"
-        },
-        {
-          name: "不吃香菜",
-          avator: "./test-avator.png",
-          mycomment: "全是重点，好好复习叭",
-          time: "2019年4月17日 20:10"
-        },
-        {
-          name: "不吃香菜",
-          avator: "./test-avator.png",
-          mycomment: "全是重点，好好复习叭",
-          time: "2019年4月17日 20:10"
-        },
-        {
-          name: "不吃香菜",
-          avator: "./test-avator.png",
-          mycomment: "全是重点，好好复习叭",
-          time: "2019年4月17日 20:10"
-        },
-        {
-          name: "不吃香菜",
-          avator: "./test-avator.png",
-          mycomment: "全是重点，好好复习叭",
-          time: "2019年4月17日 20:10"
-        }
-      ]
-      if (tempname == "tempcomment") {
-        that.setData({
-          content: comment
-        })
-      }
-      else if (tempname == "templikes") {
-        that.setData({
-          content: likemycomment
-        })
+    var comment = contentobj[0]
+    var likemycomment = contentobj[1]
+    var myproblem = contentobj[2]
+    var mycomment = contentobj[3]
 
-      }
-      else if (tempname == "tempmycomment") {
-        that.setData({
-          content: mycomment
-        })
-
-      }
-      else if (tempname == "tempmyproblem") {
-        that.setData({
-          content: myproblem
-        })
-
-      }
-      else {
-        this.setData({
-          content: []
-        })
-      }
+    if (tempname == "tempcomment") {
+      that.setData({
+        content: comment
+      })
     }
-    this.setData({
-      title: options.title,
-      tempname: options.name,
-    })
-    wx.setNavigationBarTitle({
-      title: options.title,
-    })
-    wx.showToast({
-      title: "loadig...",
-      image: "../../images/loading.png",
-      mask: true
-    })
-    getcontent(options.name,that)
+    else if (tempname == "templikes") {
+      that.setData({
+        content: likemycomment
+      })
+
+    }
+    else if (tempname == "tempmycomment") {
+      that.setData({
+        content: mycomment
+      })
+
+    }
+    else if (tempname == "tempmyproblem") {
+      that.setData({
+        content: myproblem
+      })
+
+    }
+    else {
+      this.setData({
+        content: []
+      })
+    }
+  },
+  onLoad: function (options) {
+    // 判断是否登陆，
+    // 没有登陆就跳到登录页，
+    // 登陆了就获取对应的评论，点赞和发布问题，评论内容。
+    if (app.globalData.openid) {
+      this.setData({
+        title: options.title,
+        tempname: options.name,
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+      var openid = app.globalData.openid
+
+
+      // 获取我收到的评论
+      comments.where({
+        qUserId: openid
+      })
+        .field({
+
+          comAvatarUrl: true,//评论者的头像
+          comNickName: true,//评论者名字
+          ccontent: true,//评论内容
+          time: true,//评论时间
+          title: true,//评论标题
+          qid: true//问题id
+        })
+        .get()
+        .then(res => {
+          // console.log(res.data)
+          contentobj[0] = res.data
+          var that = this
+          this.getcontent(options.name, that, contentobj)
+        })
+      // 获取点赞我的???有问题哦
+      comments.where({
+        _openid: openid
+      })
+        .field({
+          admire: true,
+          ccontent: true,
+          qid: true
+        })
+        .get()
+        .then(res => {
+          console.log(res.data)
+          contentobj[1] = res.data
+          var that = this
+          this.getcontent(options.name, that, contentobj)
+        })
+      // 获取我的问题
+      questions.where({
+        _openid: openid
+      })
+        .field({
+          _id: true,
+          title: true,
+          time: true,
+          content: true
+        })
+        .get()
+        .then(res => {
+          console.log(res.data)
+          contentobj[2] = res.data
+          var that = this
+          this.getcontent(options.name, that, contentobj)
+        })
+      
+      
+      
+      
+      // 获取我的评论
+      comments.where({
+        _openid: openid
+      })
+        .field({
+          _id: true,
+          title: true,
+          ccontent: true,
+          time: true
+        })
+        .get()
+        .then(res => {
+          // console.log(res.data)
+          contentobj[3] = res.data
+          var that = this
+          this.getcontent(options.name, that, contentobj)
+        })
+
+      wx.setNavigationBarTitle({
+        title: options.title,
+      })
+      wx.showToast({
+        title: "loadig...",
+        image: "../../images/loading.png",
+        mask: true
+      })
+
+    } else {
+      wx.showModal({
+        title: '注意一下',
+        content: '你还没有登陆叭？',
+        success(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '../login/index',
+            })
+          } else if (res.cancel) {
+            wx.navigateBack({
+              delta: 1
+            })
+          }
+        }
+      })
+
+    }
+
   },
 
   /**
@@ -297,7 +261,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+ 
   },
 
   /**
