@@ -20,6 +20,7 @@ class Wechat {
     return new Promise((resolve, reject) => wx.cloud.callFunction({
       name: 'index',
       complete: res => {
+        console.log(res.result)
           resolve(res.result)
       }
     }));
@@ -45,6 +46,27 @@ class Wechat {
         major: major
       }, complete: res => {
         resolve(res.result)
+      }
+    }))
+  }
+
+  // 登陆本地登陆openid情况
+  static getstorageopenid(){
+    return new Promise((resolve,reject)=>wx.getStorage({
+      key: 'openid',
+      success:function(res){
+        resolve(res);
+        reject
+      } 
+    }))
+  }
+  // 登陆本地登陆userinfo情况
+  static getstorageuserinfo(){
+    return new Promise((resolve, reject) => wx.getStorage({
+      key: 'userinfo',
+      success: function (res) {
+        resolve(res);
+        reject
       }
     }))
   }

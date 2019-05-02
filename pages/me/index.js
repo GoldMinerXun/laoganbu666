@@ -4,6 +4,7 @@ let sig = ''
 let openid = ''
 const db = wx.cloud.database();
 const userDB = db.collection('user');
+let wechat = require('../login/wechat.js');
 Page({
   /**
    * 页面的初始数据
@@ -93,13 +94,31 @@ Page({
     wx.setNavigationBarTitle({
       title: '个人中心',
     })
-    
+    // 判断之前是否登陆
+    wechat.getstorageopenid().then(res=>{
+      openid=res.data
+      return wechat.getstorageuserinfo()
+    }).then(res=>{
+      this.setData({
+        userInfo:res.data,
+        openid:openid,
+        hasUserInfo:true
+      })
+    })
   },
   isLogin: function (e) {
     // console.log(e.currentTarget.dataset.login)
     var islogin = e.currentTarget.dataset.login
     // 已经登陆&&未登陆
     if (islogin) {
+      wx.removeStorage({
+        key: 'openid',
+        success: function(res) {},
+      })
+      wx.removeStorage({
+        key: 'userinfo',
+        success: function(res) {},
+      })
       this.setData({
         hasUserInfo: false,
         userInfo: null,
@@ -115,23 +134,7 @@ Page({
   onReady: function () {
     wx.hideToast()
   },
-  onShow:function(){
-    if (app.globalData.openid) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true,
-        openid: app.globalData.openid
-      })
-      userDB.where({
-        _openid: app.globalData.openid
-      })
-        .get()
-        .then(res => {
-          sig = res.data[0].signature
-          this.setData({
-            signature: sig
-          })
-        })
-    }
+  onShow: function () {
+   
   }
 })
