@@ -20,7 +20,7 @@ Page({
   },
   deletemycomment: function (id) {
     comments.doc(id).remove()
-      .then(console.log('删除成功'))
+      .then()
       .catch(console.error)
   },
   confirmdeletemycomment: function (e) {
@@ -57,7 +57,7 @@ Page({
   },
   deletemyproblem:function(id){
     questions.doc(id).remove()
-      .then(console.log('删除成功'))
+      .then()
       .catch(console.error)
   },
   confirmdeletemyproblem: function (e) {
@@ -149,7 +149,6 @@ Page({
         qUserId: openid
       })
         .field({
-
           comAvatarUrl: true,//评论者的头像
           comNickName: true,//评论者名字
           ccontent: true,//评论内容
@@ -175,7 +174,7 @@ Page({
         })
         .get()
         .then(res => {
-          console.log(res.data)
+          // console.log(res.data)
           contentobj[1] = res.data
           var that = this
           this.getcontent(options.name, that, contentobj)
@@ -192,7 +191,7 @@ Page({
         })
         .get()
         .then(res => {
-          console.log(res.data)
+          // console.log(res.data)
           contentobj[2] = res.data
           var that = this
           this.getcontent(options.name, that, contentobj)
