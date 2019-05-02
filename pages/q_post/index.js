@@ -61,14 +61,14 @@ Page({
       })
     }
     var that = this
-    wx.getUserInfo({
-      success: function (res) {
-        that.setData({
-          qAvatarUrl: res.userInfo.avatarUrl,
-          qNickName: res.userInfo.nickName
-        })
-      }
-    })
+    // wx.getUserInfo({
+    //   success: function (res) {
+    //     that.setData({
+    //       qAvatarUrl: res.userInfo.avatarUrl,
+    //       qNickName: res.userInfo.nickName
+    //     })
+    //   }
+    // })
   },
   submitForm(e) {
 
