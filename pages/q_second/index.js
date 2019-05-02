@@ -60,6 +60,7 @@ Page({
       qid: options.id
     }).get().then(
       res => {
+        console.log(res.data)
         wx.getStorage({
           key: 'openid',
           success: function(res1) {
@@ -76,6 +77,7 @@ Page({
               fileList
             }).then(res => {
               item.compic = res.fileList
+
             })
           }
         })
@@ -199,6 +201,7 @@ Page({
     })
   },
   handleAdmire: function(e) {
+    var that = this
     if (app.globalData.openid) {
       db.collection('admires').add({
         data: {
