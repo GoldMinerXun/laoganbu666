@@ -208,8 +208,9 @@ Page({
           admireNickName: app.globalData.userInfo.nickName,
           admireAvatarUrl: app.globalData.userInfo.avatarUrl,
           time: util.formatTime(new Date()),
-          cid: e.currentTarget.dataset.qid,
+          cid: e.currentTarget.dataset.cid, 
           qid: this.data.qid,
+          cuserid: e.currentTarget.dataset.cuserid,
           ccontent: e.currentTarget.dataset.ccontent
         },
         success: function() {
