@@ -1,8 +1,6 @@
 <!--index.wxml-->
 <view class="container">
-
   <view class='share-head'>
-
     <form bindsubmit='search'>
       <view class='sousuo-wrap'>
         <icon class='search_icon' size='18' type='search'></icon>
@@ -10,15 +8,11 @@
         <button class='search_btn' form-type='submit'>搜索</button>
       </view>
     </form>
-
   </view>
-
   <view class='body'>
-
     <view class='body-wrap'>
-
       <view class='card-item' wx:for="{{hot}}" wx:key="{{index}}">
-        <navigator open-type='navigateTo' url='../q_second/index?title='>
+        <navigator hover-class='none' open-type='navigateTo' url='../q_second/index?title='>
           <i-card class='i-card' title="{{item.title}}" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg" color="{{item.color}}">
             <view slot="content" style='color:#aaa'> {{item.content}}</view>
             <view class='tag-wrap' slot="footer">
@@ -33,9 +27,9 @@
       </view>
     </view>
   </view>
-  <navigator open-type='navigateTo' url='../q_post/index'>
+  <navigator open-type='navigateTo' hover-class='none' url='../q_post/index'>
     <view class='share-btn-fly'>
-      问
+      <image class='shareimg' mode='widthFix' src='./sharebtn.png'></image>
     </view>
   </navigator>
 </view>

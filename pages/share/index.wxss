@@ -3,6 +3,7 @@
 page {
   height: 100%;
   background-color: rgb(250, 250, 250);
+  /* background-color: gray; */
 }
 
 .container {
@@ -21,32 +22,33 @@ page {
   box-shadow: 0 2rpx 5rpx #888;
 }
 
-.search_btn{
+.search_btn {
   width: 130rpx;
   height: 80rpx;
   text-align: center;
   line-height: 80rpx;
-  background-color: #DDDDDD;
+  background-color: #ddd;
   border: none;
   font-size: 30rpx;
 }
-button::after{
+
+button::after {
   border: none;
 }
 
-.share-hr{
+.share-hr {
   height: 50rpx;
   border-right: solid 2rpx #888;
   margin-left: 30rpx;
 }
 
-.search_icon{
+.search_icon {
   margin-left: 40rpx;
 }
 
-.sousuo-wrap{
+.sousuo-wrap {
   width: 94%;
-  background-color: #DDDDDD;
+  background-color: #ddd;
   opacity: 0.8;
   display: flex;
   flex-direction: row;
@@ -55,7 +57,7 @@ button::after{
   margin: 15rpx auto;
 }
 
-.search_input{
+.search_input {
   margin-left: 20px;
   height: 80rpx;
   width: 400rpx;
@@ -95,31 +97,44 @@ i-tab-bar {
 }
 
 .tag-item {
-  padding: 0 10rpx;
+  padding: 5rpx 20rpx;
   text-align: center;
-  background: linear-gradient(to right, rgb(0, 144, 227), rgb(26, 209, 233));
-  border-radius: 30rpx;
-  margin-right: 10rpx;
-  color: white;
-  box-shadow: 0 2px 3px #888;
-  height: 30rpx;
-  font-size: 10px;
+  vertical-align:center;
+  border: 1rpx solid rgba(0, 0, 0, 0.1);
+  border-radius: 10rpx;
+  /* border-top-left-radius:50rpx;
+  border-bottom-left-radius: 50rpx;  */
+  background-color: rgba(0, 0, 0, 0.01);
+  margin-right: 30rpx;
+  color: #666;
+  font-size: 22rpx;
+  font-weight: 500;
+  box-sizing: border-box;
 }
+
 .card-item {
   margin-bottom: 20rpx;
 }
 
-.share-btn-fly{
+.share-btn-fly {
   width: 110rpx;
   height: 110rpx;
   position: fixed;
-  right: 60rpx;
-  bottom: 120rpx;
-  background-color: skyblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 40rpx;
+  bottom: 50rpx;
+  background-color: white;
   border-radius: 50%;
   text-align: center;
   line-height: 100rpx;
-  opacity: 0.9;
-  box-shadow: 0 3rpx 5rpx #888;
+  opacity: 1;
+  box-shadow: 0 3rpx 5rpx #777;
   font-size: 50rpx;
+  padding: 10rpx;
+}
+
+.shareimg {
+  width: 70%;
 }

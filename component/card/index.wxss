@@ -1,10 +1,12 @@
 .i-card {
-  margin: 0 16px;
+  margin: 0rpx 30rpx;
+  margin-bottom: 20rpx;
   font-size: 14px;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
   background: #fff;
-  border-radius: 5px;
+  border-radius: 10rpx;
+  box-shadow: 0rpx 5rpx 10rpx rgba(0, 0, 0, 0.07);
 }
 
 .i-card-full {
@@ -23,6 +25,9 @@
 .i-card-header-content {
   flex: 1;
   text-align: left;
+  font-size: 34rpx;
+  letter-spacing: 3rpx;
+  font-weight: 600;
 }
 
 .i-card-header-thumb {
@@ -57,7 +62,7 @@
   position: relative;
   padding: 6px 16px;
   color: #495060;
-  font-size: 14px;
+  font-size: 30rpx;
 }
 
 .i-card-body::before {
@@ -84,12 +89,10 @@
 
 .card-top{
   position: absolute;
-  right: -45rpx;
-  width: 180rpx;
-  height: 40rpx;
-  transform: rotate(30deg);
-  background: linear-gradient(to right,#fc00ff,#00dbde);
-  opacity: 0.5;
+  right: 5rpx;
+  top: -5rpx;
+  width: 120rpx;
+  opacity: 1;
 }
 
 .user_name{
