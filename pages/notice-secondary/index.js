@@ -3,6 +3,8 @@ const app = getApp()
 const db = wx.cloud.database()
 const comments = db.collection('comments')
 const questions = db.collection('questions')
+const admires = db.collection('admires')
+
 var contentobj = [[], [], [], []]
 let promise = require('./promise.js');
 Page({
@@ -149,8 +151,8 @@ Page({
         qUserId: openid
       })
         .field({
-          comAvatarUrl: true,//评论者的头像
-          comNickName: true,//评论者名字
+          commentAvatarUrl: true,//评论者的头像
+          commentNickName: true,//评论者名字
           ccontent: true,//评论内容
           time: true,//评论时间
           title: true,//评论标题
@@ -158,19 +160,23 @@ Page({
         })
         .get()
         .then(res => {
-          // console.log(res.data)
+          console.log(res.data)
           contentobj[0] = res.data
           var that = this
           this.getcontent(options.name, that, contentobj)
         })
       // 获取点赞我的???有问题哦
-      comments.where({
+      admires.where({
+        // 评论者id字段
         _openid: openid
       })
         .field({
-          admire: true,
-          ccontent: true,
-          qid: true
+          _id:true,
+          admireAvatarUrl:true,
+          admireNickName:true,
+          ccontent:true,
+          qid:true,
+          time:true
         })
         .get()
         .then(res => {
@@ -208,7 +214,8 @@ Page({
           _id: true,
           title: true,
           ccontent: true,
-          time: true
+          time: true,
+          qid:true
         })
         .get()
         .then(res => {

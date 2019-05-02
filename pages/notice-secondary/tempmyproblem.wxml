@@ -5,7 +5,7 @@
         <image class='tempmyproblem-img' src="./more.png" mode='widthFix'></image>
       </view>
     </view>
-    <navigator url='{{url}}' class='tempmyproblem-url'>
+    <navigator class='tempmyproblem-url' open-type='navigateTo' url='../q_second/index?id={{_id}}'>
       <view class='tempmyproblem-text-wrap'>
         <view class='tempmyproblem-title'>{{title}}</view>
         <view class='tempmyproblem-simplecontent'>{{slice.sub(content)}}</view>
