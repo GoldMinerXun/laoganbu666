@@ -19,6 +19,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    var that = this
+    wx.getStorage({
+      key: 'openid',
+      success: function(res) {
+        that.setData({
+          localOpenid : res.data
+        })
+      },
+    })
+
     wx.showToast({
       title: "loadig...",
       image: "../../images/loading.png",
@@ -72,6 +82,15 @@ Page({
           ansList: res.data
         })
       })
+
+    db.collection('admires').where({
+      qid : options.id
+    }).get().then(res =>{
+      console.log(res.data)
+      this.setData({
+        admireList : res.data
+      })
+    })
   },
 
   /**
@@ -86,7 +105,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    var app = getApp()
   },
 
   /**
@@ -160,12 +179,37 @@ Page({
       urls: images, //所有要预览的图片
     })
   },
-  handleAdmire: function() {
+  handleAdmire: function(e) {
     if (app.globalData.openid) {
       db.collection('admires').add({
-        admireNickName : app.globalData.userInfo.nickName,
-        admireAvatarUrl : app.globalData.userInfo.avatarUrl,
-        
+        data: {
+          admireNickName: app.globalData.userInfo.nickName,
+          admireAvatarUrl: app.globalData.userInfo.avatarUrl,
+          time: util.formatTime(new Date()),
+          cid: e.currentTarget.dataset.qid,
+          qid: this.data.qid,
+          ccontent: e.currentTarget.dataset.ccontent
+        },
+        success: function() {
+          wx.showToast({
+            title: '',
+            image: './thanks.png',
+            duration: 500
+          })
+        }
+      })
+    } else {
+      wx.showModal({
+        title: '需要登陆后才可以点赞哦',
+        confirmText: '去登录',
+        cancelText: '不赞了',
+        success(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '../login/index',
+            })
+          }
+        }
       })
     }
   },
@@ -219,8 +263,8 @@ Page({
                 compic: this.data.imagesList,
                 title: this.data.questionData.title,
                 qUserId: this.data.qUserId,
-                commentNickName: app.globalData.userInfo.NickName,
-                commentAvatarUrl: app.globalData.userInfo.AvatarUrl
+                commentNickName: app.globalData.userInfo.nickName,
+                commentAvatarUrl: app.globalData.userInfo.avatarUrl
               },
               success: function() {
                 wx.showToast({
@@ -241,8 +285,8 @@ Page({
               admire: new Array(),
               title: this.data.questionData.title,
               qUserId: this.data.qUserId,
-              commentNickName: app.globalData.userInfo.NickName,
-              commentAvatarUrl: app.globalData.userInfo.AvatarUrl
+              commentNickName: app.globalData.userInfo.nickName,
+              commentAvatarUrl: app.globalData.userInfo.avatarUrl
             },
             success: function() {
               wx.showToast({

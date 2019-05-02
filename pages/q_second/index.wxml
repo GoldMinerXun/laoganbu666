@@ -37,9 +37,14 @@
           <view class='detail-card-head-right-name'>{{item.commentNickName}}</view>
           <view class='detail-card-head-right-riqi'>{{item.time}}</view>
         </view>
-        <view class='detail-card-head-right-admire' bindtap='handleAdmire' data-qid='{{}}'>
-          <image src='./dianzan.png'></image>
-        </view>
+        <block wx:for="{{admireList}}" wx:key="{{index}}" wx:for-item='admireList'>
+          <view wx:if="{{admireList.cid==item._id&&admireList._openid==localOpenid}}" class='detail-card-head-right-admire'>
+            <image src='./yidianzan.png'></image>
+          </view>
+          <view wx:else class='detail-card-head-right-admire' bindtap='handleAdmire' data-qid='{{item._id}}' data-ccontent='{{item.ccontent}}'>
+            <image src='./dianzan.png'></image>
+          </view>
+        </block>
       </view>
       <view class='detail-card-body'>
         <view class="{{item.compic? 'detail-card-body-content-pic-wrap' : ''}}">
