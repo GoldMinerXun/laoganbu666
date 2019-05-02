@@ -2,6 +2,7 @@
 const app = getApp()
 let sig = ''
 let openid = ''
+var userinfo={}
 const db = wx.cloud.database();
 const userDB = db.collection('user');
 let wechat = require('../login/wechat.js');
@@ -94,17 +95,6 @@ Page({
     wx.setNavigationBarTitle({
       title: '个人中心',
     })
-    // 判断之前是否登陆
-    wechat.getstorageopenid().then(res=>{
-      openid=res.data
-      return wechat.getstorageuserinfo()
-    }).then(res=>{
-      this.setData({
-        userInfo:res.data,
-        openid:openid,
-        hasUserInfo:true
-      })
-    })
   },
   isLogin: function (e) {
     // console.log(e.currentTarget.dataset.login)
@@ -113,17 +103,23 @@ Page({
     if (islogin) {
       wx.removeStorage({
         key: 'openid',
-        success: function(res) {},
+        success: function(res) {
+          console.log(1)
+        },
       })
       wx.removeStorage({
         key: 'userinfo',
-        success: function(res) {},
+        success: function(res) {
+          console.log(2)
+        },
       })
       this.setData({
         hasUserInfo: false,
         userInfo: null,
         signature: null
       })
+      app.globalData.userInfo=null
+      app.globalData.openid=null
     } else {
       wx.navigateTo({
         url: '../login/index',
@@ -133,8 +129,35 @@ Page({
   },
   onReady: function () {
     wx.hideToast()
+
   },
   onShow: function () {
-   
+    
+    // 判断之前是否登陆
+    wechat.getstorageopenid().then(res => {
+      // 如果本地存储过登陆过的openid
+      // 则直接获取本地信息的openid
+      openid = res.data
+      app.globalData.openid=res.data
+      // console.log(res.data)
+      if(openid){
+        return wechat.getUserInfo()
+      }
+    }).then(res => {
+      // console.log(res.userInfo)
+      app.globalData.userInfo=res.userInfo
+
+      this.setData({
+        userInfo: res.userInfo,
+        openid: openid,
+        hasUserInfo: true
+      })
+      return userDB.doc(openid).get()
+    }).then(res => {
+      
+      this.setData({
+        signature: res.data.signature
+      })
+    })
   }
 })

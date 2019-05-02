@@ -194,17 +194,16 @@ Page({
         .then(data => {
           app.globalData.openid = data.openid
           openid=app.globalData.openid
-          return wechat.getUserInfo();
-        }).then(data => {
+          app.globalData.userInfo=userInfo
           wx.setStorage({
             key: 'openid',
             data: openid,
           })
           wx.setStorage({
             key: 'userinfo',
-            data: data.userInfo
+            data: userInfo
           })
-          app.globalData.userInfo = data.userInfo
+          app.globalData.userInfo = userInfo
           // console.log(app.globalData)
           return wechat.updateUserInfo(app, major, sno, academic)
         }).then(data => {
