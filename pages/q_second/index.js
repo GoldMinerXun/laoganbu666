@@ -19,15 +19,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+
     var that = this
-    wx.getStorage({
-      key: 'openid',
-      success: function(res) {
-        that.setData({
-          localOpenid : res.data
-        })
-      },
-    })
 
     wx.showToast({
       title: "loadig...",
@@ -67,6 +60,15 @@ Page({
       qid: options.id
     }).get().then(
       res => {
+        wx.getStorage({
+          key: 'openid',
+          success: function(res1) {
+            console.log(res1.data)
+            that.setData({
+              localOpenid: res1.data
+            })
+          },
+        })
         res.data.map(item => {
           const fileList = item.compic ? item.compic : false
           if (fileList) {
@@ -81,16 +83,34 @@ Page({
         this.setData({
           ansList: res.data
         })
+        var arr = new Array()
+        db.collection('admires').where({
+          qid: options.id
+        }).get().then(result => {
+          console.log(result.data)
+          this.setData({
+            admireList: result.data
+          })
+          res.data.forEach(item => {
+            var index = 0
+            var flag = false
+            result.data.forEach(items => {
+              if (item._id == items.cid && this.data.localOpenid == items._openid) {
+                flag = true
+              }
+            })
+            if (flag) {
+              arr.push(1)
+            } else {
+              arr.push(0)
+            }
+            console.log(arr)
+            that.setData({
+              admireArr : arr
+            })
+          })
+        })
       })
-
-    db.collection('admires').where({
-      qid : options.id
-    }).get().then(res =>{
-      console.log(res.data)
-      this.setData({
-        admireList : res.data
-      })
-    })
   },
 
   /**
@@ -98,7 +118,6 @@ Page({
    */
   onReady: function() {
     wx.hideToast()
-
   },
 
   /**
