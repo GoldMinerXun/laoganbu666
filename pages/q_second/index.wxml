@@ -31,13 +31,13 @@
     <view class='detail-ans-card' wx:for="{{ansList}}" wx:key="{{index}}">
       <view class='detail-card-head'>
         <view class='detail-card-head-avatar'>
-          <image src='{{item.admireAvatarUrl}}'></image>
+          <image src='{{item.commentAvatarUrl}}'></image>
         </view>
         <view class='detail-card-head-right'>
-          <view class='detail-card-head-right-name'>{{item.admireNickName}}</view>
+          <view class='detail-card-head-right-name'>{{item.commentNickName}}</view>
           <view class='detail-card-head-right-riqi'>{{item.time}}</view>
         </view>
-        <view class='detail-card-head-right-admire'>
+        <view class='detail-card-head-right-admire' bindtap='handleAdmire' data-qid='{{}}'>
           <image src='./dianzan.png'></image>
         </view>
       </view>

@@ -1,6 +1,7 @@
 // pages/q_second/index.js
 const db = wx.cloud.database()
 var util = require('../../utils/util.js')
+var app = getApp()
 Page({
   /**
    * 页面的初始数据
@@ -29,16 +30,6 @@ Page({
       ansLength: this.data.ansList.length
     })
 
-    var that = this
-    wx.getUserInfo({
-      success: function(res) {
-        that.setData({
-          admireAvatarUrl: res.userInfo.avatarUrl,
-          admireNickName: res.userInfo.nickName
-        })
-      }
-    })
-
     db.collection("questions").where({
       _id: options.id
     }).get().then(
@@ -56,8 +47,8 @@ Page({
             questionData: res.data[0],
             questionTempImage: result.fileList,
             qid: options.id,
-            qAvatarUrl : qAvatarUrl,
-            qNickName : qNickName
+            qAvatarUrl: qAvatarUrl,
+            qNickName: qNickName
           })
         })
       })
@@ -66,13 +57,13 @@ Page({
       qid: options.id
     }).get().then(
       res => {
-       res.data.map(item => {
-        const fileList = item.compic ? item.compic : false
+        res.data.map(item => {
+          const fileList = item.compic ? item.compic : false
           if (fileList) {
             wx.cloud.getTempFileURL({
               fileList
-            }).then(res=>{
-              item.compic=res.fileList
+            }).then(res => {
+              item.compic = res.fileList
             })
           }
         })
@@ -133,7 +124,6 @@ Page({
 
   },
   handleInput: function(e) {
-    console.log(this.data)
     var len = e.detail.value.length
     if (len > 150) {
       return
@@ -143,13 +133,13 @@ Page({
       })
     }
   },
-  handlePreview(e) {
+  handlePreview: function(e) {
     const index = e.target.dataset.idx
     const fileList = new Array()
     fileList.push(index)
     wx.cloud.getTempFileURL({
       fileList
-    }).then(result =>{
+    }).then(result => {
       const temp = new Array()
       const temps = result.fileList[0].tempFileURL
       temp.push(temps)
@@ -158,7 +148,7 @@ Page({
       })
     })
   },
-  handleImagePreview(e) {
+  handleImagePreview: function(e) {
     const images = []
     this.data.questionTempImage.map(item => {
       images.push(item.tempFileURL)
@@ -170,7 +160,16 @@ Page({
       urls: images, //所有要预览的图片
     })
   },
-  addpic() {
+  handleAdmire: function() {
+    if (app.globalData.openid) {
+      db.collection('admires').add({
+        admireNickName : app.globalData.userInfo.nickName,
+        admireAvatarUrl : app.globalData.userInfo.avatarUrl,
+        
+      })
+    }
+  },
+  addpic: function() {
     var that = this
     wx.chooseImage({
       count: 3,
@@ -184,42 +183,66 @@ Page({
       },
     })
   },
-  submitReview() {
-    var reviewdata = this.data.reviewData
-    var id = this.data.qid
-    if (reviewdata) {
-      wx.showToast({
-        title: '正在发送',
-      })
-
-      const arr = this.data.tempFilePaths.map(path => {
-        const name = Math.random() * 1000000;
-        const time = util.formatTime(new Date)
-        const cloudPath = name + path.match(/\.[^.]+?$/)[0]
-        return wx.cloud.uploadFile({
-          cloudPath: time.replace(/\s+/g, '').replace(new RegExp(/(:)/g), '').replace(/\\|\//g, '') + cloudPath,
-          filePath: path
-        }).then(res => {
-          console.log(res.fileID)
-          this.data.imagesList.push(res.fileID)
-        }).catch(error => {
-          console.log(error)
+  submitReview: function() {
+    if (app.globalData.openid) {
+      console.log(app.globalData.openid, app.globalData.userInfo)
+      var reviewdata = this.data.reviewData
+      var id = this.data.qid
+      if (reviewdata) {
+        wx.showToast({
+          title: '正在发送',
         })
-      })
 
-      if (this.data.tempFilePaths.length != 0) {
-        Promise.all(arr).then(res => {
+        const arr = this.data.tempFilePaths.map(path => {
+          const name = Math.random() * 1000000;
+          const time = util.formatTime(new Date)
+          const cloudPath = name + path.match(/\.[^.]+?$/)[0]
+          return wx.cloud.uploadFile({
+            cloudPath: time.replace(/\s+/g, '').replace(new RegExp(/(:)/g), '').replace(/\\|\//g, '') + cloudPath,
+            filePath: path
+          }).then(res => {
+            console.log(res.fileID)
+            this.data.imagesList.push(res.fileID)
+          }).catch(error => {
+            console.log(error)
+          })
+        })
+
+        if (this.data.tempFilePaths.length != 0) {
+          Promise.all(arr).then(res => {
+            db.collection('comments').add({
+              data: {
+                qid: this.data.qid,
+                time: util.formatTime(new Date),
+                ccontent: this.data.reviewData,
+                admire: new Array(),
+                compic: this.data.imagesList,
+                title: this.data.questionData.title,
+                qUserId: this.data.qUserId,
+                commentNickName: app.globalData.userInfo.NickName,
+                commentAvatarUrl: app.globalData.userInfo.AvatarUrl
+              },
+              success: function() {
+                wx.showToast({
+                  title: '发布成功',
+                  icon: 'succes',
+                  duration: 1000,
+                  mask: true
+                })
+              }
+            })
+          })
+        } else {
           db.collection('comments').add({
             data: {
               qid: this.data.qid,
               time: util.formatTime(new Date),
               ccontent: this.data.reviewData,
               admire: new Array(),
-              compic: this.data.imagesList,
               title: this.data.questionData.title,
               qUserId: this.data.qUserId,
-              admireNickName: this.data.admireNickName,
-              admireAvatarUrl: this.data.admireAvatarUrl
+              commentNickName: app.globalData.userInfo.NickName,
+              commentAvatarUrl: app.globalData.userInfo.AvatarUrl
             },
             success: function() {
               wx.showToast({
@@ -228,36 +251,29 @@ Page({
                 duration: 1000,
                 mask: true
               })
+            },
+            fail: function() {
+              wx.showToast({
+                title: '发送失败',
+              })
             }
           })
-        })
-      } else {
-        db.collection('comments').add({
-          data: {
-            qid: this.data.qid,
-            time: util.formatTime(new Date),
-            ccontent: this.data.reviewData,
-            admire: new Array(),
-            title: this.data.questionData.title,
-            qUserId: this.data.qUserId,
-            admireNickName: this.data.admireNickName,
-            admireAvatarUrl : this.data.admireAvatarUrl
-          },
-          success: function() {
-            wx.showToast({
-              title: '发布成功',
-              icon: 'succes',
-              duration: 1000,
-              mask: true
-            })
-          },
-          fail: function() {
-            wx.showToast({
-              title: '发送失败',
-            })
-          }
-        })
+        }
       }
+    } else {
+      wx.showToast({
+        title: '亲，请登录后再重试哦',
+        image: './tip.png',
+        duration: 1000,
+        mask: true,
+        success: function() {
+          setTimeout(function() {
+            wx.navigateTo({
+              url: '../login/index'　　
+            })
+          }, 1000)
+        }
+      })
     }
   }
 })
