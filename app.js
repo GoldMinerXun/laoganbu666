@@ -1,6 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
+    var that =this
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -9,7 +10,18 @@ App({
       env: 'laobanbu666-aeacf2',
       traceUser: true
     });
-   
+    wx.getStorage({
+      key: 'openid',
+      success: function(res) {
+        that.globalData.openid=res.data
+      },
+    })
+    wx.getStorage({
+      key: 'userinfo',
+      success: function(res) {
+        that.globalData.userInfo = res.data
+      },
+    })
   },
   globalData: {
     userInfo: null,
