@@ -205,6 +205,12 @@ Page({
   handleAdmire: function(e) {
     var that = this
     if (app.globalData.openid) {
+      const temp = this.data.admireArr
+      temp[e.currentTarget.dataset.index] = 1
+      this.setData({
+        admireArr: temp
+      })
+      that.onReady()
       db.collection('admires').add({
         data: {
           admireNickName: app.globalData.userInfo.nickName,
