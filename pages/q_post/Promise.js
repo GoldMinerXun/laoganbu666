@@ -27,7 +27,7 @@ class Wechat {
     */
   static showtoast() {
     return new Promise((resolve, reject) => wx.showToast({
-      title: '请补充完整标题和内容哦',
+      title: '请补充完整标题,内容以及标签哦',
       icon: 'none',
       duration: 2000,
       complete: res => {
