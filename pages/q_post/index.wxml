@@ -4,38 +4,46 @@
   </view>
   <view class='post-text-wrap'>
     <form>
-      <textarea class='post-text' maxlength="500" placeholder='请你在此描述详细问题' value='{{content}}' bindinput="charChange">
+      <textarea class='post-text' maxlength="300" placeholder='请你在此描述详细问题' value='{{content}}' fixed='true' auto-height='true' bindinput="charChange">
       </textarea>
       <view class='post-count'>{{now}}/{{max}}</view>
     </form>
   </view>
   <view class='post-min'>
+    <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+      <view class='post-intro-addtag'>
 
-    <view class='post-intro-left'>上传照片(最多三张)</view>
+        <view class='post-intro-right-word'>
+          <image src='./lable.png' class='post-intro-image'></image>
+          添加标签</view>
 
-    <view class='post-intro-min'>
-      <image src='./lable.png' class='post-intro-image'></image>
-      <picker>
-      <view class='post-intro-right-word'>添加标签</view>
-      </picker>
-    </view>
-
-    <view class='post-intro-right'>
-      <button bindtap='submitForm' type='primary'>发布</button>
-    </view>
+        <view class='post-intro-tags'>{{slice.sub(multiArray[0][multiIndex[0]])}}</view>
+        <view class='post-intro-tags'>{{slice.sub(multiArray[1][multiIndex[1]])}}</view>
+        <view class='post-intro-tags'>{{slice.sub(multiArray[2][multiIndex[2]])}}</view>
+        <wxs module="slice">
+        var isdot=''
+        var sub = function(val) {
+          isdot=val.length>=4?'...':''
+          return val.substring(0, 4) + isdot
+        }
+        module.exports.sub = sub;
+      </wxs>
+      </view>
+    </picker>
 
   </view>
+  <view class='post-intro-tips-text'>上传照片(最多三张)</view>
   <view class='post-bottom-wrap'>
-
     <view class='post-bottom-wrap-a' bindtap='uploadpic'>
       <image src='./add_lable.png'></image>
     </view>
-
     <view class='post-picture-pre'>
       <block wx:for="{{tempFilePaths}}" wx:key="index">
         <image src='{{item}}' mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
       </block>
     </view>
-
+  </view>
+  <view class='post-intro-publish-btn'>
+    <button bindtap='submitForm' type='primary'>发布</button>
   </view>
 </view>

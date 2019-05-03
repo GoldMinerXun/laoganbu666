@@ -11,12 +11,12 @@
         <view class='tempmyproblem-simplecontent'>{{slice.sub(content)}}</view>
         <view class='tempmyproblem-time'>{{time}}</view>
       </view>
-       <wxs module="slice">
-    var sub = function(val) {
-      return val.substring(0, 15)+"..." 
-    }
-    module.exports.sub = sub;
-  </wxs>
+      <wxs module="slice">
+        var sub = function(val) {
+          return val.substring(0, 15) + "..."
+        }
+        module.exports.sub = sub;
+      </wxs>
     </navigator>
   </view>
 </template>
