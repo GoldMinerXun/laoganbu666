@@ -58,7 +58,7 @@
   <view class='detail-bottom-add'>点击加载更多</view>
   <view class='detail-takeplace'></view>
   <view class='detail-bottom-function'>
-    <input class='detail-bottom-inp' placeholder='点我回复(150字数限制)' bindinput='handleInput' maxlength='100'></input>
+    <input class='detail-bottom-inp' placeholder='点我回复(150字数限制)' bindinput='handleInput' maxlength='100' value='{{reviewData}}'></input>
     <view class='detail-add-pic' bindtap='addpic'>+</view>
     <button class='detail-bottom-btn' bindtap='submitReview'>发布</button>
   </view>

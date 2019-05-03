@@ -33,6 +33,16 @@ Page({
       ansLength: this.data.ansList.length
     })
 
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function() {
+    wx.hideToast()
+    const options = this.data.qid
+    const that = this 
+
     db.collection("questions").where({
       _id: options.id
     }).get().then(
@@ -49,7 +59,6 @@ Page({
             qUserId: res.data[0]._openid,
             questionData: res.data[0],
             questionTempImage: result.fileList,
-            qid: options.id,
             qAvatarUrl: qAvatarUrl,
             qNickName: qNickName
           })
@@ -63,7 +72,7 @@ Page({
         console.log(res.data)
         wx.getStorage({
           key: 'openid',
-          success: function(res1) {
+          success: function (res1) {
             console.log(res1.data)
             that.setData({
               localOpenid: res1.data
@@ -77,7 +86,6 @@ Page({
               fileList
             }).then(res => {
               item.compic = res.fileList
-
             })
           }
         })
@@ -108,18 +116,12 @@ Page({
             }
             console.log(arr)
             that.setData({
-              admireArr : arr
+              admireArr: arr
             })
           })
         })
       })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-    wx.hideToast()
+    
   },
 
   /**
@@ -208,7 +210,7 @@ Page({
           admireNickName: app.globalData.userInfo.nickName,
           admireAvatarUrl: app.globalData.userInfo.avatarUrl,
           time: util.formatTime(new Date()),
-          cid: e.currentTarget.dataset.cid, 
+          cid: e.currentTarget.dataset.cid,
           qid: this.data.qid,
           cuserid: e.currentTarget.dataset.cuserid,
           ccontent: e.currentTarget.dataset.ccontent
@@ -255,14 +257,20 @@ Page({
       console.log(app.globalData.openid, app.globalData.userInfo)
       var reviewdata = this.data.reviewData
       var id = this.data.qid
+      var tempFilePaths = this.data.tempFilePaths
+      this.setData({
+        reviewData : '',
+        tempFilePaths : new Array()
+      })
       if (reviewdata) {
         wx.showToast({
           title: '正在发送',
         })
 
-        const arr = this.data.tempFilePaths.map(path => {
+        const arr = tempFilePaths.map(path => {
           const name = Math.random() * 1000000;
           const time = util.formatTime(new Date)
+          const opitions = this.data.qid
           const cloudPath = name + path.match(/\.[^.]+?$/)[0]
           return wx.cloud.uploadFile({
             cloudPath: time.replace(/\s+/g, '').replace(new RegExp(/(:)/g), '').replace(/\\|\//g, '') + cloudPath,
@@ -275,13 +283,14 @@ Page({
           })
         })
 
-        if (this.data.tempFilePaths.length != 0) {
+        if (tempFilePaths.length != 0) {
+          const that = this
           Promise.all(arr).then(res => {
             db.collection('comments').add({
               data: {
                 qid: this.data.qid,
                 time: util.formatTime(new Date),
-                ccontent: this.data.reviewData,
+                ccontent: reviewdata,
                 admire: new Array(),
                 compic: this.data.imagesList,
                 title: this.data.questionData.title,
@@ -296,15 +305,17 @@ Page({
                   duration: 1000,
                   mask: true
                 })
+                that.onReady()
               }
             })
           })
         } else {
+          const that = this
           db.collection('comments').add({
             data: {
               qid: this.data.qid,
               time: util.formatTime(new Date),
-              ccontent: this.data.reviewData,
+              ccontent: reviewdata,
               admire: new Array(),
               title: this.data.questionData.title,
               qUserId: this.data.qUserId,
@@ -318,6 +329,7 @@ Page({
                 duration: 1000,
                 mask: true
               })
+              that.onReady()
             },
             fail: function() {
               wx.showToast({
