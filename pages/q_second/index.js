@@ -52,6 +52,7 @@ Page({
         const fileList = res.data[0].images
         const qAvatarUrl = res.data[0].qAvatarUrl
         const qNickName = res.data[0].qNickName
+        const state = res.data[0].type
         wx.cloud.getTempFileURL({
           fileList
         }).then(result => {
@@ -60,7 +61,8 @@ Page({
             questionData: res.data[0],
             questionTempImage: result.fileList,
             qAvatarUrl: qAvatarUrl,
-            qNickName: qNickName
+            qNickName: qNickName,
+            state : state
           })
         })
       })

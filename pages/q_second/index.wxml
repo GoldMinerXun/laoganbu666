@@ -12,7 +12,14 @@
   </view>
   {{dbdata}}
   <view class='detail-min-wrap'>
-    <view class='detail-top-sign'><image src='./noresolve.png' class='nosolve'></image></view>
+    <view class='detail-top-sign'>
+      <view wx:if="{{state==false}}" class='detail-top-sign-wrap'>
+        <image src='./nosolve.png' class='nosolve'></image>
+      </view>
+      <view wx:else class='detail-top-sign-wrap'>
+        <image src='./solve.png' class='nosolve'></image>
+      </view>
+    </view>
     <view class='detail-min-title'>标题：{{questionData.title}}</view>
     <view class='detail-min-tag-wrap'>
       <view class='detail-tags' wx:for="{{tagsList}}" wx:key="{{index}}">{{item}}</view>
