@@ -63,7 +63,11 @@
       <view class="{{index==ansLength-1? '' : 'detail-card-body-hr'}}"></view>
     </view>
   </view>
-  <!-- <view class='detail-bottom-add'>点击加载更多</view> -->
+  <view class='detail-bottom-add'>
+    <view wx:for="{{tempFilePaths}}">
+      <image src='{{item}}' data-idx='{{index}}' bindtap='handleCheck'></image>
+    </view>
+  </view>
   <view class='detail-takeplace'></view>
   <view class='detail-bottom-function'>
     <input class='detail-bottom-inp' placeholder='点我回复(150字数限制)' bindinput='handleInput' maxlength='100' value='{{reviewData}}'></input>

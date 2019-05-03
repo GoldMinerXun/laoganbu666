@@ -19,7 +19,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    console.log(options.id)
     var that = this
 
     wx.showToast({
@@ -44,7 +44,7 @@ Page({
     const that = this 
 
     db.collection("questions").where({
-      _id: options.id
+      _id: options
     }).get().then(
       res => {
         console.log(res)
@@ -68,7 +68,7 @@ Page({
       })
 
     db.collection("comments").where({
-      qid: options.id
+      qid: options
     }).get().then(
       res => {
         console.log(res.data)
@@ -97,7 +97,7 @@ Page({
         })
         var arr = new Array()
         db.collection('admires').where({
-          qid: options.id
+          qid: options
         }).get().then(result => {
           console.log(result.data)
           this.setData({
@@ -260,6 +260,15 @@ Page({
       },
     })
   },
+  handleCheck: function (e) {
+    const index = e.currentTarget.dataset.idx
+    const fileList = this.data.tempFilePaths
+    wx.previewImage({
+      current: fileList[index], //当前预览的图片
+      urls: fileList, //所有要预览的图片
+    })
+
+  },
   submitReview: function() {
     if (app.globalData.openid) {
       console.log(app.globalData.openid, app.globalData.userInfo)
@@ -271,9 +280,9 @@ Page({
         tempFilePaths : new Array()
       })
       if (reviewdata) {
-        wx.showToast({
-          title: '正在发送',
-        })
+       wx.showLoading({
+         title: '发送中',
+       })
 
         const arr = tempFilePaths.map(path => {
           const name = Math.random() * 1000000;
@@ -307,13 +316,16 @@ Page({
                 commentAvatarUrl: app.globalData.userInfo.avatarUrl
               },
               success: function() {
+                wx.hideLoading()
                 wx.showToast({
                   title: '发布成功',
                   icon: 'succes',
                   duration: 1000,
                   mask: true
                 })
-                that.onReady()
+                setTimeout(function(){
+                  that.onReady()
+                },500)
               }
             })
           })
@@ -331,6 +343,7 @@ Page({
               commentAvatarUrl: app.globalData.userInfo.avatarUrl
             },
             success: function() {
+              wx.hideLoading()
               wx.showToast({
                 title: '发布成功',
                 icon: 'succes',
