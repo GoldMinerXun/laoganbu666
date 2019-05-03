@@ -12,6 +12,7 @@
   </view>
   {{dbdata}}
   <view class='detail-min-wrap'>
+    <view class='detail-top-sign'><image src='./noresolve.png' class='nosolve'></image></view>
     <view class='detail-min-title'>标题：{{questionData.title}}</view>
     <view class='detail-min-tag-wrap'>
       <view class='detail-tags' wx:for="{{tagsList}}" wx:key="{{index}}">{{item}}</view>
@@ -41,7 +42,7 @@
         <view wx:if="{{admireArr[index]==1}}" class='detail-card-head-right-admire'>
           <image src='./yidianzan.png'></image>
         </view>
-        <view wx:else class='detail-card-head-right-admire' bindtap='handleAdmire' data-cid='{{item._id}}' data-cuserid='{{item._openid}}' data-ccontent='{{item.ccontent}}'>
+        <view wx:else class='detail-card-head-right-admire' bindtap='handleAdmire' data-cid='{{item._id}}' data-index='{{index}}' data-flag='{{admireArr[index]}}' data-cuserid='{{item._openid}}' data-ccontent='{{item.ccontent}}'>
           <image src='./dianzan.png'></image>
         </view>
 
