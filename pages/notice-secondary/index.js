@@ -1,4 +1,5 @@
 // pages/notice-secondary/index.js
+// 消息通知需要倒序显示（tips）
 var util = require('../../utils/util.js')
 const app = getApp()
 const db = wx.cloud.database()
