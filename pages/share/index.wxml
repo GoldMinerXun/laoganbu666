@@ -12,11 +12,17 @@
   <view class='body'>
     <view class='body-wrap'>
       <view class='card-item' wx:for="{{hot}}" wx:key="{{index}}">
-        <navigator hover-class='none' open-type='navigateTo' url='../q_second/index?title='>
-          <i-card class='i-card' title="{{item.title}}" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg" color="{{item.color}}">
-            <view slot="content" style='color:#aaa'> {{item.content}}</view>
+        <navigator hover-class='none' open-type='navigateTo' url='../q_second/index?id={{item._id}}'>
+          <i-card class='i-card' title="{{item.title}}" thumb="{{item.qAvatarUrl}}" color="{{item.color}}">
+            <view slot="content" style='color:#aaa'> {{slice.sub(item.content)}}</view>
+            <wxs module="slice">
+              var sub = function(val) {
+                return val.substring(0, 23) + "..."
+              }
+              module.exports.sub = sub;
+            </wxs>
             <view class='tag-wrap' slot="footer">
-              <view class='tag' wx:for="{{item.tag}}" wx:key="{{index}}">
+              <view class='tag' wx:for="{{item.tags}}" wx:key="{{index}}">
                 <view class='tag-item'>
                   {{item}}
                 </view>

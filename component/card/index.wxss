@@ -1,12 +1,11 @@
 .i-card {
-  margin: 0rpx 30rpx;
-  margin-bottom: 20rpx;
+  margin: 0rpx 0rpx;
+  margin-bottom: 30rpx;
   font-size: 14px;
   /* overflow: hidden; */
   position: relative;
   background: #fff;
-  border-radius: 10rpx;
-   box-shadow: 0rpx 10rpx 10rpx rgba(0, 0, 0, 0.1);
+  box-shadow: 0rpx 0rpx 10rpx rgba(0, 0, 0, 0.1);
 }
 
 .i-card-full {
@@ -26,14 +25,13 @@
   flex: 1;
   text-align: left;
   font-size: 34rpx;
-  letter-spacing: 3rpx;
+  letter-spacing: 1rpx;
   font-weight: 600;
 }
 
 .i-card-header-thumb {
   display: inline-block;
-  width: 20px;
-  height: 20px;
+  width: 25px;
   position: relative;
   margin-left: auto;
   margin-right: auto;
@@ -63,6 +61,7 @@
   padding: 6px 16px;
   color: #495060;
   font-size: 30rpx;
+  margin: 15rpx 0rpx;
 }
 
 .i-card-body::before {

@@ -15,7 +15,9 @@
 
     <view class='post-intro-min'>
       <image src='./lable.png' class='post-intro-image'></image>
+      <picker>
       <view class='post-intro-right-word'>添加标签</view>
+      </picker>
     </view>
 
     <view class='post-intro-right'>

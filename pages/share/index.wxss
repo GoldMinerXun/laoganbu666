@@ -97,17 +97,19 @@ i-tab-bar {
 }
 
 .tag-item {
-  padding: 5rpx 20rpx;
+  padding: 5rpx 10rpx;
   text-align: center;
   vertical-align:center;
   border: 1rpx solid rgba(0, 0, 0, 0.1);
+  border-top-color: #a5f0e4;
+  border-right-color: #7dce94;
+  border-bottom-color: #82c7eb;
+  border-left-color: #8ea1f0;
   border-radius: 10rpx;
-  /* border-top-left-radius:50rpx;
-  border-bottom-left-radius: 50rpx;  */
   background-color: rgba(0, 0, 0, 0.01);
   margin-right: 30rpx;
   color: #666;
-  font-size: 22rpx;
+  font-size: 30rpx;
   font-weight: 500;
   box-sizing: border-box;
 }

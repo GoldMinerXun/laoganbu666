@@ -15,6 +15,7 @@
         <view class='notice-text notice-comment-text'>
           评论
         </view>
+        <view class='notice-comment-num notice-num' hidden='{{noticeCommentNum==0}}'>{{noticeCommentNum}}</view>
         <view class='notice-sign'>
           <image class='notice-right' src='../../images/notice-img/right.png'></image>
         </view>
@@ -31,6 +32,7 @@
         <view class='notice-text notice-like-text'>
           点赞
         </view>
+        <view class='notice-like-num notice-num' hidden='{{noticeLikeNum==0}}'>{{noticeLikeNum}}</view>
         <view class='notice-sign'>
           <image class='notice-right' src='../../images/notice-img/right.png'></image>
         </view>
@@ -64,6 +66,7 @@
         <view class='notice-text notice-publish-comment-text'>
           我发布的评论
         </view>
+
         <view class='notice-sign'>
           <image class='notice-right' src='../../images/notice-img/right.png'></image>
         </view>

@@ -2,7 +2,7 @@
   <image class='card-top' src='../../images/resolve.png' mode='widthFix'></image>
   <view class="i-class i-card-header">
     <view class="i-card-header-content">
-      <image class="i-card-header-thumb" src="{{ thumb }}" mode="aspectFit" wx:if="{{ thumb }}" />
+      <image class="i-card-header-thumb"  src="{{ thumb }}" mode="widthFix" wx:if="{{ thumb }}" />
       <view class='user_name'>{{author}}</view>
       {{ title }}
     </view>

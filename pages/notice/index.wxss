@@ -116,3 +116,15 @@ image{
   opacity: 0.8;
   z-index: 100;
 }
+.notice-num{
+  font-size: 32rpx;
+  text-align: center;
+  line-height:55rpx;
+  color: white;
+  width: 55rpx;
+  height: 55rpx;
+  position: absolute;
+  right: 100rpx;
+  background-color: #ff2c2c;
+  border-radius: 50%;
+}

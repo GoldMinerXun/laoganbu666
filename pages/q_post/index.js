@@ -2,6 +2,7 @@
 var util = require('../../utils/util.js')
 const db = wx.cloud.database()
 const app = getApp()
+let promise=require('./Promise.js')
 Page({
   /**
    * 页面的初始数据
@@ -61,14 +62,7 @@ Page({
       })
     }
     var that = this
-    // wx.getUserInfo({
-    //   success: function (res) {
-    //     that.setData({
-    //       qAvatarUrl: res.userInfo.avatarUrl,
-    //       qNickName: res.userInfo.nickName
-    //     })
-    //   }
-    // })
+
   },
   submitForm(e) {
 
@@ -110,14 +104,14 @@ Page({
               qNickName: this.data.qNickName
 
             },
-            success: function() {
+            success: function () {
               wx.showToast({
                 title: '发布成功',
                 icon: 'succes',
                 duration: 1000,
                 mask: true
               })
-              setTimeout(function() {
+              setTimeout(function () {
                 wx.switchTab({
                   url: '../share/index',
                 })
@@ -146,20 +140,20 @@ Page({
             qAvatarUrl: this.data.qAvatarUrl,
             qNickName: this.data.qNickName
           },
-          success: function() {
+          success: function () {
             wx.showToast({
               title: '发布成功',
               icon: 'succes',
               duration: 1000,
               mask: true
             })
-            setTimeout(function(){
+            setTimeout(function () {
               wx.switchTab({
                 url: '../share/index',
               })
-            },1000)
+            }, 1000)
           },
-          fail: function() {
+          fail: function () {
             wx.showToast({
               title: '发布失败',
               icon: 'none',
@@ -169,6 +163,8 @@ Page({
           }
         })
       }
+    } else {
+      promise.showtoast()
     }
   },
   handleImagePreview(e) {
@@ -190,7 +186,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    if (!app.globalData.openid) {
+      promise.showmodal().then(res => {
+        console.log(res.confirm)
+        return wx.navigateTo({
+          url: '../login/index',
+        })
+      })
+    }
   },
 
   /**
