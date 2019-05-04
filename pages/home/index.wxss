@@ -110,7 +110,6 @@ page {
   height: 200rpx;
   margin:30rpx auto;
   border-radius: 6px;
-  background-color: skyblue;
   display: flex;
   justify-content: center;
   align-items: center;

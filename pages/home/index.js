@@ -24,6 +24,21 @@ Page({
       image: "../../images/loading.png",
       mask: true
     })
+
+    var that = this
+    const defaultArr = ['cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/ad.png']
+    var deal = function() {
+      var fileList = defaultArr
+      wx.cloud.getTempFileURL({
+        fileList,
+      }).then(res => {
+        that.setData({
+          defaultAd : res.fileList[0].tempFileURL
+        })
+      })
+    }
+    deal()
+
     db.collection('questions').where({})
       .limit(3)
       .get().then(res => {
@@ -37,7 +52,7 @@ Page({
           if (item.images.length != 0) {
             temp.push(item.images[0])
           } else {
-            const defaultFileId = 'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/default/default.png'
+            const defaultFileId = 'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/default.png'
             temp.push(defaultFileId)
           }
         })

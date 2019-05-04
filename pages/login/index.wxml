@@ -2,7 +2,7 @@
 <view class='login-wrap'>
   <view class='login-top-wrap'>
     <view class='login-img-wrap'>
-      <image class='login-img' src="./login.png" mode='widthFix'></image>
+      <image class='login-img' src="{{defaultAd}}" mode='widthFix'></image>
     </view>
   </view>
   <view class='login-line'></view>

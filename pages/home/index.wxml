@@ -45,5 +45,5 @@
   </view>
 </view>
 <view class='home-ad-wrap'>
-  <image src='./ad.png'></image>
+  <image src='{{defaultAd}}'></image>
 </view>

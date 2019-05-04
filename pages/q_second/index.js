@@ -21,6 +21,23 @@ Page({
   onLoad: function(options) {
     console.log(options.id)
     var that = this
+    const defaultArr = ['cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/nosolve.png', 'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/solve.png', 'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/yidianzan.png','cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/dianzan.png']
+    var tempArr = new Array()
+    var deal = function () {
+      var fileList = defaultArr
+      wx.cloud.getTempFileURL({
+        fileList,
+      }).then(res => {
+        console.log(res.fileList)
+        res.fileList.forEach(item => {
+          tempArr.push(item.tempFileURL)
+        })
+        that.setData({
+          defaultArr: tempArr
+        })
+      })
+    }
+    deal()
 
     wx.showToast({
       title: "loadig...",

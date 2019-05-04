@@ -8,7 +8,7 @@
     </view>
     <view class='me-top-name'>{{userInfo.nickName?userInfo.nickName:'知之儿'}}</view>
     <button class='me-top-signature' open-type='getUserInfo' bindgetuserinfo='modalinput' >
-      <image src="./pen.png"></image>
+      <image src="{{defaultArr[0]}}"></image>
       {{signature?signature:'知之为知之，不知为不知，是知也'}}
     </button>
     <modal id="modal" hidden="{{hiddenmodalput}}" title="签名" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">  
@@ -17,27 +17,27 @@
   </modal>
   </view>
   <view class='me-lab' bindtap='handleChange'>
-    <image src="./time.png" class='lab-left' mode='widthFix'></image>
+    <image src="{{defaultArr[1]}}" class='lab-left' mode='widthFix'></image>
     实验室
-    <image class='lab-right' src="./right.png"></image>
+    <image class='lab-right' src="{{defaultArr[2]}}"></image>
   </view>
 
   <view class='me-btn-wrap'>
     <button class='btn qusetion' open-type='contact'>
       <view class='img-wrap'>
         <view class='circle i1circle'></view>
-        <image class='img1' mode='widthFix' src="./i1.png"></image>
+        <image class='img1' mode='widthFix' src="{{defaultArr[3]}}"></image>
       </view>
       问题反馈
-      <image class='btn-right' src="./right.png"></image>
+      <image class='btn-right' src="{{defaultArr[4]}}"></image>
     </button>
     <view bindtap='isLogin' data-login='{{hasUserInfo}}' class='btn log-out'>
       <view class='img-wrap'>
         <view class='circle i2circle'></view>
-        <image class='img2' mode='widthFix' src="./i2.png"> </image>
+        <image class='img2' mode='widthFix' src="{{defaultArr[5]}}"> </image>
       </view>
       {{hasUserInfo?"退出":"登陆"}}
-      <image class='btn-right' src="./right.png"></image>
+      <image class='btn-right' src="{{defaultArr[6]}}"></image>
     </view>
   </view>
 </view>

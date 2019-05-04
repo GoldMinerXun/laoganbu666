@@ -20,6 +20,20 @@ Page({
     wx.setNavigationBarTitle({
       title: '个人中心',
     })
+
+    var that = this
+    const defaultArr = ['cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/add.png']
+    var deal = function () {
+      var fileList = defaultArr
+      wx.cloud.getTempFileURL({
+        fileList,
+      }).then(res => {
+        that.setData({
+          defaultAd: res.fileList[0].tempFileURL
+        })
+      })
+    }
+    deal()
   },
 
   /**

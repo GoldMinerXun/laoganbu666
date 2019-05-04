@@ -14,10 +14,10 @@
   <view class='detail-min-wrap'>
     <view class='detail-top-sign'>
       <view wx:if="{{state==false}}" class='detail-top-sign-wrap'>
-        <image src='./nosolve.png' class='nosolve'></image>
+        <image src='{{defaultArr[0]}}' class='nosolve'></image>
       </view>
       <view wx:else class='detail-top-sign-wrap'>
-        <image src='./solve.png' class='nosolve'></image>
+        <image src='{{defaultArr[1]}}' class='nosolve'></image>
       </view>
     </view>
     <view class='detail-min-title'>标题：{{questionData.title}}</view>
@@ -47,10 +47,10 @@
         </view>
 
         <view wx:if="{{admireArr[index]==1}}" class='detail-card-head-right-admire'>
-          <image src='./yidianzan.png'></image>
+          <image src='{{defaultArr[2]}}'></image>
         </view>
         <view wx:else class='detail-card-head-right-admire' bindtap='handleAdmire' data-cid='{{item._id}}' data-index='{{index}}' data-flag='{{admireArr[index]}}' data-cuserid='{{item._openid}}' data-ccontent='{{item.ccontent}}'>
-          <image src='./dianzan.png'></image>
+          <image src='{{defaultArr[3]}}'></image>
         </view>
 
       </view>
@@ -64,7 +64,7 @@
     </view>
   </view>
   <view class='detail-bottom-add'>
-    <view wx:for="{{tempFilePaths}}">
+    <view wx:for="{{tempFilePaths}}"  wx:key="{{index}}">
       <image src='{{item}}' data-idx='{{index}}' bindtap='handleCheck'></image>
     </view>
   </view>

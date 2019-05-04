@@ -45,7 +45,7 @@ Page({
     multiIndex: [0, 0],
 
   },
-  bindMultiPickerChange: function (e) {
+  bindMultiPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     var academicindex = e.detail.value[0]
     var majorindex = e.detail.value[1]
@@ -55,7 +55,7 @@ Page({
       multiIndex: e.detail.value
     })
   },
-  bindMultiPickerColumnChange: function (e) {
+  bindMultiPickerColumnChange: function(e) {
     console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
     var data = {
       multiArray: this.data.multiArray,
@@ -72,10 +72,10 @@ Page({
             data.multiArray[1] = ['计算机科学与技术', '网络工程'];
             break;
           case 2:
-            data.multiArray[1] = ['机械设计制造及其自动化', '机械电子工程', '能源与动力工程', '车辆工程',];
+            data.multiArray[1] = ['机械设计制造及其自动化', '机械电子工程', '能源与动力工程', '车辆工程', ];
             break;
           case 3:
-            data.multiArray[1] = ['材料成型及控制工程(焊接方向)', '材料成型及控制工程(模具方向)', '金属材料工程', '无机非金属材料工程', '高分子材料与工程',];
+            data.multiArray[1] = ['材料成型及控制工程(焊接方向)', '材料成型及控制工程(模具方向)', '金属材料工程', '无机非金属材料工程', '高分子材料与工程', ];
             break;
           case 4:
             data.multiArray[1] = ['电气工程及其自动化', '电子信息工程', '新能源材料与器件'];
@@ -108,15 +108,13 @@ Page({
             data.multiArray[1] = ['法学'];
             break;
           case 14:
-            data.multiArray[1] = ['视觉传达设计', '环境设计', '绘画', '动画',];
+            data.multiArray[1] = ['视觉传达设计', '环境设计', '绘画', '动画', ];
             break;
           case 15:
-            data.multiArray[1] = ['哲学',
-            ];
+            data.multiArray[1] = ['哲学', ];
             break;
           case 16:
-            data.multiArray[1] = ['汉语国际教育',
-            ];
+            data.multiArray[1] = ['汉语国际教育', ];
             break;
           case 17:
             data.multiArray[1] = ['其他'];
@@ -131,7 +129,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
 
-  onLoad: function (options) {
+  onLoad: function(options) {
+    var that = this
+    const defaultArr = ['cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/login.png']
+    var deal = function() {
+      var fileList = defaultArr
+      wx.cloud.getTempFileURL({
+        fileList,
+      }).then(res => {
+        that.setData({
+          defaultAd: res.fileList[0].tempFileURL
+        })
+      })
+    }
+    deal()
+
     wx.setNavigationBarTitle({
       title: '登陆',
     })
@@ -141,22 +153,22 @@ Page({
       mask: true
     })
   },
-  inputSno: function (event) {
+  inputSno: function(event) {
     sno = event.detail.value
   },
   bindgetuserinfo(e) {
     // console.log(e.detail.userInfo)
     var userInfo = e.detail.userInfo
     let that = this;
-    if (major!='请选择' && academic!='请选择'&&major&&academic && sno) {
+    if (major != '请选择' && academic != '请选择' && major && academic && sno) {
       wechat.login()
         .then(data => {
           return wechat.wxcloudcallfunction()
         })
         .then(data => {
           app.globalData.openid = data.openid
-          openid=app.globalData.openid
-          app.globalData.userInfo=userInfo
+          openid = app.globalData.openid
+          app.globalData.userInfo = userInfo
           wx.setStorage({
             key: 'openid',
             data: openid,
@@ -189,49 +201,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
     wx.hideToast()
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     wx.hideToast()
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })
