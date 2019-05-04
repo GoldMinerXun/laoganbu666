@@ -9,6 +9,7 @@ const questions=db.collection('questions')
 
 exports.main = async (event, context) => new Promise((resolve, reject) => {
   questions.get().then(res => {
-    resolve(res)
+    resolve(res),
+    reject
   })
 })

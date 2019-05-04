@@ -29,6 +29,10 @@ Component({
     author: {
       type: String,
       value : ''
+    },
+    type:{
+      type:Boolean,
+      value:''
     }
   }
 });

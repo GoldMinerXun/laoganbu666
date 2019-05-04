@@ -4,7 +4,7 @@
   </view>
   <view class='post-text-wrap'>
     <form>
-      <textarea class='post-text' maxlength="300" placeholder='请你在此描述详细问题' value='{{content}}' fixed='true' auto-height='true' bindinput="charChange">
+      <textarea class='post-text' maxlength="300" placeholder='请你在此描述详细问题' value='{{content}}'  bindinput="charChange">
       </textarea>
       <view class='post-count'>{{now}}/{{max}}</view>
     </form>

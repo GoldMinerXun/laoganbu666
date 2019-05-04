@@ -13,7 +13,7 @@
     <view class='body-wrap'>
       <view class='card-item' wx:for="{{hot}}" wx:key="{{index}}">
         <navigator hover-class='none' open-type='navigateTo' url='../q_second/index?id={{item._id}}'>
-          <i-card class='i-card' title="{{item.title}}" thumb="{{item.qAvatarUrl}}" color="{{item.color}}">
+          <i-card class='i-card' title="{{item.title}}" type="{{item.type}}" thumb="{{item.qAvatarUrl}}" color="{{item.color}}">
             <view slot="content" style='color:#aaa'> {{slice.sub(item.content)}}</view>
             <wxs module="slice">
               var sub = function(val) {

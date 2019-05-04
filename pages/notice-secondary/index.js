@@ -23,7 +23,10 @@ Page({
     tempname: "",
     // 页面对应的渲染内容
     content: [],
-    refresh: false
+    refresh: false,
+    defaultImgArr:[
+
+    ]
   },
   deletemycomment: function (id) {
     comments.doc(id).remove()
@@ -177,7 +180,7 @@ Page({
       .get()
       .then(res => {
         // console.log(res.data)
-        contentobj[0] = res.data
+        contentobj[0] = res.data.reverse()
         var that = this
         this.getcontent(options.name, that, contentobj)
       })
@@ -197,7 +200,7 @@ Page({
       .get()
       .then(res => {
         // console.log(res.data)
-        contentobj[1] = res.data
+        contentobj[1] = res.data.reverse()
         var that = this
         this.getcontent(options.name, that, contentobj)
       })
@@ -214,7 +217,7 @@ Page({
       .get()
       .then(res => {
         // console.log(res.data)
-        contentobj[2] = res.data
+        contentobj[2] = res.data.reverse()
         var that = this
         this.getcontent(options.name, that, contentobj)
       })
@@ -233,7 +236,7 @@ Page({
       .get()
       .then(res => {
         // console.log(res.data)
-        contentobj[3] = res.data
+        contentobj[3] = res.data.reverse()
         var that = this
         this.getcontent(options.name, that, contentobj)
       })
@@ -263,6 +266,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that = this
+    const defaultArr = ['cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/otherscomment.png',
+      'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/right.png',
+      'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/likes.png',
+  'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/myproblem.png',
+      'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/comment.png'
+    ]
+    var deal = function () {
+      var fileList = defaultArr
+      wx.cloud.getTempFileURL({
+        fileList,
+      }).then(res => {
+        that.setData({
+          defaultImgArr: res.fileList[0].tempFileURL
+        })
+      })
+    }
     if (app.globalData.openid) {
       this.setData({
         title: pageOption.title,

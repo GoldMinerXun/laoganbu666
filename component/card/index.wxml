@@ -1,5 +1,5 @@
 <view class="i-class i-card {{ full ? 'i-card-full' : '' }}">
-  <image class='card-top' src='../../images/resolve.png' mode='widthFix'></image>
+  <image class='card-top' src="{{!type?'../../images/unresolve.png':'../../images/resolve.png'}}" mode='widthFix'></image>
   <view class="i-class i-card-header">
     <view class="i-card-header-content">
       <image class="i-card-header-thumb"  src="{{ thumb }}" mode="widthFix" wx:if="{{ thumb }}" />
