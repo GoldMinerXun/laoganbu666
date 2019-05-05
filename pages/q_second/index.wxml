@@ -64,7 +64,7 @@
     </view>
   </view>
   <view class='detail-bottom-add'>
-    <view wx:for="{{tempFilePaths}}"  wx:key="{{index}}">
+    <view wx:for="{{tempFilePaths}}" wx:key="{{index}}">
       <image src='{{item}}' data-idx='{{index}}' bindtap='handleCheck'></image>
     </view>
   </view>

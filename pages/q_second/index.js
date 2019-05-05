@@ -57,7 +57,8 @@ Page({
    */
   onReady: function() {
     wx.hideToast()
-    const options = this.data.qid
+    const options = '96c1cbbe5ccef0ab0ca6197577a16b64'
+    //this.data.qid
     const that = this 
 
     db.collection("questions").where({
