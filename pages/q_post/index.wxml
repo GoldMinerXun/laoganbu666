@@ -38,9 +38,10 @@
       <image src='./add_lable.png'></image>
     </view>
     <view class='post-picture-pre'>
-      <block wx:for="{{tempFilePaths}}" wx:key="index">
+      <view wx:for="{{tempFilePaths}}" wx:key="index" class='detail-bottom-wrap'> 
+        <view class='detail-bottom-delete' data-index='{{index}}' bindtap='handleDelete'>x</view>
         <image src='{{item}}' mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
-      </block>
+      </view>
     </view>
   </view>
   <view class='post-intro-publish-btn'>

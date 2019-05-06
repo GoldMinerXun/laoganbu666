@@ -21,9 +21,9 @@ Page({
   onLoad: function(options) {
     console.log(options.id)
     var that = this
-    const defaultArr = ['cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/nosolve.png', 'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/solve.png', 'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/yidianzan.png','cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/dianzan.png']
+    const defaultArr = ['cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/nosolve.png', 'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/solve.png', 'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/yidianzan.png', 'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/dianzan.png']
     var tempArr = new Array()
-    var deal = function () {
+    var deal = function() {
       var fileList = defaultArr
       wx.cloud.getTempFileURL({
         fileList,
@@ -58,7 +58,7 @@ Page({
   onReady: function() {
     wx.hideToast()
     const options = this.data.qid
-    const that = this 
+    const that = this
 
     db.collection("questions").where({
       _id: options
@@ -79,7 +79,7 @@ Page({
             questionTempImage: result.fileList,
             qAvatarUrl: qAvatarUrl,
             qNickName: qNickName,
-            state : state
+            state: state
           })
         })
       })
@@ -91,7 +91,7 @@ Page({
         console.log(res.data)
         wx.getStorage({
           key: 'openid',
-          success: function (res1) {
+          success: function(res1) {
             console.log(res1.data)
             that.setData({
               localOpenid: res1.data
@@ -140,7 +140,7 @@ Page({
           })
         })
       })
-    
+
   },
 
   /**
@@ -184,24 +184,47 @@ Page({
   onShareAppMessage: function() {
 
   },
-  handleDelete : function(e) {
+  handleDelete: function(e) {
     console.log(e.currentTarget.dataset.index)
     const index = e.currentTarget.dataset.index
     var temp = this.data.tempFilePaths
-    temp.splice(index,1)
+    temp.splice(index, 1)
     this.setData({
-      tempFilePaths : temp
+      tempFilePaths: temp
     })
-  }, 
+  },
   handleInput: function(e) {
     var len = e.detail.value.length
     if (len > 150) {
       return
     } else {
-      this.setData({
-        reviewData: e.detail.value
-      })
+      if (len > 0) {
+        this.setData({
+          reviewData: e.detail.value,
+          opacity: 1
+        })
+      } else {
+        this.setData({
+          reviewData: e.detail.value,
+          opacity : 0.6
+        })
+      }
     }
+  },
+  handlefocus: function(e) {
+    console.log(e.detail.height)
+    var that = this;
+    that.setData({
+      bottom: e.detail.height-2,
+      transition: 'none'
+    })
+  },
+  handleblur: function(e) {
+    var that = this;
+    that.setData({
+      bottom: 0,
+      transition: 'all .4s'
+    })
   },
   handlePreview: function(e) {
     const index = e.target.dataset.idx
@@ -286,7 +309,7 @@ Page({
       },
     })
   },
-  handleCheck: function (e) {
+  handleCheck: function(e) {
     const index = e.currentTarget.dataset.idx
     const fileList = this.data.tempFilePaths
     wx.previewImage({
@@ -302,13 +325,13 @@ Page({
       var id = this.data.qid
       var tempFilePaths = this.data.tempFilePaths
       this.setData({
-        reviewData : '',
-        tempFilePaths : new Array()
+        reviewData: '',
+        tempFilePaths: new Array()
       })
       if (reviewdata) {
-       wx.showLoading({
-         title: '发送中',
-       })
+        wx.showLoading({
+          title: '发送中',
+        })
 
         const arr = tempFilePaths.map(path => {
           const name = Math.random() * 1000000;
@@ -349,9 +372,9 @@ Page({
                   duration: 1000,
                   mask: true
                 })
-                setTimeout(function(){
+                setTimeout(function() {
                   that.onReady()
-                },500)
+                }, 500)
               }
             })
           })

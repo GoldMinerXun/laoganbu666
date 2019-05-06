@@ -303,6 +303,15 @@ Page({
       },
     })
   },
+  handleDelete: function (e) {
+    console.log(e.currentTarget.dataset.index)
+    const index = e.currentTarget.dataset.index
+    var temp = this.data.tempFilePaths
+    temp.splice(index, 1)
+    this.setData({
+      tempFilePaths: temp
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

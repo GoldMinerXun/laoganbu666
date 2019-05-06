@@ -1,4 +1,5 @@
 /* pages/q_second/index.wxss */
+
 .q_second_container {
   width: 100%;
   background-color: rgb(249, 249, 249);
@@ -259,6 +260,7 @@
   border-radius: 50rpx;
   margin-left: 20rpx;
   box-sizing: border-box;
+  opacity: 0.6;
   background: linear-gradient(to top, rgb(5, 164, 255), rgb(1, 240, 255));
 }
 
@@ -286,11 +288,13 @@ botton::after {
   margin-bottom: 100rpx;
   box-sizing: border-box;
 }
-.detail-bottom-add image{
+
+.detail-bottom-add image {
   width: 100rpx;
   height: 100rpx;
   background-size: cover;
 }
+
 .detail-bottom-wrap {
   position: relative;
   box-sizing: border-box;
@@ -298,6 +302,7 @@ botton::after {
   height: 100rpx;
   margin-left: 50rpx;
 }
+
 .detail-bottom-delete {
   width: 40rpx;
   height: 40rpx;
@@ -308,9 +313,10 @@ botton::after {
   text-align: center;
   line-height: 40rpx;
   font-size: 30rpx;
-  box-shadow: 5rpx 5rpx rgb(238, 238, 238);
   color: rgb(135, 135, 135);
   opacity: 0.5;
+  border-top: solid 1rpx rgb(135, 135, 135);
+  border-right: solid 1rpx rgb(135, 135, 135);
 }
 
 .detail-bottom-answer-wrap {
@@ -341,14 +347,15 @@ botton::after {
   display: flex;
 }
 
-.detail-top-sign-wrap{
+.detail-top-sign-wrap {
   width: 100rpx;
   height: 100rpx;
   background-size: 100% 100%;
   display: flex;
   transform: rotate(-60deg);
 }
-.nosolve{
+
+.nosolve {
   width: 100rpx;
   height: 100rpx;
   background-size: 100% 100%;

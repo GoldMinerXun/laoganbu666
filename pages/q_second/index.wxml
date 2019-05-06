@@ -71,9 +71,9 @@
     </view>
   </view>
   <view class='detail-takeplace'></view>
-  <view class='detail-bottom-function'>
-    <input class='detail-bottom-inp' placeholder='150字数限制' bindinput='handleInput' maxlength='100' value='{{reviewData}}'></input>
+  <view class='detail-bottom-function' style="bottom:{{bottom}}px;transition:{{transition}}">
+    <input class='detail-bottom-inp' placeholder='150字数限制' bindinput='handleInput' bindfocus='handlefocus' bindblur='handleblur' maxlength='150' adjust-position="{{false}}" value='{{reviewData}}'></input>
     <view class='detail-add-pic' bindtap='addpic'>+</view>
-    <button class='detail-bottom-btn' bindtap='submitReview'>发布</button>
+    <button class='detail-bottom-btn' bindtap='submitReview' style='opacity:{{opacity}}'>发布</button>
   </view>
 </view>
