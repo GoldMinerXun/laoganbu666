@@ -14,7 +14,7 @@ Page({
           value:val
         },
         complete:res=>{
-          console.log(res)
+          // console.log(res)
           if(res.result.data.length!=0){
             that.setData({
               hot: res.result.data.reverse()
@@ -98,7 +98,7 @@ Page({
         isLogin:app.globalData.openid,
       },
       complete: res => {
-        console.log(res.result.data)
+        // console.log(res.result.data)
         that.setData({
           hot: res.result.data.reverse()
         })

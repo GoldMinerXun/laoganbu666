@@ -7,7 +7,7 @@ Page({
     detailList: []
   },
   jumpTo: function(e) {
-    console.log(e.currentTarget.dataset.id)
+    // console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
       url: '../q_second/index?id=' + e.currentTarget.dataset.id,
     })
@@ -42,7 +42,7 @@ Page({
     db.collection('questions').where({})
       .limit(3)
       .get().then(res => {
-        console.log(res)
+        // console.log(res)
         var tempContent = []
         res.data.map(item => {
           tempContent.push(item.content.slice(0, 20))
@@ -60,7 +60,7 @@ Page({
         wx.cloud.getTempFileURL({
           fileList
         }).then(result => {
-          console.log(result.fileList)
+          // console.log(result.fileList)
           this.setData({
             hotList: res.data,
             imageUrl: result.fileList,

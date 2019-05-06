@@ -46,7 +46,7 @@ Page({
 
   },
   bindMultiPickerChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
     var academicindex = e.detail.value[0]
     var majorindex = e.detail.value[1]
     academic = this.data.multiArray[0][academicindex]
@@ -56,7 +56,7 @@ Page({
     })
   },
   bindMultiPickerColumnChange: function(e) {
-    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+    // console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
     var data = {
       multiArray: this.data.multiArray,
       multiIndex: this.data.multiIndex
@@ -186,7 +186,7 @@ Page({
           })
         })
         .catch(e => {
-          console.log(e);
+          // console.log(e);
         })
     } else {
       wx.showToast({

@@ -33,14 +33,14 @@ Page({
     tags:[]
   },
   bindMultiPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
     var academicindex = e.detail.value[0]
     var majorindex = e.detail.value[1]
     var subjectindex=e.detail.value[2]
     academic = this.data.multiArray[0][academicindex]
     major = this.data.multiArray[1][majorindex]
     subject= this.data.multiArray[2][subjectindex]
-    console.log(academic,major,subject)
+    // console.log(academic,major,subject)
     this.setData({
       multiIndex: e.detail.value
     })
@@ -262,7 +262,7 @@ Page({
             break;
         }
         data.multiIndex[2] = 0;
-        console.log(data.multiIndex);
+        // console.log(data.multiIndex);
         break;
     }
     this.setData(data);
@@ -299,12 +299,12 @@ Page({
         that.setData({
           tempFilePaths: res.tempFilePaths
         })
-        console.log(res.tempFilePaths)
+        // console.log(res.tempFilePaths)
       },
     })
   },
   handleDelete: function (e) {
-    console.log(e.currentTarget.dataset.index)
+    // console.log(e.currentTarget.dataset.index)
     const index = e.currentTarget.dataset.index
     var temp = this.data.tempFilePaths
     temp.splice(index, 1)
@@ -337,17 +337,17 @@ Page({
             cloudPath: time.replace(/\s+/g, '').replace(new RegExp(/(:)/g), '').replace(/\\|\//g, '') + cloudPath,
             filePath: path
           }).then(res => {
-            console.log(res.fileID)
+            // console.log(res.fileID)
             this.data.imagesList.push(res.fileID)
           }).catch(error => {
-            console.log(error)
+            // console.log(error)
           })
         })
 
         if (this.data.tempFilePaths.length != 0) {
           
           Promise.all(arr).then(res => {
-            console.log(academic,major,subject)
+            // console.log(academic,major,subject)
             db.collection('questions').add({
               data: {
                 title: this.data.title,
@@ -422,7 +422,7 @@ Page({
       }
     }else{
       promise.showmodal().then(res => {
-        console.log(res.confirm)
+        // console.log(res.confirm)
         if (res.confirm) {
           return wx.navigateTo({
             url: '../login/index',
@@ -453,7 +453,7 @@ Page({
   onShow: function () {
     if (!app.globalData.openid) {
       promise.showmodal().then(res => {
-        console.log(res.confirm)
+        // console.log(res.confirm)
         if (res.confirm) {
           return wx.navigateTo({
             url: '../login/index',

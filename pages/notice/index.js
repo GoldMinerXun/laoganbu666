@@ -87,7 +87,7 @@ Page({
           time: _.gt(timetmp)//时间大于最近一次查看时间
         }).get()
       }).then(res => {
-        console.log(res.data)
+        // console.log(res.data)
         if (res.data.length > 0) {
           that.setData({
             noticeLikeNum: res.data.length

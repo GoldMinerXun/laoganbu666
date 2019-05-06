@@ -34,7 +34,7 @@ Page({
   },
   //确认  
   confirm: function() {
-    console.log(this.data.hasUserInfo)
+    // console.log(this.data.hasUserInfo)
     this.setData({
       hiddenmodalput: true
     })
@@ -94,7 +94,7 @@ Page({
       wx.cloud.getTempFileURL({
         fileList,
       }).then(res => {
-        console.log(res.fileList)
+        // console.log(res.fileList)
         res.fileList.forEach(item => {
           tempArr.push(item.tempFileURL)
         })
@@ -122,13 +122,13 @@ Page({
       wx.removeStorage({
         key: 'openid',
         success: function(res) {
-          console.log(1)
+          // console.log(1)
         },
       })
       wx.removeStorage({
         key: 'userinfo',
         success: function(res) {
-          console.log(2)
+          // console.log(2)
         },
       })
       this.setData({

@@ -16,7 +16,7 @@ class Wechat {
       cancelColor: "#191970",
       confirmColor: "#DC143C",
       complete: res => {
-        console.log(res)
+        // console.log(res)
         resolve(res)
       }
     }));

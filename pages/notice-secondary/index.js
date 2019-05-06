@@ -38,7 +38,7 @@ Page({
     var that = this
     promise.showmodal()
       .then(res => {
-        console.log(res)
+        // console.log(res)
         if (res.confirm) {
           that.deletemycomment(e.currentTarget.dataset.id)
           return promise.showtoast()
@@ -75,14 +75,14 @@ Page({
     var that = this
     promise.showmodal()
       .then(res => {
-        console.log(res)
+        // console.log(res)
         if (res.confirm) {
           that.deletemyproblem(e.currentTarget.dataset.id)
           return promise.showtoast()
         }
       })
       .then(res => {
-        console.log(2)
+        // console.log(2)
         questions.where({
           _openid: openid
         })

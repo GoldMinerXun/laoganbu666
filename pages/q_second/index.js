@@ -19,7 +19,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options.id)
+    // console.log(options.id)
     var that = this
     const defaultArr = ['cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/nosolve.png', 'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/solve.png', 'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/yidianzan.png', 'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/dianzan.png']
     var tempArr = new Array()
@@ -28,7 +28,7 @@ Page({
       wx.cloud.getTempFileURL({
         fileList,
       }).then(res => {
-        console.log(res.fileList)
+        // console.log(res.fileList)
         res.fileList.forEach(item => {
           tempArr.push(item.tempFileURL)
         })
@@ -64,7 +64,7 @@ Page({
       _id: options
     }).get().then(
       res => {
-        console.log(res)
+        // console.log(res)
         const questionData = res.data[0]
         const fileList = res.data[0].images
         const qAvatarUrl = res.data[0].qAvatarUrl
@@ -88,11 +88,11 @@ Page({
       qid: options
     }).get().then(
       res => {
-        console.log(res.data)
+        // console.log(res.data)
         wx.getStorage({
           key: 'openid',
           success: function(res1) {
-            console.log(res1.data)
+            // console.log(res1.data)
             that.setData({
               localOpenid: res1.data
             })
@@ -108,7 +108,7 @@ Page({
             })
           }
         })
-        console.log(res.data)
+        // console.log(res.data)
         this.setData({
           ansList: res.data
         })
@@ -116,7 +116,7 @@ Page({
         db.collection('admires').where({
           qid: options
         }).get().then(result => {
-          console.log(result.data)
+          // console.log(result.data)
           this.setData({
             admireList: result.data
           })
@@ -133,7 +133,7 @@ Page({
             } else {
               arr.push(0)
             }
-            console.log(arr)
+            // console.log(arr)
             that.setData({
               admireArr: arr
             })
@@ -185,7 +185,7 @@ Page({
 
   },
   handleDelete: function(e) {
-    console.log(e.currentTarget.dataset.index)
+    // console.log(e.currentTarget.dataset.index)
     const index = e.currentTarget.dataset.index
     var temp = this.data.tempFilePaths
     temp.splice(index, 1)
@@ -212,7 +212,7 @@ Page({
     }
   },
   handlefocus: function(e) {
-    console.log(e.detail.height)
+    // console.log(e.detail.height)
     var that = this;
     that.setData({
       bottom: e.detail.height-2,
@@ -247,7 +247,7 @@ Page({
       images.push(item.tempFileURL)
     })
     const idx = e.target.dataset.idx
-    console.log(e.target.dataset.idx)
+    // console.log(e.target.dataset.idx)
     wx.previewImage({
       current: images[idx], //当前预览的图片
       urls: images, //所有要预览的图片
@@ -305,7 +305,7 @@ Page({
         that.setData({
           tempFilePaths: res.tempFilePaths
         })
-        console.log(res.tempFilePaths)
+        // console.log(res.tempFilePaths)
       },
     })
   },
@@ -320,7 +320,7 @@ Page({
   },
   submitReview: function() {
     if (app.globalData.openid) {
-      console.log(app.globalData.openid, app.globalData.userInfo)
+      // console.log(app.globalData.openid, app.globalData.userInfo)
       var reviewdata = this.data.reviewData
       var id = this.data.qid
       var tempFilePaths = this.data.tempFilePaths
@@ -342,10 +342,10 @@ Page({
             cloudPath: time.replace(/\s+/g, '').replace(new RegExp(/(:)/g), '').replace(/\\|\//g, '') + cloudPath,
             filePath: path
           }).then(res => {
-            console.log(res.fileID)
+            // console.log(res.fileID)
             this.data.imagesList.push(res.fileID)
           }).catch(error => {
-            console.log(error)
+            // console.log(error)
           })
         })
 
