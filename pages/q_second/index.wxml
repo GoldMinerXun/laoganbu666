@@ -53,7 +53,7 @@
         <view wx:else class='detail-card-head-right-admire' bindtap='handleAdmire' data-cid='{{item._id}}' data-index='{{index}}' data-flag='{{admireArr[index]}}' data-cuserid='{{item._openid}}' data-ccontent='{{item.ccontent}}'>
           <image src='{{defaultArr[3]}}'></image>
         </view>
-        
+
       </view>
 
       <view class='detail-card-body'>
@@ -63,7 +63,7 @@
         <view class='detail-card-body-content'>{{item.ccontent}}</view>
       </view>
 
-      <view class="{{index==ansLength-1? '' : 'detail-card-body-hr'}}"></view>
+      <view class="{{index==ansLength? '' : 'detail-card-body-hr'}}"></view>
     </view>
   </view>
   <view class='detail-bottom-add'>

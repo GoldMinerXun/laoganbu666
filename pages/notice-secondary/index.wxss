@@ -73,6 +73,7 @@ page {
   font-size: 30rpx;
   color: #666;
   margin-bottom: 20rpx;
+  word-wrap: break-word;
 }
 
 .tempcomment-mycontent {
