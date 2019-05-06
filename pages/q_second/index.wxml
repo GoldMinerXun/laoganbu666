@@ -52,25 +52,27 @@
         <view wx:else class='detail-card-head-right-admire' bindtap='handleAdmire' data-cid='{{item._id}}' data-index='{{index}}' data-flag='{{admireArr[index]}}' data-cuserid='{{item._openid}}' data-ccontent='{{item.ccontent}}'>
           <image src='{{defaultArr[3]}}'></image>
         </view>
-
       </view>
+
       <view class='detail-card-body'>
         <view class="{{item.compic? 'detail-card-body-content-pic-wrap' : ''}}">
           <image wx:for="{{item.compic}}" wx:key="{{item}}" src='{{item}}' mode="aspectFill" data-idx="{{item}}" bindtap="handlePreview"></image>
         </view>
         <view class='detail-card-body-content'>{{item.ccontent}}</view>
       </view>
+
       <view class="{{index==ansLength-1? '' : 'detail-card-body-hr'}}"></view>
     </view>
   </view>
   <view class='detail-bottom-add'>
-    <view wx:for="{{tempFilePaths}}" wx:key="{{index}}">
+    <view wx:for="{{tempFilePaths}}" wx:key="{{index}}" class='detail-bottom-wrap'>
+      <view class='detail-bottom-delete' data-index='{{index}}' bindtap='handleDelete'>x</view>
       <image src='{{item}}' data-idx='{{index}}' bindtap='handleCheck'></image>
     </view>
   </view>
   <view class='detail-takeplace'></view>
   <view class='detail-bottom-function'>
-    <input class='detail-bottom-inp' placeholder='点我回复(150字数限制)' bindinput='handleInput' maxlength='100' value='{{reviewData}}'></input>
+    <input class='detail-bottom-inp' placeholder='150字数限制' bindinput='handleInput' maxlength='100' value='{{reviewData}}'></input>
     <view class='detail-add-pic' bindtap='addpic'>+</view>
     <button class='detail-bottom-btn' bindtap='submitReview'>发布</button>
   </view>

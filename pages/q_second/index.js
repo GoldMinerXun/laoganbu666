@@ -184,6 +184,15 @@ Page({
   onShareAppMessage: function() {
 
   },
+  handleDelete : function(e) {
+    console.log(e.currentTarget.dataset.index)
+    const index = e.currentTarget.dataset.index
+    var temp = this.data.tempFilePaths
+    temp.splice(index,1)
+    this.setData({
+      tempFilePaths : temp
+    })
+  }, 
   handleInput: function(e) {
     var len = e.detail.value.length
     if (len > 150) {
