@@ -207,6 +207,7 @@
   width: 100%;
   margin-top: 30rpx;
   font-size: 28rpx;
+  word-wrap: break-word;
 }
 
 .detail-card-body-content-pic-wrap {

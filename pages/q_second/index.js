@@ -274,7 +274,7 @@ Page({
         },
         success: function() {
           wx.showToast({
-            title: '',
+            title: '谢谢你哟',
             image: './thanks.png',
             duration: 500
           })
