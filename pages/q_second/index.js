@@ -89,12 +89,14 @@ Page({
     }).get().then(
       res => {
         // console.log(res.data)
+        const ansLength = res.data.length
         wx.getStorage({
           key: 'openid',
           success: function(res1) {
             // console.log(res1.data)
             that.setData({
-              localOpenid: res1.data
+              localOpenid: res1.data,
+              ansLength : ansLength
             })
           },
         })

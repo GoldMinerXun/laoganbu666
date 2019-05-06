@@ -49,9 +49,11 @@
         <view wx:if="{{admireArr[index]==1}}" class='detail-card-head-right-admire'>
           <image src='{{defaultArr[2]}}'></image>
         </view>
+
         <view wx:else class='detail-card-head-right-admire' bindtap='handleAdmire' data-cid='{{item._id}}' data-index='{{index}}' data-flag='{{admireArr[index]}}' data-cuserid='{{item._openid}}' data-ccontent='{{item.ccontent}}'>
           <image src='{{defaultArr[3]}}'></image>
         </view>
+        
       </view>
 
       <view class='detail-card-body'>
