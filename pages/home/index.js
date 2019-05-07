@@ -26,14 +26,14 @@ Page({
     })
 
     var that = this
-    const defaultArr = ['cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/ad.png']
+    const defaultArr = ['cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/QQ图片20190506220228.png', 'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/home1.jpg', 'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/home2.jpg','cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/home3.jpg']
     var deal = function() {
       var fileList = defaultArr
       wx.cloud.getTempFileURL({
         fileList,
       }).then(res => {
         that.setData({
-          defaultAd : res.fileList[0].tempFileURL
+          defaultAd : res.fileList
         })
       })
     }

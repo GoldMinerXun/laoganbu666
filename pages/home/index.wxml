@@ -1,18 +1,15 @@
 <!--pages/home/index.wxml-->
 
 <view class='home-top-wrap'>
-  <swiper class='home-picture-broadcast-wrap' indicator-dots='true' autoplay='true' interval='4000' duration='400' circular='true'>
+  <swiper class='home-picture-broadcast-wrap' indicator-dots='true' autoplay='true' interval='4000' duration='1000' circular='true'>
     <swiper-item>
-      <image></image>
+      <image src='{{defaultAd[1].tempFileURL}}' style='border-top-left-radius: 20rpx;border-top-right-radius: 20rpx;'></image>
     </swiper-item>
     <swiper-item>
-      <image></image>
+      <image src='{{defaultAd[2].tempFileURL}}' style='border-top-left-radius: 20rpx;border-top-right-radius: 20rpx;'></image>
     </swiper-item>
     <swiper-item>
-      <image></image>
-    </swiper-item>
-    <swiper-item>
-      <image></image>
+      <image src='{{defaultAd[3].tempFileURL}}' style='border-top-left-radius: 20rpx;border-top-right-radius: 20rpx;'></image>
     </swiper-item>
   </swiper>
   <view class='home-circle'></view>
@@ -45,5 +42,5 @@
   </view>
 </view>
 <view class='home-ad-wrap'>
-  <image src='{{defaultAd}}'></image>
+  <image src='{{defaultAd[0].tempFileURL}}'></image>
 </view>
