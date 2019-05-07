@@ -174,7 +174,7 @@ Page({
     }).then(res => {
 
       this.setData({
-        signature: res.data.signature
+        signature: res.data.signature ? res.data.signature:''
       })
     })
   }

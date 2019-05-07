@@ -181,6 +181,7 @@ Page({
           // console.log(app.globalData)
           return wechat.updateUserInfo(app, major, sno, academic)
         }).then(data => {
+          // console.log(data)
           wx.navigateBack({
             delta: 2
           })

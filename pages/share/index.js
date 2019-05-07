@@ -86,7 +86,7 @@ Page({
     })
   },
   onReady: function () {
-    wx.hideLoading()
+    wx.hideToast()
   },
   onShow:function(){
     var that=this

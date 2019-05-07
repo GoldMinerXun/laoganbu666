@@ -20,7 +20,7 @@ class Wechat {
     return new Promise((resolve, reject) => wx.cloud.callFunction({
       name: 'index',
       complete: res => {
-        console.log(res.result)
+        // console.log(res.result)
           resolve(res.result)
       }
     }));
@@ -37,7 +37,7 @@ class Wechat {
   };
   // 登陆查数据库
   static updateUserInfo(app,major,sno,academic){
-    return new Promise((resolve, reject) => userDB.doc(app.globalData.openid).update({
+    return new Promise((resolve, reject) => userDB.doc(app.globalData.openid).set({
       data: {
         avatorurl: app.globalData.userInfo.avatarUrl,
         uname: app.globalData.userInfo.nickname,
