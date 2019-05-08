@@ -263,6 +263,7 @@
   box-sizing: border-box;
   opacity: 0.6;
   background: linear-gradient(to top, rgb(5, 164, 255), rgb(1, 240, 255));
+  color: white;
 }
 
 botton::after {
