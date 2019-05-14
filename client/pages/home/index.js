@@ -105,7 +105,7 @@ Page({
           if (items.images.length != 0) {
             temp.push(items.images[0])
           } else {
-            const defaultFileId = 'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/default.png'
+            const defaultFileId = 'cloud://laoganbu-02d4d0.6c61-laoganbu-02d4d0/default.png'
             temp.push(defaultFileId)
           }
         })
