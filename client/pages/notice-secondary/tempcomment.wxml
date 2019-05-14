@@ -6,8 +6,8 @@
         time:"2019/4/16 20:07"
       } -->
 <template name="tempcomment">
-  <navigator hover-class='none' open-type='navigateTo' url='../q_second/index?id={{qid}}'>
-    <view class='tempcomment-wrap'>
+  <!-- <navigator hover-class='none' open-type='navigateTo' url='../q_second/index?id={{qid}}'> -->
+    <view class='tempcomment-wrap' bindtap='navigateToUrl' data-qid='{{qid}}'>
       <view class='tempcommment-avator'>
         <image class='tempcommment-avator-img' src="{{commentAvatarUrl}}"></image>
       </view>
@@ -21,6 +21,6 @@
         <view class='tempcomment-line'></view>
       </view>
     </view>
-  </navigator>
+  <!-- </navigator> -->
 
 </template>

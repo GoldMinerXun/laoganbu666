@@ -1,2 +1,7 @@
 <!--client/pages/notfound/index.wxml-->
-<text>client/pages/notfound/index.wxml</text>
+<view class='notfound-wrap'>
+  <image src='./404.png' class='notfound-image' mode='widthFix'></image>
+  <view>
+    <text>该页面找不到呀~</text>
+  </view>
+</view>

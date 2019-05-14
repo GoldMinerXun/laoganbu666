@@ -24,10 +24,33 @@ Page({
     // 页面对应的渲染内容
     content: [],
     refresh: false,
-    defaultImgArr:[
+    defaultImgArr: [
 
     ]
   },
+  navigateToUrl: function (e) {
+    // console.log(e)
+    var id=e.currentTarget.dataset.qid
+    questions.where({
+      _id: id
+    }).get().then(res => {
+      // console.log(res.data.length)
+      if (res.data.length > 0) {
+        wx.navigateTo({
+          url: '../q_second/index?id=' + id,
+          success: function (res) { },
+          fail: function (res) { },
+          complete: function (res) { },
+        })
+      }else{
+        wx.navigateTo({
+        url: '../notfound/index',
+      })
+      }
+    })
+
+  },
+  
   deletemycomment: function (id) {
     comments.doc(id).remove()
       .then()
@@ -144,7 +167,7 @@ Page({
       that.setData({
         content: mycomment
       })
-      
+
     }
     else if (tempname == "tempmyproblem") {
       that.setData({
@@ -270,7 +293,7 @@ Page({
     const defaultArr = ['cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/otherscomment.png',
       'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/right.png',
       'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/likes.png',
-  'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/myproblem.png',
+      'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/myproblem.png',
       'cloud://laobanbu666-aeacf2.6c61-laobanbu666-aeacf2/defaultPicture/comment.png'
     ]
     var deal = function () {

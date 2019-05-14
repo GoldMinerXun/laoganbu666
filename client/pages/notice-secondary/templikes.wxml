@@ -1,6 +1,6 @@
 <template name="templikes">
-<navigator hover-class='none' open-type='navigateTo' url='../q_second/index?id={{qid}}'>
-  <view class='templikes-wrap'>
+<!-- <navigator hover-class='none' open-type='navigateTo' url='../q_second/index?id={{qid}}'> -->
+  <view class='templikes-wrap' bindtap='navigateToUrl' data-qid='{{qid}}'>
     <view class='templikes-avator'>
       <image class='templikes-avator-img' src="{{admireAvatarUrl}}"></image>
     </view>
@@ -14,5 +14,5 @@
       <view class='templikes-line'></view>
     </view>
   </view>
- </navigator>
+ <!-- </navigator> -->
 </template>
