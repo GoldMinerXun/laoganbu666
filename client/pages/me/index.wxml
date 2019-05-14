@@ -16,7 +16,7 @@
         
   </modal>
   </view>
-  <view class='me-lab' bindtap='handleChange'>
+  <view class='me-lab' >
     <image src="{{defaultArr[1]}}" class='lab-left' mode='widthFix'></image>
     实验室
     <image class='lab-right' src="{{defaultArr[2]}}"></image>

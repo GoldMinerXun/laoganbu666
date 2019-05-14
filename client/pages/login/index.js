@@ -179,9 +179,18 @@ Page({
           })
           app.globalData.userInfo = userInfo
           // console.log(app.globalData)
-          return wechat.updateUserInfo(app, major, sno, academic)
+          return wechat.findUserInfo(app)
+        }).then(res=>{
+          // console.log(res)
+          console.log(res.data._id)
+          if(res.data._id){
+            return wechat.updateUserInfo(app, major, sno, academic)
+          }
+          else{
+            return wechat.setUserInfo(app, major, sno, academic)
+          }
         }).then(data => {
-          // console.log(data)
+          console.log(data)
           wx.navigateBack({
             delta: 2
           })

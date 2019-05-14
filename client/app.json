@@ -6,7 +6,8 @@
     "pages/q_post/index",
     "pages/me/index",
     "pages/notice/index",
-    "pages/lab/index"
+    "pages/lab/index",
+    "pages/notfound/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#0081FF",

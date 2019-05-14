@@ -36,7 +36,9 @@ class Wechat {
     }));
   };
   // 登陆查数据库
-  static updateUserInfo(app,major,sno,academic){
+  // 第一次登陆用set方法
+  // 第二次登陆用update方法
+  static setUserInfo(app,major,sno,academic){
     return new Promise((resolve, reject) => userDB.doc(app.globalData.openid).set({
       data: {
         avatorurl: app.globalData.userInfo.avatarUrl,
@@ -49,7 +51,23 @@ class Wechat {
       }
     }))
   }
+  static updateUserInfo(app, major, sno, academic){
+    return new Promise((resolve, reject) => userDB.doc(app.globalData.openid).update({
+      data: {
+        avatorurl: app.globalData.userInfo.avatarUrl,
+        uname: app.globalData.userInfo.nickname,
+        sno: sno,
+        academic: academic,
+        major: major
+      }, complete: res => {
+        resolve(res.result)
+      }
+    }))
+  }
 
+  static findUserInfo(app){
+    return new Promise((resolve,reject)=>userDB.doc(app.globalData.openid).get().then(res=>resolve(res)))
+  }
   // 登陆本地登陆openid情况
   static getstorageopenid(){
     return new Promise((resolve,reject)=>wx.getStorage({
