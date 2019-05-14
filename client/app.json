@@ -1,0 +1,52 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/q_second/index",
+    "pages/share/index",
+    "pages/q_post/index",
+    "pages/me/index",
+    "pages/notice/index",
+    "pages/lab/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#0081FF",
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#7f8389",
+    "selectedColor": "#0081FF",
+    "borderStyle": "white",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "tabimg/home.png",
+        "selectedIconPath": "tabimg/home-sel.png"
+      },
+      {
+        "pagePath": "pages/share/index",
+        "text": "知之",
+        "iconPath": "tabimg/share.png",
+        "selectedIconPath": "tabimg/share-sel.png"
+      },
+      {
+        "pagePath": "pages/notice/index",
+        "text": "通知",
+        "iconPath": "tabimg/notice.png",
+        "selectedIconPath": "tabimg/notice-sel.png"
+      },
+      {
+        "pagePath": "pages/me/index",
+        "text": "个人中心",
+        "iconPath": "tabimg/aboutme.png",
+        "selectedIconPath": "tabimg/aboutme-sel.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

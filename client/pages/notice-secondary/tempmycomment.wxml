@@ -1,0 +1,13 @@
+<template name="tempmycomment">
+
+  <view class='tempmycomment-wrap'>
+    <view class='tempmycomment-del-btn' bindtap='confirmdeletemycomment' data-id='{{_id}}'>
+      <image class='tempcomment-img' mode='widthFix' src="./more.png"></image>
+    </view>
+    <navigator class='tempcomment-text-wrap' open-type='navigateTo' url='../q_second/index?id={{qid}}'>
+      <view class='tempmycomment-title'>{{title}}</view>
+      <view class='tempmycomment-simplecontent'>{{ccontent}}</view>
+      <view class='tempmymycomment-time'>{{time}}</view>
+    </navigator>
+  </view>
+</template>

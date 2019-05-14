@@ -1,0 +1,43 @@
+<!--pages/aboutme/index.wxml-->
+<view class='me-wrap'>
+  <view class='me-top-div'></view>
+  <view class='me-top-circle'></view>
+  <view class='me-top-info-wrap'>
+    <view class='me-top-avator'>
+      <image src="{{userInfo.avatarUrl?userInfo.avatarUrl:'../../images/avator.png'}}"></image>
+    </view>
+    <view class='me-top-name'>{{userInfo.nickName?userInfo.nickName:'知之儿'}}</view>
+    <button class='me-top-signature' open-type='getUserInfo' bindgetuserinfo='modalinput' >
+      <image src="{{defaultArr[0]}}"></image>
+      {{signature?signature:'知之为知之，不知为不知，是知也'}}
+    </button>
+    <modal id="modal" hidden="{{hiddenmodalput}}" title="签名" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">  
+      <input type='text' bindinput='inputsig' placeholder="不超过15字" auto-focus/>
+        
+  </modal>
+  </view>
+  <view class='me-lab' bindtap='handleChange'>
+    <image src="{{defaultArr[1]}}" class='lab-left' mode='widthFix'></image>
+    实验室
+    <image class='lab-right' src="{{defaultArr[2]}}"></image>
+  </view>
+
+  <view class='me-btn-wrap'>
+    <button class='btn qusetion' open-type='contact'>
+      <view class='img-wrap'>
+        <view class='circle i1circle'></view>
+        <image class='img1' mode='widthFix' src="{{defaultArr[3]}}"></image>
+      </view>
+      问题反馈
+      <image class='btn-right' src="{{defaultArr[2]}}"></image>
+    </button>
+    <view bindtap='isLogin' data-login='{{hasUserInfo}}' class='btn log-out'>
+      <view class='img-wrap'>
+        <view class='circle i2circle'></view>
+        <image class='img2' mode='widthFix' src="{{defaultArr[4]}}"> </image>
+      </view>
+      {{hasUserInfo?"退出":"登陆"}}
+      <image class='btn-right' src="{{defaultArr[2]}}"></image>
+    </view>
+  </view>
+</view>

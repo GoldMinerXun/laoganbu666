@@ -1,0 +1,364 @@
+/* pages/q_second/index.wxss */
+
+.q_second_container {
+  width: 100%;
+  background-color: rgb(249, 249, 249);
+  height: 100%;
+  position: relative;
+}
+
+.detail-top {
+  width: 100%;
+  height: 130rpx;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  box-shadow: 0 5rpx 5rpx rgb(228, 228, 228);
+}
+
+.detail-top-wrap {
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+}
+
+.detail-top-image-wrap {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-left: 30rpx;
+}
+
+.detail-top-image-wrap image {
+  background-size: cover;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.detail-top-author {
+  font-size: 30rpx;
+  margin-left: 20rpx;
+}
+
+.detail-level-wrap {
+  width: 80rpx;
+  height: 40rpx;
+  background-color: white;
+  font-size: 30rpx;
+  margin-left: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-min-wrap {
+  width: 94%;
+  background-color: white;
+  margin: 0 auto;
+  margin-top: 10rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 5rpx 5rpx rgb(238, 238, 238);
+  position: relative;
+}
+
+.detail-min-title {
+  margin-left: 5rpx;
+  margin-top: 20rpx;
+  font-size: 35rpx;
+  display: inline-block;
+  font-weight: 550;
+  color: rgb(83, 83, 83);
+}
+
+.detail-min-tag-wrap {
+  width: 100%;
+  height: 40rpx;
+  margin-top: 20rpx;
+  display: flex;
+  /* background-color: red; */
+}
+
+.detail-tags {
+  height: 100%;
+  display: inline-block;
+  border-radius: 20rpx;
+  margin-left: 80rpx;
+  font-size: 25rpx;
+  font-weight: 400;
+  line-height: 40rpx;
+  padding: 5rpx 10rpx;
+  text-align: center;
+  opacity: 0.8;
+  background-color: rgb(238, 238, 238);
+}
+
+.detail-min-content-wrap {
+  width: 100%;
+  margin-top: 20rpx;
+}
+
+.detail-min-content {
+  width: 90%;
+  background-color: white;
+  margin: 0 auto;
+  font-size: 28rpx;
+  overflow: hidden;
+  color: rgb(135, 135, 135);
+  /* text-overflow: ellipsis;
+  white-space: nowrap; */
+  text-indent: 56rpx;
+}
+
+.detail-min-content-pic-wrap {
+  width: 90%;
+  height: 230rpx;
+  margin: 20rpx auto;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.detail-min-content-pic {
+  width: 200rpx;
+  height: 200rpx;
+  margin-left: 20rpx;
+}
+
+.detail-min-btn {
+  width: 90%;
+  height: 40rpx;
+  margin: 0 auto;
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  color: rgb(3, 200, 255);
+}
+
+.detail-min-hr {
+  height: 0;
+  width: 100%;
+  margin-top: 25rpx;
+  border-bottom: solid 1rpx rgba(0, 0, 0, 0.1);
+}
+
+.detail-min-answer-sign {
+  width: 140rpx;
+  text-indent: 30rpx;
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+  border-bottom-right-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  background-color: rgb(0, 238, 255);
+}
+
+.detail-ans-card {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.detail-card-head {
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+}
+
+.detail-card-head-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.detail-card-head-avatar image {
+  width: 80rpx;
+  height: 80rpx;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.detail-card-head-right {
+  width: 530rpx;
+  margin-left: 20rpx;
+  margin-top: 15rpx;
+}
+
+.detail-card-head-right-name {
+  height: 30rpx;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  margin-bottom: 5rpx;
+}
+
+.detail-card-head-right-riqi {
+  font-size: 20rpx;
+}
+
+.detail-card-head-right-admire {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.detail-card-head-right-admire image {
+  width: 60rpx;
+  height: 60rpx;
+  background-size: cover;
+}
+
+.detail-card-body-content {
+  width: 100%;
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  word-wrap: break-word;
+}
+
+.detail-card-body-content-pic-wrap {
+  width: 100%;
+  height: 200rpx;
+  margin: 0 auto;
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.detail-card-body-content-pic-wrap image {
+  width: 200rpx;
+  height: 200rpx;
+  margin-left: 20rpx;
+}
+
+.detail-card-body-hr {
+  width: 90%;
+  border-bottom: solid 2rpx rgba(0, 0, 0, 0.2);
+  margin: 40rpx auto;
+}
+
+.detail-bottom-function {
+  width: 100%;
+  height: 100rpx;
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.detail-bottom-inp {
+  width: 60%;
+  height: 80rpx;
+  background-color: rgb(238, 238, 238);
+  font-size: 30rpx;
+  border-radius: 30rpx;
+  margin-left: 30rpx;
+  padding-left: 30rpx;
+}
+
+.detail-bottom-btn {
+  width: 120rpx;
+  height: 80rpx;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 50rpx;
+  margin-left: 20rpx;
+  box-sizing: border-box;
+  opacity: 0.6;
+  background: linear-gradient(to top, rgb(5, 164, 255), rgb(1, 240, 255));
+  color: white;
+}
+
+botton::after {
+  border: none;
+}
+
+.detail-takeplace {
+  width: 100%;
+  height: 10rpx;
+}
+
+.q_second_container {
+  position: relative;
+}
+
+.detail-bottom-add {
+  width: 500rpx;
+  display: flex;
+  justify-content: flex-start;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  margin-left: -250rpx;
+  margin-bottom: 100rpx;
+  box-sizing: border-box;
+}
+
+.detail-bottom-add image {
+  width: 100rpx;
+  height: 100rpx;
+  background-size: cover;
+}
+
+.detail-bottom-wrap {
+  position: relative;
+  box-sizing: border-box;
+  width: 100rpx;
+  height: 100rpx;
+  margin-left: 50rpx;
+}
+
+.detail-bottom-delete {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  border-radius: 50%;
+  right: -20rpx;
+  top: -20rpx;
+  text-align: center;
+  line-height: 40rpx;
+  font-size: 30rpx;
+  color: rgb(135, 135, 135);
+  opacity: 0.5;
+  border-top: solid 1rpx rgb(135, 135, 135);
+  border-right: solid 1rpx rgb(135, 135, 135);
+}
+
+.detail-bottom-answer-wrap {
+  background-color: white;
+  width: 94%;
+  margin: 0 auto;
+  border-radius: 20rpx;
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+}
+
+.detail-add-pic {
+  width: 80rpx;
+  height: 80rpx;
+  background-color: #eee;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 80rpx;
+  border-radius: 50%;
+}
+
+.detail-top-sign {
+  position: absolute;
+  width: 100rpx;
+  height: 100rpx;
+  right: 5rpx;
+  top: 5rpx;
+  display: flex;
+}
+
+.detail-top-sign-wrap {
+  width: 100rpx;
+  height: 100rpx;
+  background-size: 100% 100%;
+  display: flex;
+  transform: rotate(-60deg);
+}
+
+.nosolve {
+  width: 100rpx;
+  height: 100rpx;
+  background-size: 100% 100%;
+}

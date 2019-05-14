@@ -1,0 +1,46 @@
+<!--pages/home/index.wxml-->
+
+<view class='home-top-wrap'>
+  <swiper class='home-picture-broadcast-wrap' indicator-dots='true' autoplay='true' interval='4000' duration='1000' circular='true'>
+    <swiper-item>
+      <image src='{{defaultAd[1].tempFileURL}}' style='border-top-left-radius: 20rpx;border-top-right-radius: 20rpx;' class='home-pic'></image>
+    </swiper-item>
+    <swiper-item>
+      <image src='{{defaultAd[2].tempFileURL}}' style='border-top-left-radius: 20rpx;border-top-right-radius: 20rpx;' class='home-pic'></image>
+    </swiper-item>
+    <swiper-item>
+      <image src='{{defaultAd[3].tempFileURL}}' style='border-top-left-radius: 20rpx;border-top-right-radius: 20rpx;' class='home-pic'></image>
+    </swiper-item>
+  </swiper>
+  <view class='home-circle'></view>
+
+  <view class='home-panel-wrap'>
+
+    <block wx:for="{{hotList}}" wx:key="{{index}}">
+
+      <view class='home-panel-list' bindtap='jumpTo' data-id='{{item._id}}'>
+        <view class='home-panel-picture'>
+          <image src='{{imageUrl[index].tempFileURL}}'></image>
+        </view>
+        <view class='home-panel-intro-wrap'>
+          <view class='home-panel-intro-title'>{{item.title}}</view>
+          <view class='home-panel-intro-detail'>{{detailList[index]}}</view>
+        </view>
+      </view>
+      <view class='home-hr'></view>
+
+    </block>
+
+  </view>
+</view>
+<view class='home-bottom-notice'>
+  <i-notice-bar icon="systemprompt">
+    最新通知
+  </i-notice-bar>
+  <view class='home-notice-content'>
+    理工知之儿1.0版本上线啦：此版本还处于尝鲜版，存在很多的问题与不足，有些功能和细节还有待完善，也欢迎大家积极地参与体验并通过个人中心的问题反馈向我们反馈知之儿存在的问题！谢谢大家！
+  </view>
+</view>
+<view class='home-ad-wrap'>
+  <image src='{{defaultAd[0].tempFileURL}}'></image>
+</view>

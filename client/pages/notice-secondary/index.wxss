@@ -1,0 +1,307 @@
+/* pages/notice-secondary/index.wxss */
+
+page {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(250, 250, 250);
+}
+
+.notice-secondary-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* padding: 10rpx 10rpx 10rpx 10rpx; */
+}
+
+/* 评论模板样式 */
+
+.tempcomment-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.tempcommment-avator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.tempcommment-avator-img {
+  width: 90%;
+  height: 90%;
+  border-radius: 100%;
+}
+
+.tempcomment-text-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.tempcomment-name-time {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20rpx;
+  margin-bottom: 40rpx;
+}
+
+.tempcomment-name {
+  font-size: 37rpx;
+  line-height: 40rpx;
+  color: rgb(4, 189, 255);
+  font-weight: 400;
+}
+
+.tempcomment-time {
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #999;
+}
+
+.tempcomment-showcontent {
+  font-size: 30rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+  word-wrap: break-word;
+}
+
+.tempcomment-mycontent {
+  background-color: rgb(242, 242, 242);
+  color: #999;
+  font-size: 30rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+  margin-bottom: 30rpx;
+}
+
+.tempcomment-line {
+  height: 1rpx;
+  width: 100%;
+  background-color: #eee;
+}
+
+/* 点赞模板样式 */
+
+.templikes-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+}
+
+.templikes-avator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.templikes-avator-img {
+  width: 90%;
+  height: 90%;
+  border-radius: 100%;
+}
+
+.templikes-text-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.templikes-name-time {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.templikes-name {
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: rgb(4, 189, 255);
+  font-weight: 400;
+}
+
+.templikes-time {
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #999;
+}
+
+.templikes-showcontent {
+  font-size: 30rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+}
+
+.templikes-mycontent {
+  background-color: rgb(242, 242, 242);
+  color: #999;
+  font-size: 30rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-radius: 13rpx;
+  margin-bottom: 30rpx;
+}
+
+.templikes-line {
+  height: 1rpx;
+  width: 100%;
+  background-color: #eee;
+}
+
+/* 我发布的问题模板 */
+
+.tempmyproblem-wrap {
+  width: 100%;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+  margin-bottom: 20rpx;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.tempmyproblem-url {
+  width: 75%;
+}
+
+.navigator-hover {
+  background-color: white;
+}
+
+.tempmyproblem-text-wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.tempmyproblem-title {
+  font-weight: 500;
+  font-size: 32rpx;
+  margin-bottom: 20rpx;
+}
+
+.tempmyproblem-simplecontent {
+  background-color: rgb(242, 242, 242);
+  font-size: 30rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-radius: 13rpx;
+  margin-bottom: 30rpx;
+  color: #999;
+}
+
+.tempmyproblem-time {
+  box-sizing: border-box;
+  font-size: 28rpx;
+  color: #aaa;
+}
+
+.tempmyproblem-del-wrap {
+  width: 10%;
+}
+
+.tempmyproblem-del-btn {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  font-size: 35rpx;
+  line-height: 60rpx;
+}
+
+.tempmyproblem-img {
+  width: 100%;
+  opacity: 0.6;
+}
+
+.tempmyproblem-img:active {
+  opacity: 1;
+}
+
+/* 我发布的评论模板 */
+
+.tempmycomment-wrap {
+  width: 100%;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+  margin-bottom: 20rpx;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.tempcomment-text-wrap {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tempmycomment-title {
+  font-weight: 500;
+  font-size: 32rpx;
+  margin-bottom: 20rpx;
+}
+
+.tempmycomment-simplecontent {
+  background-color: rgb(242, 242, 242);
+  font-size: 30rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+  margin-bottom: 30rpx;
+  color: #999;
+}
+
+.tempmymycomment-time {
+  box-sizing: border-box;
+  font-size: 28rpx;
+  color: #aaa;
+}
+
+.tempmycomment-del-btn {
+  width: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  font-size: 35rpx;
+  line-height: 60rpx;
+}
+
+.tempcomment-img {
+  width: 100%;
+  opacity: 0.6;
+}
+.tempcomment-img:active{
+  opacity: 1;
+}

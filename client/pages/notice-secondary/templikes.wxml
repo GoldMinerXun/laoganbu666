@@ -1,0 +1,18 @@
+<template name="templikes">
+<navigator hover-class='none' open-type='navigateTo' url='../q_second/index?id={{qid}}'>
+  <view class='templikes-wrap'>
+    <view class='templikes-avator'>
+      <image class='templikes-avator-img' src="{{admireAvatarUrl}}"></image>
+    </view>
+    <view class='templikes-text-wrap'>
+      <view class='templikes-name-time'>
+        <view class='templikes-name'>{{admireNickName}}</view>
+        <view class='templikes-time'>{{time}}</view>
+      </view>
+      <view class='templikes-showcontent'>赞了一下你的回答</view>
+      <view class='templikes-mycontent'>{{ccontent}}</view>
+      <view class='templikes-line'></view>
+    </view>
+  </view>
+ </navigator>
+</template>

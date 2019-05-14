@@ -1,0 +1,26 @@
+<!-- {
+        name:"kiyomi",
+        avator:"./test-avator.png",
+        showcontent:"这里应该使用链表",
+        mycontent:"线性表就可以解决",
+        time:"2019/4/16 20:07"
+      } -->
+<template name="tempcomment">
+  <navigator hover-class='none' open-type='navigateTo' url='../q_second/index?id={{qid}}'>
+    <view class='tempcomment-wrap'>
+      <view class='tempcommment-avator'>
+        <image class='tempcommment-avator-img' src="{{commentAvatarUrl}}"></image>
+      </view>
+      <view class='tempcomment-text-wrap'>
+        <view class='tempcomment-name-time'>
+          <view class='tempcomment-name'>{{commentNickName}}</view>
+          <view class='tempcomment-time'>{{time}}</view>
+        </view>
+        <view class='tempcomment-showcontent'>回复我：{{ccontent}}</view>
+        <view class='tempcomment-mycontent'>我的问题:{{title}}</view>
+        <view class='tempcomment-line'></view>
+      </view>
+    </view>
+  </navigator>
+
+</template>

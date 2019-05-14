@@ -1,0 +1,34 @@
+<!--pages/login/index.wxml-->
+<view class='login-wrap'>
+  <view class='login-top-wrap'>
+    <view class='login-img-wrap'>
+      <image class='login-img' src="{{defaultAd}}" mode='widthFix'></image>
+    </view>
+  </view>
+  <view class='login-line'></view>
+  <view class='login-warning-wrap'>
+    <text class='login-warning-title'>登陆后开发者将获得以下权限</text>
+    <text class='login-waring-content'>获得你的公开信息（昵称，头像等）</text>
+  </view>
+  <form class='login-info'>
+    <view class='login-row'>
+      <text class='login-text'>学号</text>
+      <input class='login-sno login-input' type='number' bindinput='inputSno' confirm-type='next' placeholder='请输入学号'></input>
+    </view>
+    <view class="section">
+  <picker mode="multiSelector" class='picker' bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+    <view class="picker">
+      <view class='login-row'>
+      <text class='login-text'>学院</text>
+      <view class='login-academic login-input'>{{multiArray[0][multiIndex[0]]}}</view>
+    </view>
+    <view class='login-row'>
+      <text class='login-text'>专业</text>
+      <view class='login-major login-input'>{{multiArray[1][multiIndex[1]]}}</view>
+    </view>
+    </view>
+  </picker>
+</view>
+    <button class='login-btn' open-type='getUserInfo' bindgetuserinfo='bindgetuserinfo'>确认授权</button>
+  </form>
+</view>

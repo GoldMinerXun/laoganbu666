@@ -1,0 +1,10 @@
+<!--pages/lab/index.wxml-->
+<view class='lab-wrap'>
+  <view class='lab-line'>
+    <view class='img' bindtap=''>
+      +
+    </view>
+  </view>
+</view>
+
+<!-- 点击后先出来一个圆点，然后出来输入框，输入完成点确定出现文本图案框,位置的确定 -->

@@ -1,0 +1,41 @@
+<!--index.wxml-->
+<view class="container">
+  <view class='share-head'>
+    <form bindsubmit='search'>
+      <view class='sousuo-wrap'>
+        <icon class='search_icon' size='18' type='search'></icon>
+        <input name='content' class='search_input' type='text' value='' placeholder='请输入搜索关键词'></input>
+        <button class='search_btn' form-type='submit'>搜索</button>
+      </view>
+    </form>
+  </view>
+  <view class='body'>
+    <view class='body-wrap'>
+      <view class='card-item' wx:for="{{hot}}" wx:key="{{index}}">
+        <navigator hover-class='none' open-type='navigateTo' url='../q_second/index?id={{item._id}}'>
+          <i-card class='i-card' title="{{item.title}}" type="{{item.type}}" thumb="{{item.qAvatarUrl}}" color="{{item.color}}">
+            <view slot="content" style='color:#aaa'> {{slice.sub(item.content)}}</view>
+            <wxs module="slice">
+              var sub = function(val) {
+                return val.substring(0, 23) + "..."
+              }
+              module.exports.sub = sub;
+            </wxs>
+            <view class='tag-wrap' slot="footer">
+              <view class='tag' wx:for="{{item.tags}}" wx:key="{{index}}">
+                <view class='tag-item'>
+                  {{item}}
+                </view>
+              </view>
+            </view>
+          </i-card>
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <navigator open-type='navigateTo' hover-class='none' url='../q_post/index'>
+    <view class='share-btn-fly'>
+      <image class='shareimg' mode='widthFix' src='./sharebtn.png'></image>
+    </view>
+  </navigator>
+</view>

@@ -1,0 +1,123 @@
+/* pages/home/index.wxss */
+
+page {
+  background-color: rgb(250, 250, 250);
+}
+
+.home-picture-broadcast-wrap {
+  width: 100%;
+  height: 275rpx;
+  text-align: center;
+  background: linear-gradient(-180deg, rgba(2, 209, 253,0.8),rgba(23, 173, 254,0.1));
+}
+.home-pic{
+  height: 275rpx;
+  background-size: cover;
+}
+.home-circle {
+  position: absolute;
+  top:200rpx;
+  width: 100%;
+  height: 150rpx;
+  background-color: rgba(2, 207, 253, 0.8);
+  border-radius: 40%;
+  z-index: -10;
+}
+
+.home-panel-wrap {
+  width: 94%;
+  margin:0 auto;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0rpx 10rpx 10rpx rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-flow: column;
+  border-radius: 10rpx 10rpx;
+}
+
+.home-panel-list {
+  flex: 1;
+  margin: 20rpx 10rpx;
+  height: 80rpx;
+  display: flex;
+}
+
+.home-panel-picture {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.home-panel-picture image {
+  width: 100%;
+  height: 100%;
+  background-size: 100% 100%;
+}
+
+.home-panel-intro-wrap {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+}
+
+.home-panel-intro-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 30rpx;
+  font-size: 30rpx;
+  font-weight: 400;
+  background-color: white;
+  letter-spacing: 1rpx;
+}
+
+.home-hr {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.home-panel-intro-detail {
+  margin-top: 4rpx;
+  font-size: 24rpx;
+  line-height: 24rpx;
+  font-weight: 300;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.home-bottom-notice {
+  margin: 0 auto;
+  margin-top: 20rpx;
+  width: 94%;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0rpx 10rpx 10rpx rgba(0, 0, 0, 0.1);
+  border-radius: 8rpx;
+  overflow: hidden;
+  padding: 10rpx 10rpx;
+  box-sizing: border-box;
+}
+
+.home-notice-content {
+  width: 92%;
+  font-size: 22rpx;
+  font-weight: 300;
+  line-height: 20px;
+  letter-spacing: 2px;
+  margin: 0 auto;
+}
+
+.home-ad-wrap {
+  width: 94%;
+  height: 200rpx;
+  margin:30rpx auto;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-ad-wrap image{
+  width: 100%;
+  height: 100%; 
+}

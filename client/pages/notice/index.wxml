@@ -1,0 +1,77 @@
+<!--pages/notice/index.wxml-->
+<view class='notice-wrap'>
+  <view class='notice-open-notice'>
+    <view class='notice-open-text'>开启推送通知，及时查收消息</view>
+    <button class='notice-open-btn'>开启</button>
+  </view>
+
+  <view class='notice-one notice-comment-like'>
+    <navigator open-type='navigateTo' url='../notice-secondary/index?title=评论&name=tempcomment'>
+      <view class='notice-two notice-comment'>
+        <view class='notice-img notice-comment-img'>
+        <view class='notice-img-circle'></view>
+          <image src='../../images/notice-img/otherscomment.png'></image>
+        </view>
+        <view class='notice-text notice-comment-text'>
+          评论
+        </view>
+        <view class='notice-comment-num notice-num' hidden='{{noticeCommentNum==0}}'>{{noticeCommentNum}}</view>
+        <view class='notice-sign'>
+          <image class='notice-right' src='../../images/notice-img/right.png'></image>
+        </view>
+      </view>
+    </navigator>
+
+    <view class='notice-line'></view>
+    <navigator open-type='navigateTo' url='../notice-secondary/index?title=点赞&name=templikes'>
+      <view class='notice-two notice-like'>
+        <view class='notice-img notice-like-img'>
+         <view class='notice-img-circle'></view>
+          <image src='../../images/notice-img/likes.png'></image>
+        </view>
+        <view class='notice-text notice-like-text'>
+          点赞
+        </view>
+        <view class='notice-like-num notice-num' hidden='{{noticeLikeNum==0}}'>{{noticeLikeNum}}</view>
+        <view class='notice-sign'>
+          <image class='notice-right' src='../../images/notice-img/right.png'></image>
+        </view>
+      </view>
+    </navigator>
+
+  </view>
+  <view class='notice-one notice-publish-problem-comment'>
+    <navigator open-type='navigateTo' url='../notice-secondary/index?title=我发布的问题&name=tempmyproblem'>
+      <view class='notice-two notice-publish-problem'>
+        <view class='notice-img notice-publish-problem-img'>
+         <view class='notice-img-circle'></view>
+          <image src='../../images/notice-img/myproblem.png'></image>
+        </view>
+        <view class='notice-text notice-publish-problem-text'>
+          我发布的问题
+        </view>
+        <view class='notice-sign'>
+          <image class='notice-right' src='../../images/notice-img/right.png'></image>
+        </view>
+      </view>
+    </navigator>
+
+    <view class='notice-line'></view>
+    <navigator open-type='navigateTo' url='../notice-secondary/index?title=我发布的评论&name=tempmycomment'>
+      <view class='notice-two notice-publish-comment'>
+        <view class='notice-img notice-publish-comment-img'>
+         <view class='notice-img-circle'></view>
+          <image src='../../images/notice-img/comment.png'></image>
+        </view>
+        <view class='notice-text notice-publish-comment-text'>
+          我发布的评论
+        </view>
+
+        <view class='notice-sign'>
+          <image class='notice-right' src='../../images/notice-img/right.png'></image>
+        </view>
+      </view>
+    </navigator>
+
+  </view>
+</view>
