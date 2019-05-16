@@ -21,7 +21,13 @@ page {
   background-color: white;
   box-shadow: 0 2rpx 5rpx #888;
 }
-
+.share-head-content-wrap{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
 .search_btn {
   width: 130rpx;
   height: 80rpx;
@@ -46,6 +52,19 @@ button::after {
   margin-left: 40rpx;
 }
 
+.classify-wrap{
+  width: 10%;
+  
+}
+.classify-img-wrap{
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.classify-img{
+  width: 100%;
+}
 .sousuo-wrap {
   width: 94%;
   background-color: #ddd;

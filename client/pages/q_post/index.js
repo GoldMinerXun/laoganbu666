@@ -11,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isShow:true,
     max: 300,
     now: 0,
     title: '',
@@ -18,6 +19,11 @@ Page({
     userInfo:{},
     imagesList: new Array(),
     tempFilePaths: new Array(),
+    formats: {},
+    bottom: 0,
+    readOnly: false,
+    placeholder: '开始输入...',
+    _focus: false,
     multiArray: [
       [
         '外国语学院', '计算机科学与技术学院','理学院','材料科学与工程学院','测控技术与通信学院','电气与电子工程学院','化学与环境工程学院','机械动力工程学院','建筑工程学院','软件与微电子学院','自动化学院','综合性学科'
@@ -31,6 +37,64 @@ Page({
     ],
     multiIndex: [0, 0, 0],
     tags:[]
+  },
+  showIcon:function(){
+    this.setData({
+      isShow:!this.data.isShow
+    })
+  },
+  readOnlyChange:function() {
+    this.setData({
+      readOnly: !this.data.readOnly
+    })
+  },
+  onEditorReady: function() {
+    const that = this
+    wx.createSelectorQuery().select('#editor').context(function (res) {
+      that.editorCtx = res.context
+    }).exec()
+  },
+
+  undo: function() {
+    this.editorCtx.undo()
+  },
+  redo: function() {
+    this.editorCtx.redo()
+  },
+  format(e) {
+    let { name, value } = e.target.dataset
+    if (!name) return
+    // console.log('format', name, value)
+    this.editorCtx.format(name, value)
+
+  },
+  onStatusChange(e) {
+    const formats = e.detail
+    this.setData({ formats })
+  },
+  insertDivider() {
+    this.editorCtx.insertDivider({
+      success: function () {
+        console.log('insert divider success')
+      }
+    })
+  },
+  clear() {
+    this.editorCtx.clear({
+      success: function (res) {
+        console.log("clear success")
+      }
+    })
+  },
+  removeFormat() {
+    this.editorCtx.removeFormat()
+  },
+  insertDate() {
+    const date = new Date()
+    const formatDate = `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()}`
+    this.editorCtx.insertText({
+      text: formatDate
+    })
   },
   bindMultiPickerChange: function (e) {
     // console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -316,7 +380,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    wx.loadFontFace({
+      family: 'Pacifico',
+      source: 'url("https://sungd.github.io/Pacifico.ttf")',
+      success: console.log
+    })
 
   },
   submitForm(e) {

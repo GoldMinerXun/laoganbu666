@@ -1,13 +1,21 @@
 <!--index.wxml-->
 <view class="container">
   <view class='share-head'>
-    <form bindsubmit='search'>
-      <view class='sousuo-wrap'>
-        <icon class='search_icon' size='18' type='search'></icon>
-        <input name='content' class='search_input' type='text' value='' placeholder='请输入搜索关键词'></input>
-        <button class='search_btn' form-type='submit'>搜索</button>
-      </view>
-    </form>
+    <view class='share-head-content-wrap'>
+        <picker class='classify-wrap' mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+          <view class='classify-img-wrap' bindtap='showClassify'>
+          
+            <image class='classify-img' mode='widthFix' src='./fenlei.png'></image>
+          </view>
+        </picker>
+      <form bindsubmit='search'>
+        <view class='sousuo-wrap'>
+          <icon class='search_icon' size='18' type='search'></icon>
+          <input name='content' class='search_input' type='text' value='' placeholder='请输入搜索关键词'></input>
+          <button class='search_btn' form-type='submit'>搜索</button>
+        </view>
+      </form>
+    </view>
   </view>
   <view class='body'>
     <view class='body-wrap'>
