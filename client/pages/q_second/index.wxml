@@ -4,28 +4,30 @@
   <view class='detail-top'>
     <view class='detail-top-wrap'>
       <view class='detail-top-image-wrap'>
-        <image src="{{qAvatarUrl}}"></image>
+        <image src="{{qData.qAvatarUrl}}"></image>
       </view>
-      <view class='detail-top-author'>{{qNickName}}</view>
-      <view class='detail-level-wrap'>{{}}</view>
+      <view class='detail-top-author'>{{qData.qNickName}}</view>
+      <!-- <view class='detail-level-wrap'>{{}}</view> -->
     </view>
   </view>
-  {{dbdata}}
+
   <view class='detail-min-wrap'>
+
     <view class='detail-top-sign'>
-      <view wx:if="{{state==false}}" class='detail-top-sign-wrap'>
-        <image src='{{defaultArr[0]}}' class='nosolve'></image>
-      </view>
-      <view wx:else class='detail-top-sign-wrap'>
+      <view wx:if="{{qData.type}}" class='detail-top-sign-wrap'>
         <image src='{{defaultArr[1]}}' class='nosolve'></image>
       </view>
+      <view wx:elif="{{qData.type==false}}" class='detail-top-sign-wrap'>
+        <image src='{{defaultArr[0]}}' class='nosolve'></image>
+      </view>
     </view>
-    <view class='detail-min-title'>标题：{{questionData.title}}</view>
+
+    <view class='detail-min-title'>标题：{{qData.title}}</view>
     <view class='detail-min-tag-wrap'>
-      <view class='detail-tags' wx:for="{{tagsList}}" wx:key="{{index}}">{{item}}</view>
+      <view class='detail-tags' wx:for="{{qData.tags}}" wx:key="{{index}}">{{item}}</view>
     </view>
     <view class='detail-min-content-wrap'>
-      <view class='detail-min-content' style='white-space:{{addAll}}'>{{questionData.content}}</view>
+      <view class='detail-min-content' style='white-space:{{addAll}}'>{{qData.content}}</view>
       <view class='detail-min-content-pic-wrap'>
         <block wx:for="{{questionTempImage}}" wx:key="{{index}}">
           <image src='{{item.tempFileURL}}' class='detail-min-content-pic' mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
@@ -34,24 +36,19 @@
     </view>
   </view>
   <view class='detail-min-hr'></view>
-  <view class='detail-min-answer-sign'>回复区</view>
+  <!-- <view class='detail-min-answer-sign'>回复区</view> -->
   <view class='detail-bottom-answer-wrap'>
     <view class='detail-ans-card' wx:for="{{ansList}}" wx:key="{{index}}">
+
       <view class='detail-card-head'>
+
         <view class='detail-card-head-avatar'>
           <image src='{{item.commentAvatarUrl}}'></image>
         </view>
+
         <view class='detail-card-head-right'>
           <view class='detail-card-head-right-name'>{{item.commentNickName}}</view>
           <view class='detail-card-head-right-riqi'>{{item.time}}</view>
-        </view>
-
-        <view wx:if="{{admireArr[index]==1}}" class='detail-card-head-right-admire'>
-          <image src='{{defaultArr[2]}}'></image>
-        </view>
-
-        <view wx:else class='detail-card-head-right-admire' bindtap='handleAdmire' data-cid='{{item._id}}' data-index='{{index}}' data-flag='{{admireArr[index]}}' data-cuserid='{{item._openid}}' data-ccontent='{{item.ccontent}}'>
-          <image src='{{defaultArr[3]}}'></image>
         </view>
 
       </view>
@@ -63,7 +60,48 @@
         <view class='detail-card-body-content'>{{item.ccontent}}</view>
       </view>
 
-      <view class="{{index==ansLength? '' : 'detail-card-body-hr'}}"></view>
+      <view class='detail-card-function'>
+        <view class='detail-card-floor'>{{index+1+'楼'}}</view>
+        <view class='detail-card-reply'>回复({{replyCount}})</view>
+      </view>
+
+      <view class='detail-card-reply-area'>
+        <block>
+          <view class='detail-card-reply-area-item'>
+            <view class='detail-card-reply-area-item-top'>
+              <view class='detail-card-reply-area-item-avatar'>
+                <image src=''></image>
+              </view>
+              <view class='detail-card-reply-area-item-content'>{{'评论的回复内容1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111'}}
+              </view>
+            </view>
+            <view class='detail-card-reply-area-item-bottom'>
+              <view class='detail-card-reply-area-item-bottom-time'>{{'2019.05.16 21:04'}}</view>
+              <view class='detail-card-reply-area-item-bottom-reply'>回复</view>
+            </view>
+          </view>
+          <view class='detail-card-reply-area-hr'></view>
+        </block>
+         <block>
+          <view class='detail-card-reply-area-item'>
+            <view class='detail-card-reply-area-item-top'>
+              <view class='detail-card-reply-area-item-avatar'>
+                <image src=''></image>
+              </view>
+              <view class='detail-card-reply-area-item-content'>{{'评论的回复内容1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111'}}
+              </view>
+            </view>
+            <view class='detail-card-reply-area-item-bottom'>
+              <view class='detail-card-reply-area-item-bottom-time'>{{'2019.05.16 21:04'}}</view>
+              <view class='detail-card-reply-area-item-bottom-reply'>回复</view>
+            </view>
+          </view>
+          <view class='detail-card-reply-area-hr'></view>
+        </block>
+      </view>
+
+      <view class="{{index==ansLength-1? '' : 'detail-card-body-hr'}}"></view>
+
     </view>
   </view>
   <view class='detail-bottom-add'>
@@ -73,9 +111,17 @@
     </view>
   </view>
   <view class='detail-takeplace'></view>
-  <view class='detail-bottom-function' style="bottom:{{bottom}}px;transition:{{transition}}">
+  <!-- <view class='detail-bottom-function' style="bottom:{{bottom}}px;transition:{{transition}}">
     <input class='detail-bottom-inp' placeholder='150字数限制' bindinput='handleInput' bindfocus='handlefocus' bindblur='handleblur' maxlength='150' adjust-position="{{false}}" value='{{reviewData}}'></input>
     <view class='detail-add-pic' bindtap='addpic'>+</view>
     <button class='detail-bottom-btn' bindtap='submitReview' style='opacity:{{opacity}}'>发布</button>
-  </view>
+  </view> -->
 </view>
+
+<!-- <view wx:if="{{admireArr[index]==1}}" class='detail-card-head-right-admire'>
+  <image src='{{defaultArr[2]}}'></image>
+</view>
+
+<view wx:else class='detail-card-head-right-admire' bindtap='handleAdmire' data-cid='{{item._id}}' data-index='{{index}}' data-flag='{{admireArr[index]}}' data-cuserid='{{item._openid}}' data-ccontent='{{item.ccontent}}'>
+  <image src='{{defaultArr[3]}}'></image>
+</view> -->

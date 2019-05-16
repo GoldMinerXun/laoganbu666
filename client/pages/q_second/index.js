@@ -2,18 +2,20 @@
 const db = wx.cloud.database()
 var util = require('../../utils/util.js')
 var app = getApp()
+var endtime = new Date();
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    questionData: {},
     qid: '',
     reviewData: '',
     tempFilePaths: new Array(),
     imagesList: new Array(),
     ansPicture: new Array(),
-    ansList: new Array()
+    ansList: new Array(),
+    replyCount: 0
   },
   /**
    * 生命周期函数--监听页面加载
@@ -46,7 +48,7 @@ Page({
     })
 
     this.setData({
-      qid: options.id,
+      qid: 'ee3099285cd41fcd0edb48b932b18412',
       ansLength: this.data.ansList.length
     })
 
@@ -56,6 +58,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
+
     wx.hideToast()
     const options = this.data.qid
     const that = this
@@ -64,22 +67,23 @@ Page({
       _id: options
     }).get().then(
       res => {
-        // console.log(res)
-        const questionData = res.data[0]
+        console.log(res.data[0])
+        // const questionData = res.data[0]
         const fileList = res.data[0].images
-        const qAvatarUrl = res.data[0].qAvatarUrl
-        const qNickName = res.data[0].qNickName
-        const state = res.data[0].type
+        // const qAvatarUrl = res.data[0].qAvatarUrl
+        // const qNickName = res.data[0].qNickName
+        // const state = res.data[0].type
         wx.cloud.getTempFileURL({
           fileList
         }).then(result => {
           this.setData({
-            qUserId: res.data[0]._openid,
-            questionData: res.data[0],
+            // qUserId: res.data[0]._openid,
+            // questionData: res.data[0],
             questionTempImage: result.fileList,
-            qAvatarUrl: qAvatarUrl,
-            qNickName: qNickName,
-            state: state
+            // qAvatarUrl: qAvatarUrl,
+            // qNickName: qNickName,
+            // state: state
+            qData: res.data[0]
           })
         })
       })
@@ -88,7 +92,12 @@ Page({
       qid: options
     }).get().then(
       res => {
-        // console.log(res.data)
+        res.data.map(item => {
+          var posttime = new Date(item.time)
+          var diff = GetDateTimeDiff(posttime, endtime);
+          var strTime = diff.PubTime;
+          item.time=strTime
+        })
         const ansLength = res.data.length
         wx.getStorage({
           key: 'openid',
@@ -122,10 +131,10 @@ Page({
           this.setData({
             admireList: result.data
           })
-          res.data.forEach(item => {
+          res.data.map(item => {
             var index = 0
             var flag = false
-            result.data.forEach(items => {
+            result.data.map(items => {
               if (item._id == items.cid && this.data.localOpenid == items._openid) {
                 flag = true
               }
@@ -431,3 +440,50 @@ Page({
     }
   }
 })
+
+
+function GetDateTimeDiff(startTime, endTime) {
+  var retValue = {};
+
+  var date3 = endTime.getTime() - startTime.getTime(); //时间差的毫秒数
+
+  //计算出相差天数
+  var days = Math.floor(date3 / (24 * 3600 * 1000));
+  retValue.Days = days;
+
+  var years = Math.floor(days / 365);
+  retValue.Years = years;
+
+  var months = Math.floor(days / 30);
+  retValue.Months = months;
+
+  //计算出小时数
+  var leave1 = date3 % (24 * 3600 * 1000); //计算天数后剩余的毫秒数
+  var hours = Math.floor(leave1 / (3600 * 1000));
+  retValue.Hours = hours;
+
+  //计算相差分钟数
+  var leave2 = leave1 % (3600 * 1000); //计算小时数后剩余的毫秒数
+  var minutes = Math.floor(leave2 / (60 * 1000));
+  retValue.Minutes = minutes;
+
+  //计算相差秒数
+  var leave3 = leave2 % (60 * 1000); //计算分钟数后剩余的毫秒数
+  var seconds = Math.round(leave3 / 1000);
+  retValue.Seconds = seconds;
+
+  var strTime = "";
+  if (years >= 1) {
+    strTime = years + "年前";
+  } else if (months >= 1) {
+    strTime = months + "个月前";
+  } else if (days >= 1) {
+    strTime = days + "天前";
+  } else if (hours >= 1) {
+    strTime = hours + "小时前";
+  } else {
+    strTime = minutes + "分钟前";
+  }
+  retValue.PubTime = strTime; //帖子,文章,博客发表时间的一种简短表示方法
+  return retValue;
+}

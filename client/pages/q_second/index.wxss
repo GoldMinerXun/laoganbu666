@@ -123,6 +123,7 @@
   width: 200rpx;
   height: 200rpx;
   margin-left: 20rpx;
+  border: solid 1rpx #eee;
 }
 
 .detail-min-btn {
@@ -135,10 +136,12 @@
 }
 
 .detail-min-hr {
-  height: 0;
-  width: 100%;
+  height: 5rpx;
+  width: 80%;
+  margin: 0 auto;
   margin-top: 25rpx;
-  border-bottom: solid 1rpx rgba(0, 0, 0, 0.1);
+  border-radius: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .detail-min-answer-sign {
@@ -154,6 +157,8 @@
 .detail-ans-card {
   width: 90%;
   margin: 0 auto;
+  /* background-color: red; */
+  position: relative;
 }
 
 .detail-card-head {
@@ -189,10 +194,11 @@
 }
 
 .detail-card-head-right-riqi {
-  font-size: 20rpx;
+  font-size: 25rpx;
 }
 
 .detail-card-head-right-admire {
+  /* background-color: red; */
   width: 60rpx;
   height: 60rpx;
 }
@@ -227,8 +233,95 @@
 
 .detail-card-body-hr {
   width: 90%;
-  border-bottom: solid 2rpx rgba(0, 0, 0, 0.2);
-  margin: 40rpx auto;
+  border-bottom: solid 1rpx rgba(0, 0, 0, 0.2);
+  margin: 30rpx auto;
+}
+
+.detail-card-reply{
+  height: 50rpx;
+  width: 150rpx;
+  font-size: 30rpx;
+  text-align: center;
+  line-height: 50rpx;
+  font-weight: 300;
+  color: blue;
+  background-color: yellow;
+}
+
+.detail-card-floor{
+  font-size: 30rpx;
+  font-weight: 300;
+  margin-right: 20rpx;
+}
+
+.detail-card-function{
+  width: 100%;
+  height: 50rpx;
+  /* background-color: yellow; */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 10rpx;
+}
+
+.detail-card-reply-area{
+  width: 100%;
+  background-color: yellow;
+  padding: 30rpx 0;
+}
+
+.detail-card-reply-area-item{
+  width: 100%;
+  margin: 0 auto;
+  /* background-color: red; */
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.detail-card-reply-area-item-top{
+  display: flex;
+}
+
+.detail-card-reply-area-item-avatar{
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  background-color: greenyellow;
+}
+
+.detail-card-reply-area-item-content{
+  font-size: 28rpx;
+  width: 100%;
+  word-break: break-all;
+}
+
+.detail-card-reply-area-item-bottom{
+  margin-top: 10rpx;
+  width: 100%;
+  height: 40rpx;
+  /* background-color: green; */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.detail-card-reply-area-item-bottom-time{
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 23rpx;
+}
+
+.detail-card-reply-area-item-bottom-reply{
+  font-size: 30rpx;
+  margin-left: 20rpx;
+  color: blue;
+}
+
+.detail-card-reply-area-hr{
+  width: 95%;
+  border-bottom: solid 1rpx #eee;
+  margin: 0 auto;
 }
 
 .detail-bottom-function {
@@ -325,9 +418,9 @@ botton::after {
   background-color: white;
   width: 94%;
   margin: 0 auto;
+  margin-top: 30rpx;
   border-radius: 20rpx;
-  padding-top: 30rpx;
-  padding-bottom: 30rpx;
+  padding: 30rpx 0;
 }
 
 .detail-add-pic {
