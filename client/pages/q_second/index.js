@@ -15,7 +15,8 @@ Page({
     imagesList: new Array(),
     ansPicture: new Array(),
     ansList: new Array(),
-    replyCount: 0
+    replyCount: 0,
+    isShow : false
   },
   /**
    * 生命周期函数--监听页面加载
@@ -438,6 +439,13 @@ Page({
         }
       })
     }
+  },
+  handleIsShow : function() {
+    console.log(this.data.isShow)
+    var temp = this.data.isShow
+    this.setData({
+      isShow : !temp
+    })
   }
 })
 
