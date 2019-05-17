@@ -269,6 +269,9 @@
   width: 100%;
   background-color: yellow;
   padding: 30rpx 0;
+  height: 0rpx;
+  transition: all .3s linear;
+  overflow: hidden;
 }
 
 .detail-card-reply-area-item{
@@ -454,4 +457,27 @@ botton::after {
   width: 100rpx;
   height: 100rpx;
   background-size: 100% 100%;
+}
+
+.detail-card-reply-area-bottom-function{
+  width: 100%;
+  height: 60rpx;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.detail-card-reply-area-bottom-function-reply{
+  width: 200rx;
+  height: 55rpx;
+  font-size: 30rpx;
+  line-height: 55rpx;
+  border: solid 1rpx #eee;
+  margin-right: 10rpx;
+}
+
+.detail-card-reply-area-bottom-function-show-more{
+  margin-left: 20rpx;
+  font-size: 30rpx;
 }

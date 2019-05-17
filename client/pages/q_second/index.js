@@ -48,7 +48,7 @@ Page({
     })
 
     this.setData({
-      qid: 'ee3099285cd41fcd0edb48b932b18412',
+      qid: options.id,
       ansLength: this.data.ansList.length
     })
 

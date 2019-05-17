@@ -62,10 +62,10 @@
 
       <view class='detail-card-function'>
         <view class='detail-card-floor'>{{index+1+'楼'}}</view>
-        <view class='detail-card-reply'>回复({{replyCount}})</view>
+        <view class='detail-card-reply' bindtap='handleIsShow' style="background:{{isShow? 'yellow' : 'white'}}">回复({{replyCount}})</view>
       </view>
 
-      <view class='detail-card-reply-area'>
+      <view class='detail-card-reply-area' style="height:{{isShow? 'auto' : '0rpx'}};padding:{{isShow? '30rpx 0' : '0'}};">
         <block>
           <view class='detail-card-reply-area-item'>
             <view class='detail-card-reply-area-item-top'>
@@ -82,7 +82,7 @@
           </view>
           <view class='detail-card-reply-area-hr'></view>
         </block>
-         <block>
+        <block>
           <view class='detail-card-reply-area-item'>
             <view class='detail-card-reply-area-item-top'>
               <view class='detail-card-reply-area-item-avatar'>
@@ -98,6 +98,10 @@
           </view>
           <view class='detail-card-reply-area-hr'></view>
         </block>
+        <view class='detail-card-reply-area-bottom-function'>
+          <view class='detail-card-reply-area-bottom-function-show-more'>Leave({{'3'}})</view>
+          <view class='detail-card-reply-area-bottom-function-reply'>replyToo</view>
+        </view>
       </view>
 
       <view class="{{index==ansLength-1? '' : 'detail-card-body-hr'}}"></view>
