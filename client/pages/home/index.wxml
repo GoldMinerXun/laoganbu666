@@ -1,46 +1,63 @@
 <!--pages/home/index.wxml-->
 
 <view class='home-top-wrap'>
-  <swiper class='home-picture-broadcast-wrap' indicator-dots='true' autoplay='true' interval='4000' duration='1000' circular='true'>
+  <view class='home-top-name-wrap'>
+    <view class='home-top-name'> 知之</view>
+    <view class='home-top-describe'>知之为知之，不知为不知，是知也。</view>
+  </view>
+  <!-- <swiper class='home-picture-broadcast-wrap' indicator-dots='true' indicator-color='#999' indicator-active-color='#aaa' autoplay='true' interval='4000' duration='1000' circular='true' previous-margin='35rpx' next-margin='35rpx' easing-function='easeInOutCubic'>
     <swiper-item>
-      <image src='{{defaultAd[1].tempFileURL}}' style='border-top-left-radius: 20rpx;border-top-right-radius: 20rpx;' class='home-pic'></image>
+      <image mode='heightFix' src='{{defaultAd[1].tempFileURL}}' class='home-pic'></image>
     </swiper-item>
     <swiper-item>
-      <image src='{{defaultAd[2].tempFileURL}}' style='border-top-left-radius: 20rpx;border-top-right-radius: 20rpx;' class='home-pic'></image>
+      <image mode='heightFix' src='{{defaultAd[2].tempFileURL}}' class='home-pic'></image>
     </swiper-item>
     <swiper-item>
-      <image src='{{defaultAd[3].tempFileURL}}' style='border-top-left-radius: 20rpx;border-top-right-radius: 20rpx;' class='home-pic'></image>
+      <image mode='heightFix' src='{{defaultAd[3].tempFileURL}}' class='home-pic'></image>
     </swiper-item>
-  </swiper>
-  <view class='home-circle'></view>
+  </swiper> -->
 
   <view class='home-panel-wrap'>
 
+    <view class='home-panel-hot'>
+      <view class='home-panel-hot-left-div'></view>
+      <view class='home-panel-hot-text'>
+        热门内容
+      </view>
+    </view>
     <block wx:for="{{hotList}}" wx:key="{{index}}">
-
       <view class='home-panel-list' bindtap='jumpTo' data-id='{{item._id}}'>
-        <view class='home-panel-picture'>
-          <image src='{{imageUrl[index].tempFileURL}}'></image>
-        </view>
         <view class='home-panel-intro-wrap'>
           <view class='home-panel-intro-title'>{{item.title}}</view>
           <view class='home-panel-intro-detail'>{{detailList[index]}}</view>
+          <view class='home-panel-intro-bottom'>
+            <view class='home-panel-qname'>By {{item.qNickName}}</view>
+            <view class='home-panel-time'>{{slice.sub(item.time,10)}}</view>
+            <wxs module="slice">
+        var sub = function(val,length) {
+          return val.substring(0, length)
+        }
+        module.exports.sub = sub;
+      </wxs>
+          </view>
+          <view class='home-panel-hr'></view>
         </view>
+        <view class='home-panel-tags'>
+          <view class='home-panel-tagitem' wx:for="{{item.tags}}" wx:key="index">
+            {{item}}
+          </view>
+        </view>
+        
       </view>
-      <view class='home-hr'></view>
-
     </block>
 
   </view>
 </view>
-<view class='home-bottom-notice'>
+<!-- <view class='home-bottom-notice'>
   <i-notice-bar icon="systemprompt">
     最新通知
   </i-notice-bar>
   <view class='home-notice-content'>
-    理工知之儿1.0版本上线啦：此版本还处于尝鲜版，存在很多的问题与不足，有些功能和细节还有待完善，也欢迎大家积极地参与体验并通过个人中心的问题反馈向我们反馈知之儿存在的问题！谢谢大家！
+    理工知之儿2.0版本上线啦：此版本还处于尝鲜版,欢迎大家积极地参与体验并通过个人中心的问题反馈向我们反馈知之儿存在的问题！谢谢大家！
   </view>
-</view>
-<view class='home-ad-wrap'>
-  <image src='{{defaultAd[0].tempFileURL}}'></image>
-</view>
+</view> -->

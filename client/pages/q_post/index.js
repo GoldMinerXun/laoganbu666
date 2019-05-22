@@ -388,106 +388,112 @@ Page({
 
   },
   submitForm(e) {
+    var that=this
     if(app.globalData.openid){
       const title = this.data.title
-      const content = this.data.content
-      if (content && title&&academic&&major&&subject) {
-        wx.showLoading({
-          title: '正在发布...',
-          mask: true
-        })
-
-        const arr = this.data.tempFilePaths.map(path => {
-          const name = Math.random() * 1000000;
-          const time = util.formatTime(new Date)
-          const cloudPath = name + path.match(/\.[^.]+?$/)[0]
-          return wx.cloud.uploadFile({
-            cloudPath: time.replace(/\s+/g, '').replace(new RegExp(/(:)/g), '').replace(/\\|\//g, '') + cloudPath,
-            filePath: path
-          }).then(res => {
-            // console.log(res.fileID)
-            this.data.imagesList.push(res.fileID)
-          }).catch(error => {
-            // console.log(error)
-          })
-        })
-
-        if (this.data.tempFilePaths.length != 0) {
-          
-          Promise.all(arr).then(res => {
-            // console.log(academic,major,subject)
-            db.collection('questions').add({
-              data: {
-                title: this.data.title,
-                content: this.data.content,
-                tags: [academic, major, subject],
-                time: util.formatTime(new Date()),
-                type: false,
-                images: this.data.imagesList,
-                qAvatarUrl: this.data.userInfo.avatarUrl,
-                qNickName: this.data.userInfo.nickName
-              },
-              success: function () {
-                wx.showToast({
-                  title: '发布成功',
-                  icon: 'succes',
-                  duration: 1000,
-                  mask: true
-                })
-                setTimeout(function () {
-                  wx.navigateBack({
-                    delta: 2
-                  })
-                }, 1000)
-              }
-            })
-          }).catch(err => {
-            wx.hideLoading()
-            wx.showToast({
-              title: '发布失败',
-              icon: 'none',
-              duration: 1500,
+      this.editorCtx.getContents({
+        success:function(res){
+          that.data.content=res.text;
+          const content=res.text;
+          if (content && title && academic && major && subject) {
+            wx.showLoading({
+              title: '正在发布...',
               mask: true
             })
-          })
-        } else {
-          db.collection('questions').add({
-            data: {
-              title: this.data.title,
-              content: this.data.content,
-              tags: [academic,major,subject],
-              time: util.formatTime(new Date()),
-              type: false,
-              images: this.data.imagesList,
-              qAvatarUrl: this.data.userInfo.avatarUrl,
-              qNickName: this.data.userInfo.nickName
-            },
-            success: function () {
-              wx.showToast({
-                title: '发布成功',
-                icon: 'succes',
-                duration: 1000,
-                mask: true
+            const arr = that.data.tempFilePaths.map(path => {
+              const name = Math.random() * 1000000;
+              const time = util.formatTime(new Date)
+              const cloudPath = name + path.match(/\.[^.]+?$/)[0]
+              return wx.cloud.uploadFile({
+                cloudPath: time.replace(/\s+/g, '').replace(new RegExp(/(:)/g), '').replace(/\\|\//g, '') + cloudPath,
+                filePath: path
+              }).then(res => {
+                // console.log(res.fileID)
+                that.data.imagesList.push(res.fileID)
+              }).catch(error => {
+                // console.log(error)
               })
-              setTimeout(function () {
-                wx.navigateBack({
-                  delta:2
+            })
+
+            if (that.data.tempFilePaths.length != 0) {
+
+              Promise.all(arr).then(res => {
+                // console.log(academic,major,subject)
+                db.collection('questions').add({
+                  data: {
+                    title: that.data.title,
+                    content: that.data.content,
+                    tags: [academic, major, subject],
+                    time: util.formatTime(new Date()),
+                    type: false,
+                    images: that.data.imagesList,
+                    qAvatarUrl: that.data.userInfo.avatarUrl,
+                    qNickName: that.data.userInfo.nickName
+                  },
+                  success: function () {
+                    wx.showToast({
+                      title: '发布成功',
+                      icon: 'succes',
+                      duration: 1000,
+                      mask: true
+                    })
+                    setTimeout(function () {
+                      wx.navigateBack({
+                        delta: 2
+                      })
+                    }, 1000)
+                  }
                 })
-              }, 1000)
-            },
-            fail: function () {
-              wx.showToast({
-                title: '发布失败',
-                icon: 'none',
-                duration: 1500,
-                mask: true
+              }).catch(err => {
+                wx.hideLoading()
+                wx.showToast({
+                  title: '发布失败',
+                  icon: 'none',
+                  duration: 1500,
+                  mask: true
+                })
+              })
+            } else {
+              db.collection('questions').add({
+                data: {
+                  title: that.data.title,
+                  content: that.data.content,
+                  tags: [academic, major, subject],
+                  time: util.formatTime(new Date()),
+                  type: false,
+                  images: that.data.imagesList,
+                  qAvatarUrl: that.data.userInfo.avatarUrl,
+                  qNickName: that.data.userInfo.nickName
+                },
+                success: function () {
+                  wx.showToast({
+                    title: '发布成功',
+                    icon: 'succes',
+                    duration: 1000,
+                    mask: true
+                  })
+                  setTimeout(function () {
+                    wx.navigateBack({
+                      delta: 2
+                    })
+                  }, 1000)
+                },
+                fail: function () {
+                  wx.showToast({
+                    title: '发布失败',
+                    icon: 'none',
+                    duration: 1500,
+                    mask: true
+                  })
+                }
               })
             }
-          })
+          } else {
+            promise.showtoast()
+          }
         }
-      } else {
-        promise.showtoast()
-      }
+      })
+      
     }else{
       promise.showmodal().then(res => {
         // console.log(res.confirm)

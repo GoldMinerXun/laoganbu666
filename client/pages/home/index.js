@@ -98,7 +98,7 @@ Page({
         }
         var tempContent = []
         arr.map(item => {
-          tempContent.push(item.content.slice(0, 20))
+          tempContent.push(item.content.slice(0, 25)+'...')
         })
         var temp = []
         arr.forEach(items => {
