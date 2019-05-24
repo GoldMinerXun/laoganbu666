@@ -7,13 +7,13 @@
       </view>
       <view class='detail-top-author'>{{qData.qNickName}}</view>
       <view class='detail-top-sign'>
-      <view wx:if="{{qData.type}}" class='detail-top-sign-wrap'>
-        <view class='detail-solved-tag'>已解决</view>
+        <view wx:if="{{qData.type}}" class='detail-top-sign-wrap'>
+          <view class='detail-solved-tag'>已解决</view>
+        </view>
+        <view wx:elif="{{qData.type==false}}" class='detail-top-sign-wrap'>
+          <view class='detail-unsolved-tag'>未解决</view>
+        </view>
       </view>
-      <view wx:elif="{{qData.type==false}}" class='detail-top-sign-wrap'>
-         <view class='detail-unsolved-tag'>未解决</view>
-      </view>
-    </view>
       <!-- <view class='detail-level-wrap'>{{}}</view> -->
     </view>
     <view class='detail-min-title'>{{qData.title}}</view>
@@ -21,9 +21,11 @@
       <view class='detail-tags' wx:for="{{qData.tags}}" wx:key="{{index}}">{{item}}</view>
     </view>
   </view>
+
   <view class='detail-top-min-hr'></view>
+
   <view class='detail-min-wrap'>
-    
+
     <view class='detail-min-content-wrap'>
       <view class='detail-min-content' style='white-space:{{addAll}}'>{{qData.content}}</view>
       <view class='detail-min-content-pic-wrap'>
@@ -33,77 +35,53 @@
       </view>
     </view>
   </view>
-  <view class='detail-min-hr'></view>
   <!-- <view class='detail-min-answer-sign'>回复区</view> -->
   <view class='detail-bottom-answer-wrap'>
     <view class='detail-ans-card' wx:for="{{ansList}}" wx:key="{{index}}">
-
       <view class='detail-card-head'>
-
         <view class='detail-card-head-avatar'>
           <image src='{{item.commentAvatarUrl}}'></image>
         </view>
-
         <view class='detail-card-head-right'>
           <view class='detail-card-head-right-name'>{{item.commentNickName}}</view>
           <view class='detail-card-head-right-riqi'>{{item.time}}</view>
         </view>
-
       </view>
-
       <view class='detail-card-body'>
         <view class="{{item.compic? 'detail-card-body-content-pic-wrap' : ''}}">
           <image wx:for="{{item.compic}}" wx:key="{{item}}" src='{{item}}' mode="aspectFill" data-idx="{{item}}" bindtap="handlePreview"></image>
         </view>
         <view class='detail-card-body-content'>{{item.ccontent}}</view>
       </view>
-
       <view class='detail-card-function'>
-        <view class='detail-card-floor'>{{index+1+'楼'}}</view>
-        <view class='detail-card-reply' bindtap='handleIsShow' style="background:{{isShow? 'yellow' : 'white'}}">回复({{replyCount}})</view>
+        <view class='detail-card-floor'>{{index+1+' floor'}}</view>
+        <view class='detail-card-reply' bindtap='handleIsShow' >
+          <image class='detial-card-reply-image' mode='widthFix' src='./reply.png'></image>({{replyCount}})
+          </view>
       </view>
-
-      <view class='detail-card-reply-area' style="height:{{isShow? 'auto' : '0rpx'}};padding:{{isShow? '30rpx 0' : '0'}};">
+      <view class='detail-card-reply-rereply-hr'></view>
+      <view class='detail-card-reply-area'>
         <block>
-          <view class='detail-card-reply-area-item'>
-            <view class='detail-card-reply-area-item-top'>
-              <view class='detail-card-reply-area-item-avatar'>
-                <image src=''></image>
-              </view>
-              <view class='detail-card-reply-area-item-content'>{{'评论的回复内容1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111'}}
-              </view>
+          <view class='detail-card-reply-area-replyer-and-reply'>
+            <view class='detail-card-reply-area-replyer-wrap'>
+              <view class='detail-card-reply-area-replyer-avatar'></view>
+              <view class='detail-card-reply-area-replyer-name'>replyer</view>
             </view>
-            <view class='detail-card-reply-area-item-bottom'>
-              <view class='detail-card-reply-area-item-bottom-time'>{{'2019.05.16 21:04'}}</view>
-              <view class='detail-card-reply-area-item-bottom-reply'>回复</view>
+            回复
+            <view class='detail-card-reply-area-replyered-wrap'>
+              <view class='detail-card-reply-area-replyered-avatar'></view>
+              <view class='detail-card-reply-area-replyered-name'>replyed</view>
             </view>
           </view>
-          <view class='detail-card-reply-area-hr'></view>
-        </block>
-        <block>
-          <view class='detail-card-reply-area-item'>
-            <view class='detail-card-reply-area-item-top'>
-              <view class='detail-card-reply-area-item-avatar'>
-                <image src=''></image>
-              </view>
-              <view class='detail-card-reply-area-item-content'>{{'评论的回复内容1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111'}}
-              </view>
-            </view>
-            <view class='detail-card-reply-area-item-bottom'>
-              <view class='detail-card-reply-area-item-bottom-time'>{{'2019.05.16 21:04'}}</view>
-              <view class='detail-card-reply-area-item-bottom-reply'>回复</view>
-            </view>
-          </view>
-          <view class='detail-card-reply-area-hr'></view>
-        </block>
-        <view class='detail-card-reply-area-bottom-function'>
-          <view class='detail-card-reply-area-bottom-function-show-more'>Leave({{'3'}})</view>
-          <view class='detail-card-reply-area-bottom-function-reply'>replyToo</view>
-        </view>
-      </view>
 
+          <view class='detail-card-reply-area-content'>回复的内容......</view>
+          <view class='detail-card-reply-area-bottom'>
+          <image class='detail-card-reply-area-bottom-all-image' src='./all.png' mode='widthFix'></image>
+            <image class='detail-card-reply-area-bottom-image' mode='widthFix' src='./reply.png'></image>
+          </view>
+        </block>
+      </view>
       <view class="{{index==ansLength-1? '' : 'detail-card-body-hr'}}"></view>
-
     </view>
   </view>
   <view class='detail-bottom-add'>

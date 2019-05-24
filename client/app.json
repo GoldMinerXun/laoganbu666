@@ -1,10 +1,12 @@
 {
   "pages": [
+    "pages/me/index",
+    "pages/share/index",
     "pages/home/index",
     "pages/q_second/index",
-    "pages/share/index",
+   
     "pages/q_post/index",
-    "pages/me/index",
+    
     "pages/notice/index",
     "pages/lab/index",
     "pages/notfound/index"

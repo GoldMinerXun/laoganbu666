@@ -79,8 +79,8 @@ page {
   font-weight: 600;
   color: #555;
 }
-.home-panel-list{
-  padding: 40rpx 30rpx;
+.home-panel-list{  
+  padding:40rpx  30rpx;
   box-sizing: border-box;
   height: 300rpx;
   width: 90%;
@@ -145,7 +145,7 @@ color: #666;
   text-align: left;
   margin-left: 10rpx;
   height: 30rpx;
-  font-size: 23rpx;
+  font-size: 22rpx;
   line-height: 30rpx;
   margin-bottom: 20rpx;
   background-color: rgba(0, 119, 245,0.8);

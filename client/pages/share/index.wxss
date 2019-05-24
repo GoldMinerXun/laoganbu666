@@ -19,15 +19,18 @@ page {
   height: 120rpx;
   z-index: 100;
   background-color: white;
-  box-shadow: 0 2rpx 5rpx #888;
+  /* border-radius: 0rpx 0rpx 20rpx 20rpx; */
+  box-shadow: 0rpx 10rpx 30rpx rgba(0, 0, 0, 0.1);
 }
-.share-head-content-wrap{
+
+.share-head-content-wrap {
   display: flex;
   width: 100%;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
 }
+
 .search_btn {
   width: 130rpx;
   height: 80rpx;
@@ -52,19 +55,21 @@ button::after {
   margin-left: 40rpx;
 }
 
-.classify-wrap{
+.classify-wrap {
   width: 10%;
-  
 }
-.classify-img-wrap{
-  width:100%;
+
+.classify-img-wrap {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.classify-img{
+
+.classify-img {
   width: 100%;
 }
+
 .sousuo-wrap {
   width: 94%;
   background-color: #ddd;
@@ -113,28 +118,29 @@ i-tab-bar {
 .tag-wrap {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  margin: 20rpx 20rpx;
 }
 
 .tag-item {
   padding: 5rpx 10rpx;
   text-align: center;
-  vertical-align:center;
-  border: 1rpx solid rgba(0, 0, 0, 0.1);
-  border-top-color: #a5f0e4;
-  border-right-color: #7dce94;
-  border-bottom-color: #82c7eb;
-  border-left-color: #8ea1f0;
-  border-radius: 10rpx;
-  background-color: rgba(0, 0, 0, 0.01);
+  vertical-align: center;
+  border: 1rpx solid #ddd;
+  letter-spacing: 1rpx;
+  border-radius: 5rpx;
+  /* background-color: rgba(0, 0, 0, 0.01); */
   margin-right: 30rpx;
   color: #666;
-  font-size: 21rpx;
+  font-size: 23rpx;
   font-weight: 500;
   box-sizing: border-box;
+  margin-bottom: 20rpx;
 }
 
 .card-item {
   margin-bottom: 20rpx;
+  width: 100%;
 }
 
 .share-btn-fly {
@@ -158,4 +164,88 @@ i-tab-bar {
 
 .shareimg {
   width: 70%;
+}
+
+/* 每一块的设计css */
+
+.card-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 95%;
+  align-items: center;
+  box-shadow: 0rpx 0rpx 15rpx rgba(0, 0, 0, 0.2);
+  border-radius: 0rpx 20rpx 20rpx 0rpx;
+  margin: 30rpx auto;
+}
+
+.card-item-top {
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+  margin: 50rpx 30rpx 50rpx 30rpx;
+  align-items: center;
+}
+
+.card-item-quesperson {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-right: 50rpx;
+}
+
+.card-item-image {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  margin: 0 20rpx;
+}
+
+.card-item-nickname {
+  font-size: 35rpx;
+  font-weight: 500;
+  color: #999;
+}
+
+.card-item-title {
+  font-size: 38rpx;
+  font-weight: 600;
+  color: #666;
+  position: relative;
+}
+
+.card-item-resolve-tag {
+  position: absolute;
+  right: 80rpx;
+  font-size: 25rpx;
+  color: white;
+  padding: 10rpx 20rpx;
+  border-radius: 8rpx;
+}
+.card-item-resolve-tag-false{
+  background-color: rgb(89, 230, 136);
+}
+.card-item-resolve-tag-true{
+    background-color: rgba(255, 64, 66, 0.842);
+}
+.card-item-body {
+  width: 100%;
+  padding: 20rpx 30rpx;
+  letter-spacing: 2rpx;
+  font-size: 33rpx;
+  line-height: 48rpx;
+  box-sizing: border-box;
+  color: #777;
+}
+
+.card-item-nav {
+  width: 100%;
+}
+
+.card-item-hr {
+  width: 90%;
+  height: 1rpx;
+  background-color: #eee;
+  margin: 0 auto;
 }

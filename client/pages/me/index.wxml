@@ -1,26 +1,26 @@
 <!--pages/aboutme/index.wxml-->
 <view class='me-wrap'>
   <view class='me-top-div'></view>
-  <view class='me-top-circle'></view>
+  <!-- <view class='me-top-circle'></view> -->
   <view class='me-top-info-wrap'>
     <view class='me-top-avator'>
       <image src="{{userInfo.avatarUrl?userInfo.avatarUrl:'../../images/avator.png'}}"></image>
     </view>
     <view class='me-top-name'>{{userInfo.nickName?userInfo.nickName:'知之儿'}}</view>
-    <button class='me-top-signature' open-type='getUserInfo' bindgetuserinfo='modalinput' >
-      <image src="{{defaultArr[0]}}"></image>
+    <button class='me-top-signature' open-type='getUserInfo' bindgetuserinfo='modalinput'>
       {{signature?signature:'知之为知之，不知为不知，是知也'}}
+      <!-- <image mode='widthFix' src="{{defaultArr[0]}}"></image> -->
     </button>
-    <modal id="modal" hidden="{{hiddenmodalput}}" title="签名" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">  
+    <modal id="modal" hidden="{{hiddenmodalput}}" title="签名" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">
       <input type='text' bindinput='inputsig' placeholder="不超过15字" auto-focus/>
-        
-  </modal>
+
+    </modal>
   </view>
-  <view class='me-lab' >
+  <!-- <view class='me-lab' >
     <image src="{{defaultArr[1]}}" class='lab-left' mode='widthFix'></image>
     实验室
     <image class='lab-right' src="{{defaultArr[2]}}"></image>
-  </view>
+  </view> -->
 
   <view class='me-btn-wrap'>
     <button class='btn qusetion' open-type='contact'>

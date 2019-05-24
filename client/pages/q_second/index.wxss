@@ -1,7 +1,9 @@
 /* pages/q_second/index.wxss */
-page{
+
+page {
   width: 100%;
 }
+
 .q_second_container {
   width: 100%;
   height: 100%;
@@ -16,8 +18,8 @@ page{
   flex-direction: column;
   padding: 30rpx 40rpx;
   background-color: white;
-
 }
+
 .detail-top-sign {
   display: flex;
   position: absolute;
@@ -25,7 +27,6 @@ page{
 }
 
 .detail-top-sign-wrap {
- 
   box-sizing: border-box;
 }
 
@@ -37,7 +38,8 @@ page{
   color: white;
   border-radius: 7rpx;
 }
-.detail-unsolved-tag{
+
+.detail-unsolved-tag {
   padding: 8rpx 20rpx;
   line-height: 40rpx;
   font-size: 26rpx;
@@ -45,6 +47,7 @@ page{
   color: white;
   border-radius: 7rpx;
 }
+
 .detail-min-title {
   text-align: left;
   font-size: 40rpx;
@@ -52,6 +55,7 @@ page{
   margin-top: 30rpx;
   color: rgb(83, 83, 83);
 }
+
 .detail-min-tag-wrap {
   width: 100%;
   margin-top: 30rpx;
@@ -98,30 +102,35 @@ page{
   margin-left: 20rpx;
   position: relative;
 }
-.detail-top-min-hr{
+
+.detail-top-min-hr {
   height: 3rpx;
   width: 80%;
   margin: 0 auto;
   background-color: #eee;
 }
+
 .detail-min-wrap {
   width: 100%;
   background-color: white;
   position: relative;
+  box-shadow: 0rpx 10rpx 20rpx rgba(0, 0, 0, 0.1);
 }
 
 .detail-min-content-wrap {
   width: 100%;
-  margin-top: 20rpx;
+  margin-top: 40rpx;
 }
 
 .detail-min-content {
   width: 90%;
   background-color: white;
   margin: 0 auto;
-  font-size: 30rpx;
-  color: rgb(135, 135, 135);
-  text-indent: 56rpx;
+  font-size: 35rpx;
+  line-height: 60rpx;
+  color: #666;
+  margin-left: 55rpx;
+  font-weight: 300;
 }
 
 .detail-min-content-pic-wrap {
@@ -154,7 +163,7 @@ page{
   margin: 0 auto;
   margin-top: 25rpx;
   border-radius: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgb(246, 247, 249);
 }
 
 .detail-min-answer-sign {
@@ -169,8 +178,11 @@ page{
 
 .detail-ans-card {
   width: 90%;
-  margin: 0 auto;
+  margin: 50rpx auto;
   /* background-color: red; */
+  padding: 20rpx 20rpx;
+  border-radius: 0rpx 0rpx 20rpx 20rpx;
+  box-shadow: 0rpx 2rpx 10rpx rgba(0, 0, 0, 0.2);
   position: relative;
 }
 
@@ -195,19 +207,21 @@ page{
 
 .detail-card-head-right {
   width: 530rpx;
-  margin-left: 20rpx;
-  margin-top: 15rpx;
+  margin-left: 50rpx;
 }
 
 .detail-card-head-right-name {
-  height: 30rpx;
+  /* height: 30rpx; */
   font-size: 30rpx;
-  line-height: 30rpx;
+  font-weight: 500;
+  line-height: 50rpx;
   margin-bottom: 5rpx;
 }
 
 .detail-card-head-right-riqi {
   font-size: 25rpx;
+  color: #888;
+  font-weight: 500;
 }
 
 .detail-card-head-right-admire {
@@ -222,11 +236,23 @@ page{
   background-size: cover;
 }
 
-.detail-card-body-content {
+.detial-card-body {
   width: 100%;
+  box-sizing: border-box;
+}
+
+.detail-card-body-content {
+  /* width: 100%; */
   margin-top: 30rpx;
-  font-size: 28rpx;
+  font-size: 30rpx;
+  line-height: 40rpx;
   word-wrap: break-word;
+  margin-left: 130rpx;
+  color: #666;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0rpx 50rpx 50rpx 50rpx;
+  box-sizing: border-box;
+  padding: 20rpx 20rpx;
 }
 
 .detail-card-body-content-pic-wrap {
@@ -245,29 +271,41 @@ page{
 }
 
 .detail-card-body-hr {
-  width: 90%;
+  width: 80%;
   border-bottom: solid 1rpx rgba(0, 0, 0, 0.2);
-  margin: 30rpx auto;
+  margin-top: 30rpx;
+  margin-bottom: 30rpx;
+  margin-left: 130rpx;
 }
 
-.detail-card-reply{
+.detail-card-reply {
   height: 50rpx;
   width: 150rpx;
   font-size: 30rpx;
   text-align: center;
   line-height: 50rpx;
-  font-weight: 300;
-  color: blue;
-  background-color: yellow;
+  font-weight: 500;
+  border-radius: 50rpx;
+  color: #888;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(244, 244, 244);
 }
 
-.detail-card-floor{
+.detial-card-reply-image {
+  width: 30rpx;
+  margin-right: 25rpx;
+}
+
+.detail-card-floor {
   font-size: 30rpx;
   font-weight: 300;
   margin-right: 20rpx;
 }
 
-.detail-card-function{
+.detail-card-function {
   width: 100%;
   height: 50rpx;
   /* background-color: yellow; */
@@ -275,75 +313,119 @@ page{
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin-top: 10rpx;
+  margin-top: 20rpx;
 }
 
-.detail-card-reply-area{
+.detail-card-reply-rereply-hr {
   width: 100%;
-  background-color: yellow;
-  padding: 30rpx 0;
-  height: 0rpx;
-  transition: all .3s linear;
-  overflow: hidden;
+  height: 1rpx;
+  background-color: #eee;
+  margin-top: 30rpx;
 }
 
-.detail-card-reply-area-item{
-  width: 100%;
-  margin: 0 auto;
-  /* background-color: red; */
-  padding: 20rpx;
-  box-sizing: border-box;
-}
-
-.detail-card-reply-area-item-top{
+.detail-card-reply-area {
   display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 50rpx;
 }
 
-.detail-card-reply-area-item-avatar{
-  width: 60rpx;
-  height: 60rpx;
-  border-radius: 50%;
-  background-color: greenyellow;
-}
-
-.detail-card-reply-area-item-content{
+.detail-card-reply-area-replyer-and-reply {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   font-size: 28rpx;
-  width: 100%;
-  word-break: break-all;
+  color: #aaa;
 }
 
-.detail-card-reply-area-item-bottom{
-  margin-top: 10rpx;
-  width: 100%;
-  height: 40rpx;
-  /* background-color: green; */
+.detail-card-reply-area-replyer-wrap {
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-card-reply-area-replyer-avatar {
+  height: 30rpx;
+  width: 30rpx;
+  background-color: #999;
+  border-radius: 50%;
+  margin-right: 30rpx;
+  margin-left: 20rpx;
+}
+
+.detail-card-reply-area-replyer-name {
+  font-size: 30rpx;
+  line-height: 40rpx;
+  margin-right: 30rpx;
+  color: #666;
+  font-weight: 500;
+  letter-spacing: 3rpx;
+}
+
+.detail-card-reply-area-replyered-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-card-reply-area-replyered-avatar {
+  height: 30rpx;
+  width: 30rpx;
+  background-color: #999;
+  border-radius: 50%;
+  margin-right: 30rpx;
+  margin-left: 20rpx;
+}
+
+.detail-card-reply-area-replyered-name {
+  margin-right: 30rpx;
+  font-size: 30rpx;
+  line-height: 40rpx;
+  color: #666;
+  font-weight: 500;
+  letter-spacing: 3rpx;
+}
+
+.detail-card-reply-area-content {
+  margin: 20rpx 0rpx 20rpx 100rpx;
+  font-size: 30rpx;
+  color: #555;
+  font-weight: 500;
+  padding: 10rpx 30rpx;
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 0rpx 50rpx 50rpx 50rpx;
+}
+
+.detail-card-reply-area-bottom {
+  border-radius: 50%;
+  font-size: 30rpx;
+  color: #888;
+  /* background-color: white; */
+  display: flex;
+  flex-direction: row;
+  /* width: 200rpx; */
   justify-content: flex-end;
   align-items: center;
 }
 
-.detail-card-reply-area-item-bottom-time{
-  height: 40rpx;
-  line-height: 40rpx;
-  font-size: 23rpx;
+.detail-card-reply-area-bottom-all-image {
+  width: 50rpx;
 }
 
-.detail-card-reply-area-item-bottom-reply{
-  font-size: 30rpx;
+.detail-card-reply-area-bottom-image {
+  width: 50rpx;
   margin-left: 20rpx;
-  color: blue;
-}
-
-.detail-card-reply-area-hr{
-  width: 95%;
-  border-bottom: solid 1rpx #eee;
-  margin: 0 auto;
+  padding: 10rpx 20rpx;
 }
 
 .detail-bottom-function {
   width: 100%;
   height: 100rpx;
-  background-color: white;
+  background-color: #eee;
   position: fixed;
   bottom: 0;
   display: flex;
@@ -354,7 +436,6 @@ page{
 .detail-bottom-inp {
   width: 60%;
   height: 80rpx;
-  background-color: rgb(238, 238, 238);
   font-size: 30rpx;
   border-radius: 30rpx;
   margin-left: 30rpx;
@@ -432,10 +513,10 @@ botton::after {
 
 .detail-bottom-answer-wrap {
   background-color: white;
-  width: 94%;
+  width: 100%;
   margin: 0 auto;
   margin-top: 30rpx;
-  border-radius: 20rpx;
+  /* border-radius: 20rpx; */
   padding: 30rpx 0;
 }
 
@@ -449,8 +530,7 @@ botton::after {
   border-radius: 50%;
 }
 
-
-.detail-card-reply-area-bottom-function{
+.detail-card-reply-area-bottom-function {
   width: 100%;
   height: 60rpx;
   background-color: red;
@@ -459,7 +539,7 @@ botton::after {
   justify-content: space-between;
 }
 
-.detail-card-reply-area-bottom-function-reply{
+.detail-card-reply-area-bottom-function-reply {
   width: 200rx;
   height: 55rpx;
   font-size: 30rpx;
@@ -468,7 +548,7 @@ botton::after {
   margin-right: 10rpx;
 }
 
-.detail-card-reply-area-bottom-function-show-more{
+.detail-card-reply-area-bottom-function-show-more {
   margin-left: 20rpx;
   font-size: 30rpx;
 }

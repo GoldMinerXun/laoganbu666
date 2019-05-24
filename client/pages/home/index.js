@@ -12,6 +12,7 @@ Page({
       url: '../q_second/index?id=' + e.currentTarget.dataset.id,
     })
   },
+  // 评论的评论：存入评论表，对应的结构是A对B的评论，存入A-B
   /**
    * 生命周期函数--监听页面加载
    */
@@ -114,9 +115,9 @@ Page({
           fileList
         }).then(result => {
           that.setData({
-            hotList: arr,
-            imageUrl: result.fileList,
-            detailList: tempContent
+            hotList: arr.reverse(),
+            imageUrl: result.fileList.reverse(),
+            detailList: tempContent.reverse()
           })
         })
       },
