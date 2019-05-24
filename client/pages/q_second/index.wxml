@@ -21,11 +21,8 @@
       <view class='detail-tags' wx:for="{{qData.tags}}" wx:key="{{index}}">{{item}}</view>
     </view>
   </view>
-
   <view class='detail-top-min-hr'></view>
-
   <view class='detail-min-wrap'>
-
     <view class='detail-min-content-wrap'>
       <view class='detail-min-content' style='white-space:{{addAll}}'>{{qData.content}}</view>
       <view class='detail-min-content-pic-wrap'>
@@ -35,8 +32,10 @@
       </view>
     </view>
   </view>
-  <!-- <view class='detail-min-answer-sign'>回复区</view> -->
   <view class='detail-bottom-answer-wrap'>
+    <view class='detial-bttom-anwser-blank' style="{{ansList.length==0?'display:block':'display:none'}}">
+      —— 暂时无人回复哦 ——
+    </view>
     <view class='detail-ans-card' wx:for="{{ansList}}" wx:key="{{index}}">
       <view class='detail-card-head'>
         <view class='detail-card-head-avatar'>
@@ -55,9 +54,27 @@
       </view>
       <view class='detail-card-function'>
         <view class='detail-card-floor'>{{index+1+' floor'}}</view>
-        <view class='detail-card-reply' bindtap='handleIsShow' >
-          <image class='detial-card-reply-image' mode='widthFix' src='./reply.png'></image>({{replyCount}})
-          </view>
+        <view class='detial-card-nice' data-index='{{index}}'>
+          <image class='detial-card-nice-image' mode='widthFix' src='./unnice.png'></image>
+          (0)
+        </view>
+        <button class='detail-card-reply' bindtap='modalinput'>
+          <image class='detial-card-reply-image' mode='widthFix' src='./reply.png'></image>({{item.reply.length}})
+        </button>
+        <modal 
+        id="modal" 
+        hidden="{{hiddenmodalput}}" 
+        title="输入你的短评叭" 
+        confirm-text="提交" 
+        cancel-text="取消" 
+        bindcancel="cancel" 
+        bindconfirm="confirm" 
+        data-id='{{item._id}}'
+        data-bereplyid="{{item._openid}}" 
+        data-name="{{item.commentNickName}}" 
+        data-avator="{{item.commentAvatarUrl}}">
+          <input type='text' bindinput='inputcomment' placeholder="不超过15字" auto-focus/>
+        </modal>
       </view>
       <view class='detail-card-reply-rereply-hr'></view>
       <view class='detail-card-reply-area'>
@@ -76,7 +93,7 @@
 
           <view class='detail-card-reply-area-content'>回复的内容......</view>
           <view class='detail-card-reply-area-bottom'>
-          <image class='detail-card-reply-area-bottom-all-image' src='./all.png' mode='widthFix'></image>
+            <image class='detail-card-reply-area-bottom-all-image' src='./all.png' mode='widthFix'></image>
             <image class='detail-card-reply-area-bottom-image' mode='widthFix' src='./reply.png'></image>
           </view>
         </block>
@@ -90,18 +107,7 @@
       <image src='{{item}}' data-idx='{{index}}' bindtap='handleCheck'></image>
     </view>
   </view>
-  <view class='detail-takeplace'></view>
-  <!-- <view class='detail-bottom-function' style="bottom:{{bottom}}px;transition:{{transition}}">
-    <input class='detail-bottom-inp' placeholder='150字数限制' bindinput='handleInput' bindfocus='handlefocus' bindblur='handleblur' maxlength='150' adjust-position="{{false}}" value='{{reviewData}}'></input>
-    <view class='detail-add-pic' bindtap='addpic'>+</view>
-    <button class='detail-bottom-btn' bindtap='submitReview' style='opacity:{{opacity}}'>发布</button>
-  </view> -->
+  <navigator class='detail-editor'>
+    <image class='detial-editor-image' mode='widthFix' src='./editor.png'></image>
+  </navigator>
 </view>
-
-<!-- <view wx:if="{{admireArr[index]==1}}" class='detail-card-head-right-admire'>
-  <image src='{{defaultArr[2]}}'></image>
-</view>
-
-<view wx:else class='detail-card-head-right-admire' bindtap='handleAdmire' data-cid='{{item._id}}' data-index='{{index}}' data-flag='{{admireArr[index]}}' data-cuserid='{{item._openid}}' data-ccontent='{{item.ccontent}}'>
-  <image src='{{defaultArr[3]}}'></image>
-</view> -->

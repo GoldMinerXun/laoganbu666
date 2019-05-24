@@ -1,15 +1,15 @@
 {
   "pages": [
+    "pages/home/index",
     "pages/me/index",
     "pages/share/index",
-    "pages/home/index",
     "pages/q_second/index",
-   
     "pages/q_post/index",
-    
     "pages/notice/index",
     "pages/lab/index",
-    "pages/notfound/index"
+    "pages/notfound/index",
+    "pages/editor-anwser/index",
+    "zhizhicomponent/modal/modal"
   ],
   "window": {
     "navigationBarBackgroundColor": "#0081FF",

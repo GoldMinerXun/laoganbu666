@@ -2,6 +2,7 @@
 
 page {
   width: 100%;
+  position: relative;
 }
 
 .q_second_container {
@@ -135,7 +136,7 @@ page {
 
 .detail-min-content-pic-wrap {
   width: 90%;
-  height: 230rpx;
+  /* height: 230rpx; */
   margin: 20rpx auto;
   display: flex;
   justify-content: flex-start;
@@ -146,6 +147,7 @@ page {
   height: 200rpx;
   margin-left: 20rpx;
   border: solid 1rpx #eee;
+  margin-bottom: 20rpx;
 }
 
 .detail-min-btn {
@@ -292,6 +294,11 @@ page {
   justify-content: center;
   align-items: center;
   background-color: rgb(244, 244, 244);
+  margin: 0rpx;
+}
+
+.detail-card-reply::after {
+  border: none;
 }
 
 .detial-card-reply-image {
@@ -460,11 +467,6 @@ botton::after {
   border: none;
 }
 
-.detail-takeplace {
-  width: 100%;
-  height: 10rpx;
-}
-
 .q_second_container {
   position: relative;
 }
@@ -551,4 +553,52 @@ botton::after {
 .detail-card-reply-area-bottom-function-show-more {
   margin-left: 20rpx;
   font-size: 30rpx;
+}
+
+.detail-editor {
+  position: fixed;
+  bottom: 20rpx;
+  right: 20rpx;
+  padding: 10rpx 10rpx;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0rpx 5rpx 20rpx rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
+}
+
+.detial-bttom-anwser-blank {
+  text-align: center;
+  font-size: 30rpx;
+  color: #888;
+}
+
+.detail-editor:active {
+  box-shadow: 0rpx 20rpx 40rpx rgba(0, 0, 0, 0.4);
+}
+
+.detial-editor-image {
+  width: 100rpx;
+}
+
+.detial-card-nice {
+  font-size: 30rpx;
+  color: #888;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(244, 244, 244);
+  width: 150rpx;
+  height: 50rpx;
+  text-align: center;
+  line-height: 50rpx;
+  font-weight: 500;
+  border-radius: 50rpx;
+  margin-right: 30rpx;
+}
+
+.detial-card-nice-image {
+  width: 28rpx;
 }

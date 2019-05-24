@@ -13,8 +13,13 @@
     </button>
     <modal id="modal" hidden="{{hiddenmodalput}}" title="签名" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">
       <input type='text' bindinput='inputsig' placeholder="不超过15字" auto-focus/>
-
     </modal>
+    <view class='me-top-bottom'>
+      <view class='me-top-myanwser'>
+        <view class='me-top-myanser'></view>
+      </view>
+      <view class='me-top-myproblem'></view>
+    </view>
   </view>
   <!-- <view class='me-lab' >
     <image src="{{defaultArr[1]}}" class='lab-left' mode='widthFix'></image>

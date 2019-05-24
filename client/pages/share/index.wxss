@@ -192,14 +192,14 @@ i-tab-bar {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-right: 50rpx;
+  margin-right: 30rpx;
 }
 
 .card-item-image {
   width: 50rpx;
   height: 50rpx;
   border-radius: 50%;
-  margin: 0 20rpx;
+  margin: 0 10rpx;
 }
 
 .card-item-nickname {
@@ -210,7 +210,7 @@ i-tab-bar {
 
 .card-item-title {
   font-size: 38rpx;
-  font-weight: 600;
+  font-weight: bold;
   color: #666;
   position: relative;
 }
@@ -232,8 +232,8 @@ i-tab-bar {
 .card-item-body {
   width: 100%;
   padding: 20rpx 30rpx;
-  letter-spacing: 2rpx;
-  font-size: 33rpx;
+  letter-spacing: 1rpx;
+  font-size: 28rpx;
   line-height: 48rpx;
   box-sizing: border-box;
   color: #777;

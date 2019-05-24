@@ -1,0 +1,7 @@
+<!--client/zhizhicomponent/modal/modal.wxml-->
+<view class='modal-wrap'>
+  <view>请输入你的短回复叭</view>
+  <input></input>
+  <button class='submit'>确认</button>
+  <button class='cancel'>取消</button>
+</view>
