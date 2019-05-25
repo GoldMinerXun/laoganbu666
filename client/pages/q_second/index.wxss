@@ -218,6 +218,28 @@ page {
   font-weight: 500;
   line-height: 50rpx;
   margin-bottom: 5rpx;
+  display: flex;
+  position: relative;
+}
+
+.detail-card-head-right-name-left {
+  font-size: 30rpx;
+  font-weight: 500;
+  line-height: 50rpx;
+}
+
+.detail-card-head-right-name-right {
+  text-align: center;
+  width: 150rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-right: 30rpx;
+  font-size: 26rpx;
+  background-color: rgb(23, 173, 254);
+  color: white;
+  border-radius: 7rpx;
+  position: absolute;
+  right: -45rpx;
 }
 
 .detail-card-head-right-riqi {
@@ -601,4 +623,8 @@ botton::after {
 
 .detial-card-nice-image {
   width: 28rpx;
+}
+
+.displynone{
+  display: none;
 }

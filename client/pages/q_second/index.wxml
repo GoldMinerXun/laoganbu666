@@ -42,7 +42,11 @@
           <image src='{{item.commentAvatarUrl}}'></image>
         </view>
         <view class='detail-card-head-right'>
-          <view class='detail-card-head-right-name'>{{item.commentNickName}}</view>
+          <view class='detail-card-head-right-name'>
+            <view class='detail-card-head-right-name-left'>{{item.commentNickName}}</view>
+            <view wx:if="{{!qData.type&&qData._openid==visitor}}" class='detail-card-head-right-name-right' bindtap='handleAdopt' data-copenid='{{item._openid}}' data-cid='{{item._id}}'>采纳</view>
+            <view wx:elif="{{qData.type&&index==0}}" class='detail-card-head-right-name-right'>已采纳</view>
+          </view>
           <view class='detail-card-head-right-riqi'>{{item.time}}</view>
         </view>
       </view>
@@ -61,18 +65,7 @@
         <button class='detail-card-reply' bindtap='modalinput'>
           <image class='detial-card-reply-image' mode='widthFix' src='./reply.png'></image>({{item.reply.length}})
         </button>
-        <modal 
-        id="modal" 
-        hidden="{{hiddenmodalput}}" 
-        title="输入你的短评叭" 
-        confirm-text="提交" 
-        cancel-text="取消" 
-        bindcancel="cancel" 
-        bindconfirm="confirm" 
-        data-id='{{item._id}}'
-        data-bereplyid="{{item._openid}}" 
-        data-name="{{item.commentNickName}}" 
-        data-avator="{{item.commentAvatarUrl}}">
+        <modal id="modal" hidden="{{hiddenmodalput}}" title="输入你的短评叭" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm" data-id='{{item._id}}' data-bereplyid="{{item._openid}}" data-name="{{item.commentNickName}}" data-avator="{{item.commentAvatarUrl}}">
           <input type='text' bindinput='inputcomment' placeholder="不超过15字" auto-focus/>
         </modal>
       </view>

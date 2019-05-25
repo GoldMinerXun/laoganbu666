@@ -6,6 +6,8 @@ var endtime = new Date();
 const comments = db.collection("comments")
 const _ = db.command
 var shortcomment = ''
+var fast = ''
+var Index = false
 // -----2019/5/25 3:14 钟纯情
 // 1.采纳实现思路：
 // 进入页面即判断该问题是否是提问者访问，如果是的话，该页面将在每个回答下面显示采纳按钮，只能采纳一个回答；
@@ -53,17 +55,18 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     // console.log(options.id)
     if (app.globalData.userInfo) {
       this.setData({
-        hasUserInfo: true
+        hasUserInfo: true,
+        visitor: app.globalData.openid
       })
     }
     var that = this
     const defaultArr = ['cloud://laoganbu-02d4d0.6c61-laoganbu-02d4d0/nosolve.png', 'cloud://laoganbu-02d4d0.6c61-laoganbu-02d4d0/solve.png', 'cloud://laoganbu-02d4d0.6c61-laoganbu-02d4d0/yidianzan.png', 'cloud://laoganbu-02d4d0.6c61-laoganbu-02d4d0/dianzan.png']
     var tempArr = new Array()
-    var deal = function () {
+    var deal = function() {
       var fileList = defaultArr
       wx.cloud.getTempFileURL({
         fileList,
@@ -108,7 +111,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
     wx.hideToast()
     const options = this.data.qid
@@ -119,6 +122,7 @@ Page({
     }).get().then(
       res => {
         console.log(res.data[0])
+        fast = res.data[0].adoptDetail.cid
         const fileList = res.data[0].images
         wx.cloud.getTempFileURL({
           fileList
@@ -139,6 +143,7 @@ Page({
       qid: options
     }).get().then(
       res => {
+        console.log(res)
         res.data.map(item => {
           var posttime = new Date(item.time)
           var diff = GetDateTimeDiff(posttime, endtime);
@@ -148,7 +153,7 @@ Page({
         const ansLength = res.data.length
         wx.getStorage({
           key: 'openid',
-          success: function (res1) {
+          success: function(res1) {
             // console.log(res1.data)
             that.setData({
               localOpenid: res1.data,
@@ -166,6 +171,14 @@ Page({
             })
           }
         })
+        const len = res.data.length
+        for(var i = 0; i< len; i++){
+          console.log(res.data[i])
+          if(res.data[i]._id==fast&&!Index){
+            res.data.unshift(res.data[i])
+            res.data[i].delete
+          }
+        }
         this.setData({
           ansList: res.data
         })
@@ -203,7 +216,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     var app = getApp()
 
   },
@@ -211,45 +224,45 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
-  cancel: function () {
+  cancel: function() {
     this.setData({
       hiddenmodalput: true
     });
   },
   //确认  
   // 确认提交短评（评论的评论需要做字符长度判断处理，2019/5/25 3:11未完成字符处理）
-  confirm: function (e) {
+  confirm: function(e) {
     // console.log(this.data.hasUserInfo)
     this.setData({
       hiddenmodalput: true
@@ -276,20 +289,20 @@ Page({
     if (this.data.hasUserInfo) {
       //BUG： 使用云函数更新字段无效
       wx.cloud.callFunction({
-        name:'getreply',
-        data:{
-          id:id,
-          replyobj:replyobj
+        name: 'getreply',
+        data: {
+          id: id,
+          replyobj: replyobj
         }
-      }).then(res=>{
+      }).then(res => {
         console.log(res)
-      }).catch(err=>{
+      }).catch(err => {
         console.log(err)
       })
       //BUG： 使用非云函数更新字段无效
       // comments.doc(id).update({
       //     data: {
-           
+
       //       reply: _.push([
       //         replyobj
       //       ])
@@ -323,15 +336,15 @@ Page({
 
   },
   // modal模态框的输入评论处
-  inputcomment: function (event) {
+  inputcomment: function(event) {
     shortcomment = event.detail.value
   },
-  modalinput: function (e) {
+  modalinput: function(e) {
     this.setData({
       hiddenmodalput: !this.data.hiddenmodalput
     })
   },
-  handlePreview: function (e) {
+  handlePreview: function(e) {
     const index = e.target.dataset.idx
     const fileList = new Array()
     fileList.push(index)
@@ -346,7 +359,7 @@ Page({
       })
     })
   },
-  handleImagePreview: function (e) {
+  handleImagePreview: function(e) {
     const images = []
     this.data.questionTempImage.map(item => {
       images.push(item.tempFileURL)
@@ -358,7 +371,7 @@ Page({
       urls: images, //所有要预览的图片
     })
   },
-  handleAdmire: function (e) {
+  handleAdmire: function(e) {
     var that = this
     if (app.globalData.openid) {
       const temp = this.data.admireArr
@@ -377,7 +390,7 @@ Page({
           cuserid: e.currentTarget.dataset.cuserid,
           ccontent: e.currentTarget.dataset.ccontent
         },
-        success: function () {
+        success: function() {
           wx.showToast({
             title: '谢谢你哟',
             image: './thanks.png',
@@ -400,13 +413,13 @@ Page({
       })
     }
   },
-  addpic: function () {
+  addpic: function() {
     var that = this
     wx.chooseImage({
       count: 3,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
-      success: function (res) {
+      success: function(res) {
         that.setData({
           tempFilePaths: res.tempFilePaths
         })
@@ -414,7 +427,7 @@ Page({
       },
     })
   },
-  handleCheck: function (e) {
+  handleCheck: function(e) {
     const index = e.currentTarget.dataset.idx
     const fileList = this.data.tempFilePaths
     wx.previewImage({
@@ -424,11 +437,55 @@ Page({
 
   },
 
-  handleIsShow: function () {
+  handleIsShow: function() {
     console.log(this.data.isShow)
     var temp = this.data.isShow
     this.setData({
       isShow: !temp
+    })
+  },
+
+  handleAdopt: function(e) {
+    const cid = e.currentTarget.dataset.cid
+    const copenid = e.currentTarget.dataset.copenid
+    const qid = this.data.qid
+    var that = this
+    wx.showModal({
+      title: '提示',
+      content: '确认采纳了嘛？',
+      success: function(re) {
+        console.log(re)
+        if (re.confirm) {
+          wx.showLoading({
+            title: '采纳中...',
+          })
+          db.collection('questions').doc(qid).update({
+            data: {
+              type: true,
+              adoptDetail: {
+                cid: cid,
+                copenid: copenid
+              }
+            }
+          }).then(res => {
+            wx.hideLoading()
+            wx.showToast({
+              title: 'Good采纳成功啦!',
+              duration: 1000
+            })
+            setTimeout(function() {
+              that.onReady()
+            }, 100)
+          }).catch(err => {
+            wx.hideLoading()
+            wx.showToast({
+              title: '呜呜呜...采纳失败了QAQ',
+            })
+          })
+        } else {
+
+        }
+      }
     })
   }
 })
