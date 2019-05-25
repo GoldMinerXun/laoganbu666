@@ -8,6 +8,7 @@ const _ = db.command
 var shortcomment = ''
 var fast = ''
 var Index = -1
+var count = new Array()
 // -----2019/5/25 3:14 钟纯情
 // 1.采纳实现思路：
 // 进入页面即判断该问题是否是提问者访问，如果是的话，该页面将在每个回答下面显示采纳按钮，只能采纳一个回答；
@@ -120,13 +121,92 @@ Page({
     db.collection("questions").where({
       _id: options
     }).get().then(
-      res => {
-        console.log(res.data[0])
-        // fast = res.data[0].adoptDetail.cid||"none"
-        if (res.data[0].adoptDetail){
-          fast = res.data[0].adoptDetail.cid || ""
+      res0 => {
+        if (res0.data[0].adoptDetail) {
+          fast = res0.data[0].adoptDetail.cid || ""
         }
-        const fileList = res.data[0].images
+        db.collection("comments").where({
+          qid: options
+        }).get().then(
+          res => {
+            console.log(res)
+            res.data.map(item => {
+              var posttime = new Date(item.time)
+              var diff = GetDateTimeDiff(posttime, endtime);
+              var strTime = diff.PubTime;
+              item.time = strTime
+            })
+            const ansLength = res.data.length
+            wx.getStorage({
+              key: 'openid',
+              success: function(res1) {
+                // console.log(res1.data)
+                that.setData({
+                  localOpenid: res1.data,
+                  ansLength: ansLength
+                })
+              },
+            })
+            res.data.map(item => {
+              const fileList = item.compic ? item.compic : false
+              if (fileList) {
+                wx.cloud.getTempFileURL({
+                  fileList
+                }).then(res => {
+                  item.compic = res.fileList
+                })
+              }
+            })
+            const len = res.data.length
+            for (var i = 0; i < len; i++) {
+              console.log(res.data[i])
+              if (res.data[i]._id == fast) {
+                Index = i
+                break
+              }
+            }
+            if (Index != -1) {
+              console.log(111)
+              var tempData = res.data[Index]
+              res.data.splice(Index, 1)
+              res.data.unshift(tempData)
+            }
+            this.setData({
+              ansList: res.data
+            })
+            var arr = new Array()
+            db.collection('admires').where({
+              qid: options
+            }).get().then(result => {
+              // console.log(result.data)
+              this.setData({
+                admireList: result.data
+              })
+              var sign = 0
+              res.data.map(item => {
+                var index = 0
+                var flag = false
+                count[sign]=item.admire.length
+                ++sign
+                result.data.map(items => {
+                  if (item._id == items.cid && this.data.localOpenid == items._openid) {
+                    flag = true
+                  }
+                })
+                if (flag) {
+                  arr.push(1)
+                } else {
+                  arr.push(0)
+                }
+                // console.log(arr)
+                that.setData({
+                  admireArr: arr,
+                  counts : count
+                })
+              })
+            })
+          })
+        const fileList = res0.data[0].images
         wx.cloud.getTempFileURL({
           fileList
         }).then(result => {
@@ -137,89 +217,10 @@ Page({
             // qAvatarUrl: qAvatarUrl,
             // qNickName: qNickName,
             // state: state
-            qData: res.data[0]
+            qData: res0.data[0]
           })
         })
       })
-
-    db.collection("comments").where({
-      qid: options
-    }).get().then(
-      res => {
-        console.log(res)
-        res.data.map(item => {
-          var posttime = new Date(item.time)
-          var diff = GetDateTimeDiff(posttime, endtime);
-          var strTime = diff.PubTime;
-          item.time = strTime
-        })
-        const ansLength = res.data.length
-        wx.getStorage({
-          key: 'openid',
-          success: function(res1) {
-            // console.log(res1.data)
-            that.setData({
-              localOpenid: res1.data,
-              ansLength: ansLength
-            })
-          },
-        })
-        res.data.map(item => {
-          const fileList = item.compic ? item.compic : false
-          if (fileList) {
-            wx.cloud.getTempFileURL({
-              fileList
-            }).then(res => {
-              item.compic = res.fileList
-            })
-          }
-        })
-        const len = res.data.length
-        for (var i = 0; i < len; i++) {
-          console.log(res.data[i])
-          if (res.data[i]._id == fast) {
-            Index = i
-            break
-          }
-        }
-        if (Index != -1) {
-          console.log(111)
-          var tempData = res.data[Index]
-          res.data.splice(Index, 1)
-          res.data.unshift(tempData)
-        }
-        this.setData({
-          ansList: res.data
-        })
-        var arr = new Array()
-        db.collection('admires').where({
-          qid: options
-        }).get().then(result => {
-          // console.log(result.data)
-          this.setData({
-            admireList: result.data
-          })
-          res.data.map(item => {
-            var index = 0
-            var flag = false
-            result.data.map(items => {
-              if (item._id == items.cid && this.data.localOpenid == items._openid) {
-                flag = true
-              }
-            })
-            if (flag) {
-              arr.push(1)
-            } else {
-              arr.push(0)
-            }
-            // console.log(arr)
-            that.setData({
-              admireArr: arr
-            })
-          })
-        })
-      })
-
   },
 
   /**
@@ -383,21 +384,48 @@ Page({
   handleAdmire: function(e) {
     var that = this
     if (app.globalData.openid) {
+      console.log(app.globalData.openid)
+      const admireNickName = app.globalData.userInfo.nickName
+      const admireAvatarUrl = app.globalData.userInfo.avatarUrl
+      const time = util.formatTime(new Date())
+      const cid = e.currentTarget.dataset.cid
+      const qid = this.data.qid
+      const cuserid = e.currentTarget.dataset.cuserid
+      const ccontent = e.currentTarget.dataset.ccontent
+      const obj = {
+        time: time,
+        admireOpenid: app.globalData.openid
+      }
+      wx.cloud.callFunction({
+        name: 'handleAdmire',
+        data: {
+          id: cid,
+          obj: obj
+        },
+        success: ress => {
+          console.log(ress)
+        },
+        fail: err => {
+          console.log(err)
+        }
+      })
       const temp = this.data.admireArr
       temp[e.currentTarget.dataset.index] = 1
+      count[e.currentTarget.dataset.index]+=1
       this.setData({
-        admireArr: temp
+        admireArr: temp,
+        counts : count
       })
       that.onReady()
       db.collection('admires').add({
         data: {
-          admireNickName: app.globalData.userInfo.nickName,
-          admireAvatarUrl: app.globalData.userInfo.avatarUrl,
-          time: util.formatTime(new Date()),
-          cid: e.currentTarget.dataset.cid,
-          qid: this.data.qid,
-          cuserid: e.currentTarget.dataset.cuserid,
-          ccontent: e.currentTarget.dataset.ccontent
+          admireNickName: admireNickName,
+          admireAvatarUrl: admireAvatarUrl,
+          time: time,
+          cid: cid,
+          qid: qid,
+          cuserid: cuserid,
+          ccontent: ccontent
         },
         success: function() {
           wx.showToast({

@@ -58,7 +58,11 @@
       </view>
       <view class='detail-card-function'>
         <view class='detail-card-floor'>{{index+1+' floor'}}</view>
-        <view class='detial-card-nice' data-index='{{index}}'>
+        <view  wx:if="{{admireArr[index]==1}}" class='detial-card-nice' data-index='{{index}}'>
+          <image class='detial-card-nice-image' mode='widthFix' src='./nice.png'></image>
+          {{'('+counts[index]+')'}}
+        </view>
+        <view wx:else class='detial-card-nice' data-index='{{index}}' data-cid='{{item._id}}' data-cuserid='{{item._openid}}' data-cconten='{{item.ccontent}}'  bindtap='handleAdmire'>
           <image class='detial-card-nice-image' mode='widthFix' src='./unnice.png'></image>
           (0)
         </view>
