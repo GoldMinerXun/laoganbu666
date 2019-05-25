@@ -51,7 +51,8 @@ Page({
     ansList: new Array(),
     isShow: false,
     hiddenmodalput: true,
-    hasUserInfo: false
+    hasUserInfo: false,
+    showIndex: -1
   },
   /**
    * 生命周期函数--监听页面加载
@@ -186,8 +187,8 @@ Page({
               res.data.map(item => {
                 var index = 0
                 var flag = false
-                count[sign]=item.admire.length
-                ++sign
+                count[sign] = item.admire.length
+                  ++sign
                 result.data.map(items => {
                   if (item._id == items.cid && this.data.localOpenid == items._openid) {
                     flag = true
@@ -201,7 +202,7 @@ Page({
                 // console.log(arr)
                 that.setData({
                   admireArr: arr,
-                  counts : count
+                  counts: count
                 })
               })
             })
@@ -265,19 +266,25 @@ Page({
   onShareAppMessage: function() {
 
   },
-  cancel: function() {
+  cancel: function(e) {
+    var id = e.currentTarget.dataset.id
+    console.log(id)
     this.setData({
-      hiddenmodalput: true
+      hiddenmodalput: true,
+      showIndex : -1
     });
   },
   //确认  
   // 确认提交短评（评论的评论需要做字符长度判断处理，2019/5/25 3:11未完成字符处理）
   confirm: function(e) {
+    var that = this
     // console.log(this.data.hasUserInfo)
     this.setData({
-      hiddenmodalput: true
+      hiddenmodalput: true,
+      showIndex: -1
     })
     var id = e.currentTarget.dataset.id
+    console.log(id)
     var replyid = app.globalData.openid
     var bereplyid = e.currentTarget.dataset.bereplyid
     var replyname = app.globalData.userInfo.nickName
@@ -306,6 +313,9 @@ Page({
         }
       }).then(res => {
         console.log(res)
+        setTimeout(function(){
+          that.onReady()
+        },200)
       }).catch(err => {
         console.log(err)
       })
@@ -330,6 +340,9 @@ Page({
       //     }
       //   })
     } else {
+      this.setData({
+        showIndex: -1
+      })
       wx.showModal({
         title: '注意',
         content: '请先登陆',
@@ -350,8 +363,10 @@ Page({
     shortcomment = event.detail.value
   },
   modalinput: function(e) {
+    console.log(e.currentTarget.dataset.index)
     this.setData({
-      hiddenmodalput: !this.data.hiddenmodalput
+      hiddenmodalput: !this.data.hiddenmodalput,
+      showIndex: e.currentTarget.dataset.index
     })
   },
   handlePreview: function(e) {
@@ -411,10 +426,10 @@ Page({
       })
       const temp = this.data.admireArr
       temp[e.currentTarget.dataset.index] = 1
-      count[e.currentTarget.dataset.index]+=1
+      count[e.currentTarget.dataset.index] += 1
       this.setData({
         admireArr: temp,
-        counts : count
+        counts: count
       })
       that.onReady()
       db.collection('admires').add({
@@ -525,6 +540,18 @@ Page({
         }
       }
     })
+  },
+  onPullDownRefresh : function(){
+    wx.showLoading({
+      title: '刷新中',
+    })
+    setTimeout(function(){
+      wx.stopPullDownRefresh()
+      wx.hideLoading()
+      wx.showToast({
+        title: '刷新成功',
+      })
+    },1000)
   }
 })
 

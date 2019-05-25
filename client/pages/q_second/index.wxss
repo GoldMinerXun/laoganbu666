@@ -384,6 +384,20 @@ page {
   margin-left: 20rpx;
 }
 
+.detail-card-reply-area-replyer-avatar image {
+  background-size: cover;
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+}
+
+.detail-card-reply-area-replyered-avatar image{
+  background-size: cover;
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+}
+
 .detail-card-reply-area-replyer-name {
   font-size: 30rpx;
   line-height: 40rpx;
@@ -625,6 +639,6 @@ botton::after {
   width: 28rpx;
 }
 
-.displynone{
+.displynone {
   display: none;
 }
