@@ -7,7 +7,7 @@ const comments = db.collection("comments")
 const _ = db.command
 var shortcomment = ''
 var fast = ''
-var Index = false
+var Index = -1
 // -----2019/5/25 3:14 钟纯情
 // 1.采纳实现思路：
 // 进入页面即判断该问题是否是提问者访问，如果是的话，该页面将在每个回答下面显示采纳按钮，只能采纳一个回答；
@@ -122,7 +122,10 @@ Page({
     }).get().then(
       res => {
         console.log(res.data[0])
-        fast = res.data[0].adoptDetail.cid
+        // fast = res.data[0].adoptDetail.cid||"none"
+        if (res.data[0].adoptDetail){
+          fast = res.data[0].adoptDetail.cid || ""
+        }
         const fileList = res.data[0].images
         wx.cloud.getTempFileURL({
           fileList
@@ -172,12 +175,18 @@ Page({
           }
         })
         const len = res.data.length
-        for(var i = 0; i< len; i++){
+        for (var i = 0; i < len; i++) {
           console.log(res.data[i])
-          if(res.data[i]._id==fast&&!Index){
-            res.data.unshift(res.data[i])
-            res.data[i].delete
+          if (res.data[i]._id == fast) {
+            Index = i
+            break
           }
+        }
+        if (Index != -1) {
+          console.log(111)
+          var tempData = res.data[Index]
+          res.data.splice(Index, 1)
+          res.data.unshift(tempData)
         }
         this.setData({
           ansList: res.data
@@ -450,6 +459,7 @@ Page({
     const copenid = e.currentTarget.dataset.copenid
     const qid = this.data.qid
     var that = this
+    fast = cid
     wx.showModal({
       title: '提示',
       content: '确认采纳了嘛？',
