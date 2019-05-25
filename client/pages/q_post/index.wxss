@@ -1,19 +1,27 @@
 @import "./common/lib/weui.wxss";
 @import "./assets/iconfont.wxss";
+
 page {
   background-color: #eee;
 }
-.page-body{
+
+.page-body {
   width: 93%;
   margin: 0 auto;
+  box-shadow: 0rpx 10rpx 20rpx rgba(0, 0, 0, 0.1);
+  border-radius: 30rpx 30rpx 0rpx 0rpx;
+  margin-bottom: 30rpx;
 }
+
 .wrapper {
   width: 100%;
   padding: 5px;
   box-sizing: border-box;
   background-color: white;
 }
-.moreicon{
+
+.moreicon {
+  border-radius: 20rpx 20rpx 0rpx 0rpx;
   width: 100%;
   height: 50rpx;
   display: flex;
@@ -21,9 +29,11 @@ page {
   align-items: center;
   background-color: white;
 }
-.moreicon-img{
+
+.moreicon-img {
   width: 40rpx;
 }
+
 .iconfont {
   display: inline-block;
   padding: 8px 8px;
@@ -36,7 +46,6 @@ page {
 .toolbar {
   box-sizing: border-box;
   overflow: hidden;
-  
   /* border: 1px solid #ccc; */
   border-bottom: 0;
   font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
@@ -63,10 +72,6 @@ page {
   width: 100%;
   height: 100%;
 }
-
-
-
-
 
 .post-min {
   width: 96%;
@@ -194,18 +199,45 @@ page {
 }
 
 .post-title-input-wrap {
+  width: 93%;
+  /* height: 60rpx; */
+  margin: 0 auto;
+  margin-bottom: 25rpx;
   margin-top: 15rpx;
-  width: 100%;
-  height: 60rpx;
+  border-radius: 5rpx;
+  box-shadow: 0rpx 1rpx 20rpx rgba(0, 0, 0, 0.1);
 }
 
 .post-title-input {
+  padding: 20rpx 0rpx;
   margin: 0 auto;
-  width: 93%;
-  height: 60rpx;
-  font-size: 30rpx;
+  width: 100%;
+  /* height: 60rpx; */
+  font-size: 34rpx;
   background-color: white;
   border-bottom: solid 1rpx whitesmoke;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   text-align: center;
+}
+
+/* 时间选择 */
+
+.post-expect-reply-time {
+  width: 93%;
+  margin: 0 auto;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25rpx;
+  border-radius: 5rpx;
+  box-shadow: 0rpx 1rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.post-expect-time-picker {
+  font-size: 34rpx;
+  line-height: 50rpx;
+  padding: 20rpx 0rpx;
+  text-align: center;
+  color: #888;
 }

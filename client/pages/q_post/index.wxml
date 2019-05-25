@@ -2,6 +2,13 @@
   <view class='post-title-input-wrap'>
     <input class='post-title-input' placeholder='标题(15字以内)' maxlength='15' value='{{title}}' bindinput="titleChange"></input>
   </view>
+  <view class='post-expect-reply-time'>
+    <picker mode="date" value="{{date}}" start="{{date}}" end="2025-1-1" bindchange="bindDateChange">
+      <view class="post-expect-time-picker">
+        期待解决期限 {{date}}
+      </view>
+    </picker>
+  </view>
   <view class="page-body">
     <view class='moreicon' bindtap='showIcon'>
       <image mode='widthFix' class='moreicon-img' src="{{!isShow?'./close.png':'./open.png'}}"></image>

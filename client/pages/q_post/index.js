@@ -39,7 +39,8 @@ Page({
       ]
     ],
     multiIndex: [0, 0, 0],
-    tags: []
+    tags: [],
+    data: '',
   },
   showIcon: function() {
     this.setData({
@@ -433,12 +434,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    var newdate = util.formatDate(new Date)
+    this.setData({
+      date: newdate
+    })
     wx.loadFontFace({
       family: 'Pacifico',
       source: 'url("https://sungd.github.io/Pacifico.ttf")',
-      success: console.log
+      success: {}
     })
 
+  },
+  bindDateChange: function(e) {
+    console.log('1picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      date: e.detail.value
+    })
   },
   submitForm(e) {
     var that = this
@@ -470,9 +481,8 @@ Page({
 
             if (that.data.tempFilePaths.length != 0) {
 
-              Promise.all(arr).then(res => {
-                // console.log(academic,major,subject)
-                db.collection('questions').add({
+              // console.log(academic,major,subject)
+              db.collection('questions').add({
                   data: {
                     title: that.data.title,
                     content: that.data.content,
@@ -481,31 +491,34 @@ Page({
                     type: false,
                     images: that.data.imagesList,
                     qAvatarUrl: that.data.userInfo.avatarUrl,
-                    qNickName: that.data.userInfo.nickName
-                  },
-                  success: function() {
-                    wx.showToast({
-                      title: '发布成功',
-                      icon: 'succes',
-                      duration: 1000,
-                      mask: true
-                    })
-                    setTimeout(function() {
-                      wx.navigateBack({
-                        delta: 2
-                      })
-                    }, 1000)
+                    qNickName: that.data.userInfo.nickName,
+                    expectResolveDate: that.data.date
                   }
+                }).then(res => {
+                  // console.log(that.data.date)
+                  console.log(res)
+                  return wx.showToast({
+                    title: '发布成功',
+                    icon: 'succes',
+                    duration: 1000,
+                    mask: true
+                  })
                 })
-              }).catch(err => {
-                wx.hideLoading()
-                wx.showToast({
-                  title: '发布失败',
-                  icon: 'none',
-                  duration: 1500,
-                  mask: true
+                .then(res => {
+                  return setTimeout(function() {
+                    wx.reLaunch({
+                      url: '../share/index',
+                    })
+                  }, 1000)
+                }).catch(err => {
+                  wx.hideLoading()
+                  wx.showToast({
+                    title: '发布失败',
+                    icon: 'none',
+                    duration: 1500,
+                    mask: true
+                  })
                 })
-              })
             } else {
               db.collection('questions').add({
                 data: {
@@ -516,7 +529,8 @@ Page({
                   type: false,
                   images: that.data.imagesList,
                   qAvatarUrl: that.data.userInfo.avatarUrl,
-                  qNickName: that.data.userInfo.nickName
+                  qNickName: that.data.userInfo.nickName,
+                  expectResolveDate: that.data.date
                 },
                 success: function() {
                   wx.showToast({

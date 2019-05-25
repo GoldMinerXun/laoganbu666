@@ -82,7 +82,7 @@ Page({
             // console.log(res.data)
             // contentobj[0] = res.data
             that.setData({
-              content: res.data
+              content: res.data.reverse()
             })
           })
       })
@@ -118,7 +118,7 @@ Page({
           .get()
           .then(res => {
             that.setData({
-              content: res.data
+              content: res.data.reverse()
             })
           })
       })
