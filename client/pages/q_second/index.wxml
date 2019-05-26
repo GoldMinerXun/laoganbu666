@@ -24,13 +24,14 @@
   <view class='detail-top-min-hr'></view>
   <view class='detail-min-wrap'>
     <view class='detail-min-content-wrap'>
-      <view class='detail-min-content' style='white-space:{{addAll}}'>{{qData.content}}</view>
+      <view class='detail-min-content'>{{qData.content}}</view>
       <view class='detail-min-content-pic-wrap'>
         <block wx:for="{{questionTempImage}}" wx:key="{{index}}">
           <image src='{{item.tempFileURL}}' class='detail-min-content-pic' mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
         </block>
       </view>
     </view>
+    <view class='detail-min-ex-time'>期待回复时间：{{qData.expectResolveDate}}</view>
   </view>
   <view class='detail-bottom-answer-wrap'>
     <view class='detial-bttom-anwser-blank' style="{{ansList.length==0?'display:block':'display:none'}}">
@@ -70,7 +71,7 @@
           <image class='detial-card-reply-image' mode='widthFix' src='./reply.png'></image>({{item.reply.length}})
         </button>
         <modal id="modal" hidden="{{showIndex==index? false : true}}" title="输入你的短评叭" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm" data-id='{{item._id}}' data-bereplyid="{{item._openid}}" data-name="{{item.commentNickName}}" data-avator="{{item.commentAvatarUrl}}" >
-          <input type='text' bindinput='inputcomment' placeholder="不超过15字" auto-focus/>
+          <input type='text' bindinput='inputcomment' maxlength='15' placeholder="不超过15字" auto-focus/>
         </modal>
       </view>
       <view class='detail-card-reply-rereply-hr'></view>
