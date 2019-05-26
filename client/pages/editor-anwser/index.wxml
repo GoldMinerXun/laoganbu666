@@ -63,6 +63,6 @@
     </view>
   </view>
   <view class='editor-intro-publish-btn'>
-    <button bindtap='submitForm' type='primary'>发布</button>
+    <button bindtap='handleSubmit' type='primary'>发布</button>
   </view>
 </view>

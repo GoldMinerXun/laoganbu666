@@ -1,6 +1,7 @@
 // pages/q_second/index.js
 const db = wx.cloud.database()
 var util = require('../../utils/util.js')
+var wxParse = require('../../wxParse/wxParse.js')
 var app = getApp()
 var endtime = new Date();
 const comments = db.collection("comments")
@@ -52,7 +53,8 @@ Page({
     isShow: false,
     hiddenmodalput: true,
     hasUserInfo: false,
-    showIndex: -1
+    showIndex: -1,
+    modalarr: new Array()
   },
   /**
    * 生命周期函数--监听页面加载
@@ -123,6 +125,7 @@ Page({
       _id: options
     }).get().then(
       res0 => {
+        console.log(res0)
         if (res0.data[0].adoptDetail) {
           fast = res0.data[0].adoptDetail.cid || ""
         }
@@ -136,6 +139,15 @@ Page({
               var diff = GetDateTimeDiff(posttime, endtime);
               var strTime = diff.PubTime;
               item.time = strTime
+            })
+            var temparr = new Array()
+            for (var i = 0; i < res.data.length; i++) {
+              temparr.push(res.data[i]._id)
+              console.log(temparr[i])
+              wxParse.wxParse(res.data[i]._id, 'html', res.data[i].ccontent, that, 5);
+            }
+            that.setData({
+              modalarr : temparr
             })
             const ansLength = res.data.length
             wx.getStorage({
@@ -271,7 +283,7 @@ Page({
     console.log(id)
     this.setData({
       hiddenmodalput: true,
-      showIndex : -1
+      showIndex: -1
     });
   },
   //确认  
@@ -313,9 +325,9 @@ Page({
         }
       }).then(res => {
         console.log(res)
-        setTimeout(function(){
+        setTimeout(function() {
           that.onReady()
-        },200)
+        }, 200)
       }).catch(err => {
         console.log(err)
       })
@@ -541,17 +553,17 @@ Page({
       }
     })
   },
-  onPullDownRefresh : function(){
+  onPullDownRefresh: function() {
     wx.showLoading({
       title: '刷新中',
     })
-    setTimeout(function(){
+    setTimeout(function() {
       wx.stopPullDownRefresh()
       wx.hideLoading()
       wx.showToast({
         title: '刷新成功',
       })
-    },1000)
+    }, 1000)
   }
 })
 

@@ -1,4 +1,5 @@
 <!--pages/q_second/index.wxml-->
+<import src="../../wxParse/wxParse.wxml" />
 <view class='q_second_container'>
   <view class='detail-top'>
     <view class='detail-top-wrap'>
@@ -55,22 +56,24 @@
         <view class="{{item.compic? 'detail-card-body-content-pic-wrap' : ''}}">
           <image wx:for="{{item.compic}}" wx:key="{{item}}" src='{{item}}' mode="aspectFill" data-idx="{{item}}" bindtap="handlePreview"></image>
         </view>
-        <view class='detail-card-body-content'>{{item.ccontent}}</view>
+        <view class='detail-card-body-content'>
+          <template is="wxParse" data="{{wxParseData:modalarr[index].nodes}}" />
+        </view>
       </view>
       <view class='detail-card-function'>
         <view class='detail-card-floor'>{{index+1+' floor'}}</view>
-        <view  wx:if="{{admireArr[index]==1}}" class='detial-card-nice' data-index='{{index}}'>
+        <view wx:if="{{admireArr[index]==1}}" class='detial-card-nice' data-index='{{index}}'>
           <image class='detial-card-nice-image' mode='widthFix' src='./nice.png'></image>
           {{'('+counts[index]+')'}}
         </view>
-        <view wx:else class='detial-card-nice' data-index='{{index}}' data-cid='{{item._id}}' data-cuserid='{{item._openid}}' data-cconten='{{item.ccontent}}'  bindtap='handleAdmire'>
+        <view wx:else class='detial-card-nice' data-index='{{index}}' data-cid='{{item._id}}' data-cuserid='{{item._openid}}' data-cconten='{{item.ccontent}}' bindtap='handleAdmire'>
           <image class='detial-card-nice-image' mode='widthFix' src='./unnice.png'></image>
           (0)
         </view>
         <button class='detail-card-reply' bindtap='modalinput' data-index='{{index}}'>
           <image class='detial-card-reply-image' mode='widthFix' src='./reply.png'></image>({{item.reply.length}})
         </button>
-        <modal id="modal" hidden="{{showIndex==index? false : true}}" title="输入你的短评叭" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm" data-id='{{item._id}}' data-bereplyid="{{item._openid}}" data-name="{{item.commentNickName}}" data-avator="{{item.commentAvatarUrl}}" >
+        <modal id="modal" hidden="{{showIndex==index? false : true}}" title="输入你的短评叭" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm" data-id='{{item._id}}' data-bereplyid="{{item._openid}}" data-name="{{item.commentNickName}}" data-avator="{{item.commentAvatarUrl}}">
           <input type='text' bindinput='inputcomment' maxlength='15' placeholder="不超过15字" auto-focus/>
         </modal>
       </view>
@@ -79,12 +82,16 @@
         <block wx:for="{{item.reply}}" wx:for-item="items" wx:key="{{items}}">
           <view class='detail-card-reply-area-replyer-and-reply'>
             <view class='detail-card-reply-area-replyer-wrap'>
-              <view class='detail-card-reply-area-replyer-avatar'><image src='{{items.replyavator}}'></image></view>
+              <view class='detail-card-reply-area-replyer-avatar'>
+                <image src='{{items.replyavator}}'></image>
+              </view>
               <view class='detail-card-reply-area-replyer-name'>{{items.replyname}}</view>
             </view>
             回复
             <view class='detail-card-reply-area-replyered-wrap'>
-              <view class='detail-card-reply-area-replyered-avatar'><image src='{{items.bereplyavator}}'></image></view>
+              <view class='detail-card-reply-area-replyered-avatar'>
+                <image src='{{items.bereplyavator}}'></image>
+              </view>
               <view class='detail-card-reply-area-replyered-name'>{{items.bereplyname}}</view>
             </view>
           </view>
@@ -105,7 +112,7 @@
       <image src='{{item}}' data-idx='{{index}}' bindtap='handleCheck'></image>
     </view>
   </view>
-  <navigator class='detail-editor' url='../editor-anwser/index'>
+  <navigator class='detail-editor' url='../editor-anwser/index?id={{qData._id}}&quser={{qData._openid}}&title={{qData.title}}'>
     <image class='detial-editor-image' mode='widthFix' src='./editor.png'></image>
   </navigator>
 </view>

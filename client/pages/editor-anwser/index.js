@@ -1,5 +1,7 @@
 // client/pages/editor-anwser/index.js
 const app = getApp()
+var util = require('../../utils/util.js')
+const db = wx.cloud.database()
 Page({
 
   /**
@@ -25,7 +27,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
+    console.log(app.globalData.userInfo)
+    const qUserId = options.quser
+    const qid = options.id
+    const title = options.title
+    console.log(title)
+    this.setData({
+      qUserId: qUserId,
+      qid: qid,
+      title: title
+    })
+    if (!app.globalData) {
+      wx.showToast({
+        title: '亲，您还没登录或者登录已经过期了哦，请重新登录!',
+        duration: 1000
+      })
+      setTimeout(function() {
+        wx.reLaunch({
+          url: '../login/index',
+        })
+      }, 1000)
+    }
   },
 
   /**
@@ -126,19 +148,19 @@ Page({
       formats
     })
   },
-  onEditorReady: function () {
+  onEditorReady: function() {
     const that = this
-    wx.createSelectorQuery().select('#editor').context(function (res) {
+    wx.createSelectorQuery().select('#editor').context(function(res) {
       that.editorCtx = res.context
     }).exec()
   },
-  uploadpic: function () {
+  uploadpic: function() {
     var that = this
     wx.chooseImage({
       count: 3,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
-      success: function (res) {
+      success: function(res) {
         that.setData({
           tempFilePaths: res.tempFilePaths
         })
@@ -146,7 +168,7 @@ Page({
       },
     })
   },
-  handleDelete: function (e) {
+  handleDelete: function(e) {
     // console.log(e.currentTarget.dataset.index)
     const index = e.currentTarget.dataset.index
     var temp = this.data.tempFilePaths
@@ -163,7 +185,99 @@ Page({
       urls: images, //所有要预览的图片
     })
   },
-  handleInput : function(e) {
-    console.log(e.detail.text)
+  handleInput: function(e) {
+    console.log(e.detail)
+    this.setData({
+      ccontent: e.detail.html
+    })
+  },
+  handleSubmit: function(e) {
+    wx.showLoading({
+      title: '发布中...',
+    })
+    const admire = new Array()
+    const ccontent = this.data.ccontent
+    const commentAvatarUrl = app.globalData.userInfo.avatarUrl
+    const commentNickName = app.globalData.userInfo.nickName
+    const commentReply = new Array()
+    const qUserId = this.data.qUserId
+    const qid = this.data.qid
+    const reply = new Array()
+    const time = util.formatTime(new Date())
+    const that = this
+    const title = this.data.title
+    const arr = that.data.tempFilePaths.map(path => {
+      const name = Math.random() * 1000000;
+      const time = util.formatTime(new Date)
+      const cloudPath = name + path.match(/\.[^.]+?$/)[0]
+      return wx.cloud.uploadFile({
+        cloudPath: time.replace(/\s+/g, '').replace(new RegExp(/(:)/g), '').replace(/\\|\//g, '') + cloudPath,
+        filePath: path
+      }).then(res => {
+        // console.log(res.fileID)
+        that.data.imagesList.push(res.fileID)
+      }).catch(error => {
+        // console.log(error)
+      })
+    })
+
+    if (this.data.tempFilePaths.length != 0) {
+      Promise.all(arr).then(res => {
+        db.collection('comments').add({
+          data: {
+            admire: admire,
+            ccontent: ccontent,
+            commentAvatarUrl: commentAvatarUrl,
+            commentNickName: commentNickName,
+            commentReply: commentReply,
+            qUserId: qUserId,
+            qid: qid,
+            reply: reply,
+            time: time,
+            title: title,
+            compic : that.data.imagesList
+          }
+        }).then(res => {
+          wx.hideLoading()
+          wx.showToast({
+            title: '发布成功！',
+            duration: 1000
+          })
+          return wx.redirectTo({
+            url: "../q_second/index?id="+qid,
+          })
+        }).catch(err => {
+          wx.hideLoading()
+          wx.showToast({
+            title: '发送失败，请重试',
+            duration: 1000
+          })
+        })
+      })
+    } else {
+      db.collection('comments').add({
+        data: {
+          admire: admire,
+          ccontent: ccontent,
+          commentAvatarUrl: commentAvatarUrl,
+          commentNickName: commentNickName,
+          commentReply: commentReply,
+          qUserId: qUserId,
+          qid: qid,
+          reply: reply,
+          time: time,
+          title: title
+        }
+      }).then(res => {
+        wx.hideLoading()
+        wx.showToast({
+          title: '发布成功！',
+          duration: 1000
+        })
+        return wx.reLaunch({
+          url: '../q_second/index?id=${{qid}}',
+        })
+      })
+    }
   }
 })

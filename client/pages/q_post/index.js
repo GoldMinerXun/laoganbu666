@@ -480,9 +480,9 @@ Page({
             })
 
             if (that.data.tempFilePaths.length != 0) {
-
-              // console.log(academic,major,subject)
-              db.collection('questions').add({
+              Promise.all(arr).then(res => {
+                // console.log(academic,major,subject)
+                db.collection('questions').add({
                   data: {
                     title: that.data.title,
                     content: that.data.content,
@@ -495,16 +495,13 @@ Page({
                     expectResolveDate: that.data.date
                   }
                 }).then(res => {
-                  // console.log(that.data.date)
                   console.log(res)
-                  return wx.showToast({
+                  wx.showToast({
                     title: '发布成功',
                     icon: 'succes',
                     duration: 1000,
                     mask: true
                   })
-                })
-                .then(res => {
                   return setTimeout(function() {
                     wx.reLaunch({
                       url: '../share/index',
@@ -519,6 +516,7 @@ Page({
                     mask: true
                   })
                 })
+              })
             } else {
               db.collection('questions').add({
                 data: {

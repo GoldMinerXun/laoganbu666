@@ -1,5 +1,5 @@
 /* pages/q_second/index.wxss */
-
+@import "../../wxParse/wxParse.wxss";
 page {
   width: 100%;
   position: relative;
@@ -650,5 +650,5 @@ botton::after {
   font-size: 33rpx;
   text-align: left;
   text-indent: 55rpx;
-  line-height: 20rpx;
+  line-height: 30rpx;
 }
