@@ -105,7 +105,7 @@
       <image src='{{item}}' data-idx='{{index}}' bindtap='handleCheck'></image>
     </view>
   </view>
-  <navigator class='detail-editor'>
+  <navigator class='detail-editor' url='../editor-anwser/index'>
     <image class='detial-editor-image' mode='widthFix' src='./editor.png'></image>
   </navigator>
 </view>

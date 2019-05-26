@@ -1,1 +1,243 @@
-/* client/pages/editor-anwser/index.wxss */
+@import "../q_post/common/lib/weui.wxss";
+@import "../q_post/assets/iconfont.wxss";
+
+page {
+  background-color: #eee;
+}
+
+.page-body {
+  width: 93%;
+  margin: 0 auto;
+  box-shadow: 0rpx 10rpx 20rpx rgba(0, 0, 0, 0.1);
+  border-radius: 30rpx 30rpx 0rpx 0rpx;
+  margin-bottom: 30rpx;
+}
+
+.wrapper {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+.moreicon {
+  border-radius: 20rpx 20rpx 0rpx 0rpx;
+  width: 100%;
+  height: 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+.moreicon-img {
+  width: 40rpx;
+}
+
+.iconfont {
+  display: inline-block;
+  padding: 8px 8px;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.toolbar {
+  box-sizing: border-box;
+  overflow: hidden;
+  /* border: 1px solid #ccc; */
+  border-bottom: 0;
+  font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}
+
+.ql-container {
+  box-sizing: border-box;
+  padding: 12px 15px;
+  width: 100%;
+  min-height: 30vh;
+  height: 300rpx;
+  /* border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc; */
+  background: #fff;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.ql-active {
+  color: #06c;
+}
+
+.editor-container {
+  width: 100%;
+  height: 100%;
+}
+
+.editor-min {
+  width: 96%;
+  padding-top: 20rpx;
+  margin: 0 auto;
+  margin-bottom: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.editor-intro-tips-text {
+  padding-left: 30rpx;
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+  text-align: left;
+  color: #888;
+}
+
+.editor-intro-publish-btn {
+  width: 96%;
+}
+
+.editor-intro-publish-btn button {
+  margin-right: 0;
+  width: 150rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+
+.editor-intro-addtag button::after {
+  border: none;
+}
+
+.editor-intro-addtag {
+  margin-left: 10rpx;
+  flex: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.editor-intro-tags {
+  font-size: 25rpx;
+  color: #999;
+  background-color: white;
+  border-radius: 15rpx;
+  padding: 10rpx 20rpx;
+}
+
+.editor-intro-right-word {
+  font-size: 30rpx;
+  text-align: center;
+  margin-left: 5rpx;
+  color: #888;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.editor-intro-image {
+  width: 50rpx;
+  height: 50rpx;
+  background-size: cover;
+}
+
+.editor-bottom-wrap {
+  width: 100%;
+  height: 150rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.editor-bottom-wrap-a {
+  width: 150rpx;
+  height: 150rpx;
+  margin-left: 30rpx;
+  border: dashed 1rpx rgba(218, 218, 218, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editor-bottom-wrap image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.editor-picture-pre {
+  width: 530rpx;
+  height: 150rpx;
+  margin-right: 20rpx;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.editor-picture-pre image {
+  width: 150rpx;
+  height: 150rpx;
+  background-size: cover;
+}
+
+.detail-bottom-wrap {
+  position: relative;
+  box-sizing: border-box;
+  width: 150rpx;
+  height: 150rpx;
+  margin-left: 20rpx;
+}
+
+.detail-bottom-delete {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  border-radius: 50%;
+  right: -20rpx;
+  top: -20rpx;
+  text-align: center;
+  line-height: 40rpx;
+  font-size: 30rpx;
+  color: rgb(135, 135, 135);
+  opacity: 1;
+  border-top: solid 1rpx rgb(135, 135, 135);
+  border-right: solid 1rpx rgb(135, 135, 135);
+}
+
+.editor-title-input-wrap {
+  width: 93%;
+  /* height: 60rpx; */
+  margin: 0 auto;
+  margin-bottom: 25rpx;
+  margin-top: 15rpx;
+  border-radius: 5rpx;
+  box-shadow: 0rpx 1rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.editor-title-input {
+  padding: 20rpx 0rpx;
+  margin: 0 auto;
+  width: 100%;
+  /* height: 60rpx; */
+  font-size: 34rpx;
+  background-color: white;
+  border-bottom: solid 1rpx whitesmoke;
+  /* box-sizing: border-box; */
+  text-align: center;
+}
+
+/* 时间选择 */
+
+.editor-expect-reply-time {
+  width: 93%;
+  margin: 0 auto;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 25rpx;
+  border-radius: 5rpx;
+  box-shadow: 0rpx 1rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.editor-expect-time-picker {
+  font-size: 34rpx;
+  line-height: 50rpx;
+  padding: 20rpx 0rpx;
+  text-align: center;
+  color: #888;
+}
