@@ -6,7 +6,7 @@ let major = null;
 let openid = null;
 let avatorurl = null;
 let wechat = require('./wechat.js');
-
+let util=require('../../utils/util.js')
 const db = wx.cloud.database();
 const userDB = db.collection('user');
 Page({
@@ -159,6 +159,7 @@ Page({
   bindgetuserinfo(e) {
     // console.log(e.detail.userInfo)
     var userInfo = e.detail.userInfo
+    var firstTimeToSeeNotice =util.formatTime(new Date)
     let that = this;
     if (major != '请选择' && academic != '请选择' && major && academic && sno) {
       wechat.login()
@@ -187,7 +188,7 @@ Page({
             return wechat.updateUserInfo(app, major, sno, academic)
           }
           else{
-            return wechat.setUserInfo(app, major, sno, academic)
+            return wechat.setUserInfo(app, major, sno, academic,firstTimeToSeeNotice)
           }
         }).then(data => {
           console.log(data)

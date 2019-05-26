@@ -22,6 +22,16 @@ class Wechat {
       }
     }))
   }
+  // 登陆本地登陆是否看过最新短评
+  static getstoragehasSeenReply(){
+    return new Promise((resolve,reject)=>wx.getStorage({
+      key: 'hasSeenReply',
+      success: function(res) {
+        resolve(res);
+        reject
+      },
+    }))
+  }
 };
 
 module.exports = Wechat;

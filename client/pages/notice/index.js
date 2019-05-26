@@ -14,6 +14,7 @@ Page({
   data: {
     noticeCommentNum: 0,
     noticeLikeNum: 0,
+    noticeReplyNum:0,
   },
   handleChange: function({
     detail
@@ -98,6 +99,38 @@ Page({
         if (res.data == 'true') {
           that.setData({
             noticeLikeNum: 0
+          })
+        }
+      })
+
+      // 得到最后一次看短评的时间。。。
+      userDB.doc(openid).get().then(res => {
+        var timetmp = res.data.lastSeenReplyTime
+        console.log(openid,timetmp)
+        return wx.cloud.callFunction({
+          name:'getNoticeNum',
+          data:{
+            openid:openid,
+            timetmp:timetmp
+          }
+        })
+      }).then(res => {
+        console.log(res.result.data)
+        if (res.result.data.length > 0) {
+          that.setData({
+            noticeReplyNum: res.result.data.length
+          })
+          return wx.setStorage({
+            key: 'hasSeenReply',
+            data: 'false',
+          })
+        }
+      }).then(res => {
+        return promise.getstoragehasSeenReply()
+      }).then(res => {
+        if (res.data == 'true') {
+          that.setData({
+            noticeReplyNum: 0
           })
         }
       })

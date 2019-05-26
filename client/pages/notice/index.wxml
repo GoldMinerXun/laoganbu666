@@ -6,72 +6,80 @@
   </view>
 
   <view class='notice-one notice-comment-like'>
-    <navigator open-type='navigateTo' url='../notice-secondary/index?title=评论&name=tempcomment'>
+    <navigator class='notice-url-wrap' open-type='navigateTo' url='../notice-secondary/index?title=评论&name=tempcomment'>
       <view class='notice-two notice-comment'>
         <view class='notice-img notice-comment-img'>
-        <view class='notice-img-circle'></view>
+          <view class='notice-img-circle'></view>
           <image src='../../images/notice-img/otherscomment.png'></image>
         </view>
         <view class='notice-text notice-comment-text'>
-          评论
-        </view>
-        <view class='notice-comment-num notice-num' hidden='{{noticeCommentNum==0}}'>{{noticeCommentNum}}</view>
-        <view class='notice-sign'>
-          <image class='notice-right' src='../../images/notice-img/right.png'></image>
+          回答
+          <view class='notice-comment-num notice-num' hidden='{{noticeCommentNum==0}}'>{{noticeCommentNum}}</view>
         </view>
       </view>
     </navigator>
-
-    <view class='notice-line'></view>
-    <navigator open-type='navigateTo' url='../notice-secondary/index?title=点赞&name=templikes'>
+    <navigator class='notice-url-wrap' open-type='navigateTo' url='../notice-secondary/index?title=点赞&name=templikes'>
       <view class='notice-two notice-like'>
         <view class='notice-img notice-like-img'>
-         <view class='notice-img-circle'></view>
+          <view class='notice-img-circle'></view>
           <image src='../../images/notice-img/likes.png'></image>
         </view>
         <view class='notice-text notice-like-text'>
           点赞
-        </view>
-        <view class='notice-like-num notice-num' hidden='{{noticeLikeNum==0}}'>{{noticeLikeNum}}</view>
-        <view class='notice-sign'>
-          <image class='notice-right' src='../../images/notice-img/right.png'></image>
+          <view class='notice-like-num notice-num' hidden='{{noticeLikeNum==0}}'>{{noticeLikeNum}}</view>
         </view>
       </view>
     </navigator>
-
+  </view>
+  <view class='notice-one notice-comment-like'>
+    <navigator class='notice-url-wrap' open-type='navigateTo' url='../notice-secondary/index?title=短评&name=tempreply'>
+      <view class='notice-two notice-comment'>
+        <view class='notice-img notice-comment-img'>
+          <view class='notice-img-circle'></view>
+          <image src='../../images/notice-img/otherscomment.png'></image>
+        </view>
+        <view class='notice-text notice-comment-text'>
+          我收到的短评
+          <view class='notice-comment-num notice-num' hidden='{{noticeReplyNum==0}}'>{{noticeReplyNum}}</view>
+        </view>
+      </view>
+    </navigator>
+    <navigator class='notice-url-wrap' open-type='navigateTo' url='../notice-secondary/index?title=我的短评&name=tempmyreply'>
+      <view class='notice-two notice-like'>
+        <view class='notice-img notice-like-img'>
+          <view class='notice-img-circle'></view>
+          <image src='../../images/notice-img/likes.png'></image>
+        </view>
+        <view class='notice-text notice-like-text'>
+         我发布的短评
+        </view>
+      </view>
+    </navigator>
   </view>
   <view class='notice-one notice-publish-problem-comment'>
-    <navigator open-type='navigateTo' url='../notice-secondary/index?title=我发布的问题&name=tempmyproblem'>
+    <navigator class='notice-url-wrap' open-type='navigateTo' url='../notice-secondary/index?title=我发布的问题&name=tempmyproblem'>
       <view class='notice-two notice-publish-problem'>
         <view class='notice-img notice-publish-problem-img'>
-         <view class='notice-img-circle'></view>
+          <view class='notice-img-circle'></view>
           <image src='../../images/notice-img/myproblem.png'></image>
         </view>
         <view class='notice-text notice-publish-problem-text'>
           我发布的问题
         </view>
-        <view class='notice-sign'>
-          <image class='notice-right' src='../../images/notice-img/right.png'></image>
-        </view>
       </view>
     </navigator>
 
     <view class='notice-line'></view>
-    <navigator open-type='navigateTo' url='../notice-secondary/index?title=我发布的评论&name=tempmycomment'>
+    <navigator class='notice-url-wrap' open-type='navigateTo' url='../notice-secondary/index?title=我发布的评论&name=tempmycomment'>
       <view class='notice-two notice-publish-comment'>
         <view class='notice-img notice-publish-comment-img'>
-         <view class='notice-img-circle'></view>
+          <view class='notice-img-circle'></view>
           <image src='../../images/notice-img/comment.png'></image>
         </view>
         <view class='notice-text notice-publish-comment-text'>
-          我发布的评论
-        </view>
-
-        <view class='notice-sign'>
-          <image class='notice-right' src='../../images/notice-img/right.png'></image>
+          我发布的回答
         </view>
       </view>
     </navigator>
-
   </view>
 </view>
