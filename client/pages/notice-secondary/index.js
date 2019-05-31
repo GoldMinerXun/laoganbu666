@@ -12,6 +12,7 @@ let pageOption = null
 // 每个用户看过自己评论和点赞消息的最后一次时间都要记录下来
 var contentobj = [[], [], [], []]
 let promise = require('./promise.js');
+var wxParse = require('../../wxParse/wxParse.js')
 Page({
   /**
    * 页面的初始数据

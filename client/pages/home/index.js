@@ -1,10 +1,13 @@
 // pages/home/index.js
 const db = wx.cloud.database()
+var wxParse = require('../../wxParse/wxParse.js')
 Page({
   data: {
     hotList: [],
     imageUrl: [],
-    detailList: []
+    detailList: [],
+    newArr: new Array(),
+    modalarr: new Array()
   },
   jumpTo: function(e) {
     // console.log(e.currentTarget.dataset.id)
@@ -90,6 +93,7 @@ Page({
       name: "getNewlyData",
       data: {},
       success: function(res) {
+        // console.log(res.result)
         var len = res.result.data.length
         var arr = new Array()
         if (len < 3) {
@@ -97,32 +101,50 @@ Page({
         } else {
           arr = res.result.data.slice(len - 3, len)
         }
+        // for (var i = 0; i < arr.length; i++) {
+        //   that.data.modalarr.push(arr[i]._id)
+        //   console.log(that.data.modalarr[i])
+        //   wxParse.wxParse(arr[i]._id, 'html', arr[i].content, that, 0);
+        // }
+        // var temparr = new Array()
+        // for (var i = 0; i < that.data.modalarr.length; ++i) {
+        //   var temp = that.data.modalarr[i]
+        //   temparr.push(that.data[temp])
+        //   console.log(temparr)
+        // }
         var tempContent = []
         arr.map(item => {
-          tempContent.push(item.content.slice(0, 25)+'...')
+          tempContent.push(item.content.slice(0, 25) + '...')
         })
-        var temp = []
-        arr.forEach(items => {
-          if (items.images.length != 0) {
-            temp.push(items.images[0])
-          } else {
-            const defaultFileId = 'cloud://laoganbu-02d4d0.6c61-laoganbu-02d4d0/loading.png'
-            temp.push(defaultFileId)
-          }
-        })
-        const fileList = temp
-        wx.cloud.getTempFileURL({
-          fileList
-        }).then(result => {
-          that.setData({
-            hotList: arr.reverse(),
-            imageUrl: result.fileList.reverse(),
-            detailList: tempContent.reverse()
-          })
+        // var temp = []
+        // arr.forEach(items => {
+        //   if (items.images.length != 0) {
+        //     temp.push(items.images[0])
+        //   } else {
+        //     const defaultFileId = 'cloud://laoganbu-02d4d0.6c61-laoganbu-02d4d0/loading.png'
+        //     temp.push(defaultFileId)
+        //   }
+        // })
+        // const fileList = temp
+        // wx.cloud.getTempFileURL({
+        //   fileList
+        // }).then(result => {
+        // that.setData({
+        //   hotList: arr.reverse(),
+        //   imageUrl: result.fileList.reverse(),
+        //   detailList: tempContent.reverse()
+        // newArr: temparr
+        // })
+        // })
+        that.setData({
+          hotList: arr.reverse(),
+          // imageUrl: result.fileList.reverse(),
+          detailList: tempContent.reverse(),
+          // newArr: temparr
         })
       },
       fail: function(err) {
-        console.log(err)
+        // console.log(err)
       }
     })
   },
@@ -169,10 +191,11 @@ Page({
 
   },
   onPullDownRefresh: function() {
-    setTimeout(function(){
+    var that = this
+    setTimeout(function() {
       wx.stopPullDownRefresh()
-    },1000)
-    this.onReady()
+    }, 1000)
+    that.onReady()
   }
 })
 wx.setNavigationBarColor({

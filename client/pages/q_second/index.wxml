@@ -25,7 +25,9 @@
   <view class='detail-top-min-hr'></view>
   <view class='detail-min-wrap'>
     <view class='detail-min-content-wrap'>
-      <view class='detail-min-content'>{{qData.content}}</view>
+      <view class='detail-min-content'>
+      <template is="wxParse" data="{{wxParseData:newArr[ansLength].nodes}}" />
+      </view>
       <view class='detail-min-content-pic-wrap'>
         <block wx:for="{{questionTempImage}}" wx:key="{{index}}">
           <image src='{{item.tempFileURL}}' class='detail-min-content-pic' mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
@@ -57,7 +59,7 @@
           <image wx:for="{{item.compic}}" wx:key="{{item}}" src='{{item}}' mode="aspectFill" data-idx="{{item}}" bindtap="handlePreview"></image>
         </view>
         <view class='detail-card-body-content'>
-          <template is="wxParse" data="{{wxParseData:modalarr[index].nodes}}" />
+          <template is="wxParse" data="{{wxParseData:newArr[index].nodes}}" />
         </view>
       </view>
       <view class='detail-card-function'>

@@ -3,7 +3,6 @@ const db = wx.cloud.database()
 var util = require('../../utils/util.js')
 var wxParse = require('../../wxParse/wxParse.js')
 var app = getApp()
-var endtime = new Date();
 const comments = db.collection("comments")
 const _ = db.command
 var shortcomment = ''
@@ -54,6 +53,7 @@ Page({
     hiddenmodalput: true,
     hasUserInfo: false,
     showIndex: -1,
+    newArr: new Array(),
     modalarr: new Array()
   },
   /**
@@ -120,12 +120,11 @@ Page({
     wx.hideToast()
     const options = this.data.qid
     const that = this
-
+    var endtime = new Date();
     db.collection("questions").where({
       _id: options
     }).get().then(
       res0 => {
-        console.log(res0)
         if (res0.data[0].adoptDetail) {
           fast = res0.data[0].adoptDetail.cid || ""
         }
@@ -133,23 +132,77 @@ Page({
           qid: options
         }).get().then(
           res => {
-            console.log(res)
-            res.data.map(item => {
-              var posttime = new Date(item.time)
-              var diff = GetDateTimeDiff(posttime, endtime);
-              var strTime = diff.PubTime;
-              item.time = strTime
-            })
-            var temparr = new Array()
-            for (var i = 0; i < res.data.length; i++) {
-              temparr.push(res.data[i]._id)
-              console.log(temparr[i])
-              wxParse.wxParse(res.data[i]._id, 'html', res.data[i].ccontent, that, 5);
-            }
-            that.setData({
-              modalarr : temparr
-            })
+            // console.log(res)
             const ansLength = res.data.length
+            if (res.data.length != 0) {
+              for (var i = 0; i < ansLength; i++) {
+                // console.log(res.data[i])
+                if (res.data[i]._id == fast) {
+                  Index = i
+                  break
+                }
+              }
+              if (Index != -1) {
+                // console.log(111)
+                var tempData = res.data[Index]
+                res.data.splice(Index, 1)
+                res.data.unshift(tempData)
+                // console.log(res.data)
+              }
+              res.data.map(item => {
+                var posttime = new Date(item.time)
+                var diff = GetDateTimeDiff(posttime, endtime);
+                var strTime = diff.PubTime;
+                item.time = strTime
+              })
+              for (var i = 0; i <= res.data.length; i++) {
+                if (i < res.data.length) {
+                  that.data.modalarr.push(res.data[i]._id)
+                  // console.log(that.data.modalarr[i])
+                  wxParse.wxParse(res.data[i]._id, 'html', res.data[i].html, that, 0);
+                } else {
+                  that.data.modalarr.push(res0.data[0]._id)
+                  // console.log(that.data.modalarr[i])
+                  wxParse.wxParse(res0.data[0]._id, 'html', res0.data[0].html, that, 0);
+                }
+              }
+              var temparr = new Array()
+              for (var i = 0; i <= that.data.modalarr.length; ++i) {
+                if (i < that.data.modalarr.length - 1) {
+                  var temp = that.data.modalarr[i]
+                  temparr.push(that.data[temp])
+                  // console.log(temparr)
+                } else {
+                  var temp = that.data.modalarr[i]
+                  temparr.push(that.data[temp])
+                  // console.log(temparr)
+                }
+              }
+              that.setData({
+                newArr: temparr
+              })
+              res.data.map(item => {
+                const fileList = item.compic ? item.compic : false
+                if (fileList) {
+                  wx.cloud.getTempFileURL({
+                    fileList
+                  }).then(res => {
+                    item.compic = res.fileList
+                  })
+                }
+              })
+            } else {
+              that.data.modalarr.push(res0.data[0]._id)
+              // console.log(that.data.modalarr[0])
+              wxParse.wxParse(res0.data[0]._id, 'html', res0.data[0].html, that, 0);
+              var temparr = new Array()
+              var temp = that.data.modalarr[0]
+              temparr.push(that.data[temp])
+              // console.log(temparr)
+              that.setData({
+                newArr: temparr
+              })
+            }
             wx.getStorage({
               key: 'openid',
               success: function(res1) {
@@ -160,30 +213,6 @@ Page({
                 })
               },
             })
-            res.data.map(item => {
-              const fileList = item.compic ? item.compic : false
-              if (fileList) {
-                wx.cloud.getTempFileURL({
-                  fileList
-                }).then(res => {
-                  item.compic = res.fileList
-                })
-              }
-            })
-            const len = res.data.length
-            for (var i = 0; i < len; i++) {
-              console.log(res.data[i])
-              if (res.data[i]._id == fast) {
-                Index = i
-                break
-              }
-            }
-            if (Index != -1) {
-              console.log(111)
-              var tempData = res.data[Index]
-              res.data.splice(Index, 1)
-              res.data.unshift(tempData)
-            }
             this.setData({
               ansList: res.data
             })
@@ -234,6 +263,31 @@ Page({
           })
         })
       })
+    // var auto = function() {
+    //   var autoFlag = false
+    //   var times = 0
+    //   console.log(that.data.ansList)
+    //   if (that.data.ansList.length != 0) {
+    //       var timer = setInterval(function() {
+    //         if(that.data.newArr.length!=0||times>=4){
+    //           clearInterval(timer)
+    //         }
+    //         console.log(222)
+    //         var temparr = new Array()
+    //         for (var i = 0; i < modalarr.length; ++i) {
+    //           var temp = modalarr[i]
+    //           temparr.push(that.data[temp])
+    //           console.log(temparr)
+    //         }
+    //         that.setData({
+    //           newArr: temparr
+    //         })
+    //         console.log(that.data.new)
+    //         ++times
+    //       }, 1000)
+    //   }
+    // }
+    // auto()
   },
 
   /**
@@ -255,7 +309,9 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-
+    // wx.reLaunch({
+    //   url: '../share/index'
+    // })
   },
 
   /**
@@ -280,7 +336,7 @@ Page({
   },
   cancel: function(e) {
     var id = e.currentTarget.dataset.id
-    console.log(id)
+    // console.log(id)
     this.setData({
       hiddenmodalput: true,
       showIndex: -1
@@ -296,7 +352,7 @@ Page({
       showIndex: -1
     })
     var id = e.currentTarget.dataset.id
-    console.log(id)
+    // console.log(id)
     var replyid = app.globalData.openid
     var bereplyid = e.currentTarget.dataset.bereplyid
     var replyname = app.globalData.userInfo.nickName
@@ -314,7 +370,7 @@ Page({
       replytime: replytime,
       replycontent: shortcomment
     }
-    console.log(id, replyid, bereplyid, replyname, bereplyname, replyavator, bereplyavator, replytime)
+    // console.log(id, replyid, bereplyid, replyname, bereplyname, replyavator, bereplyavator, replytime)
     if (this.data.hasUserInfo) {
       //BUG： 使用云函数更新字段无效
       wx.cloud.callFunction({
@@ -324,12 +380,12 @@ Page({
           replyobj: replyobj
         }
       }).then(res => {
-        console.log(res)
+        // console.log(res)
         setTimeout(function() {
           that.onReady()
         }, 200)
       }).catch(err => {
-        console.log(err)
+        // console.log(err)
       })
       //BUG： 使用非云函数更新字段无效
       // comments.doc(id).update({
@@ -375,7 +431,7 @@ Page({
     shortcomment = event.detail.value
   },
   modalinput: function(e) {
-    console.log(e.currentTarget.dataset.index)
+    // console.log(e.currentTarget.dataset.index)
     this.setData({
       hiddenmodalput: !this.data.hiddenmodalput,
       showIndex: e.currentTarget.dataset.index
@@ -411,7 +467,7 @@ Page({
   handleAdmire: function(e) {
     var that = this
     if (app.globalData.openid) {
-      console.log(app.globalData.openid)
+      // console.log(app.globalData.openid)
       const admireNickName = app.globalData.userInfo.nickName
       const admireAvatarUrl = app.globalData.userInfo.avatarUrl
       const time = util.formatTime(new Date())
@@ -430,10 +486,10 @@ Page({
           obj: obj
         },
         success: ress => {
-          console.log(ress)
+          // console.log(ress)
         },
         fail: err => {
-          console.log(err)
+          // console.log(err)
         }
       })
       const temp = this.data.admireArr
@@ -502,7 +558,7 @@ Page({
   },
 
   handleIsShow: function() {
-    console.log(this.data.isShow)
+    // console.log(this.data.isShow)
     var temp = this.data.isShow
     this.setData({
       isShow: !temp
@@ -519,7 +575,7 @@ Page({
       title: '提示',
       content: '确认采纳了嘛？',
       success: function(re) {
-        console.log(re)
+        // console.log(re)
         if (re.confirm) {
           wx.showLoading({
             title: '采纳中...',

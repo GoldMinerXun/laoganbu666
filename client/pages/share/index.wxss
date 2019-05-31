@@ -235,6 +235,7 @@ i-tab-bar {
   letter-spacing: 1rpx;
   font-size: 28rpx;
   line-height: 48rpx;
+  max-height: 150rpx;
   box-sizing: border-box;
   color: #777;
 }

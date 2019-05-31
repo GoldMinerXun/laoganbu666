@@ -9,7 +9,8 @@
     "pages/lab/index",
     "pages/notfound/index",
     "pages/editor-anwser/index",
-    "zhizhicomponent/modal/modal"
+    "zhizhicomponent/modal/modal",
+    "pages/login/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#0081FF",

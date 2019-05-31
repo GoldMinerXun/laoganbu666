@@ -1,9 +1,9 @@
 <!--pages/notice/index.wxml-->
 <view class='notice-wrap'>
-  <view class='notice-open-notice'>
+  <!-- <view class='notice-open-notice'>
     <view class='notice-open-text'>开启推送通知，及时查收消息</view>
     <button class='notice-open-btn'>开启</button>
-  </view>
+  </view> -->
 
   <view class='notice-one notice-comment-like'>
     <navigator class='notice-url-wrap' open-type='navigateTo' url='../notice-secondary/index?title=评论&name=tempcomment'>
@@ -13,7 +13,7 @@
           <image src='../../images/notice-img/otherscomment.png'></image>
         </view>
         <view class='notice-text notice-comment-text'>
-          回答
+          收到的回答
           <view class='notice-comment-num notice-num' hidden='{{noticeCommentNum==0}}'>{{noticeCommentNum}}</view>
         </view>
       </view>
@@ -25,13 +25,13 @@
           <image src='../../images/notice-img/likes.png'></image>
         </view>
         <view class='notice-text notice-like-text'>
-          点赞
+          收到的点赞
           <view class='notice-like-num notice-num' hidden='{{noticeLikeNum==0}}'>{{noticeLikeNum}}</view>
         </view>
       </view>
     </navigator>
   </view>
-  <view class='notice-one notice-comment-like'>
+  <!-- <view class='notice-one notice-comment-like'>
     <navigator class='notice-url-wrap' open-type='navigateTo' url='../notice-secondary/index?title=短评&name=tempreply'>
       <view class='notice-two notice-comment'>
         <view class='notice-img notice-comment-img'>
@@ -55,7 +55,7 @@
         </view>
       </view>
     </navigator>
-  </view>
+  </view> -->
   <view class='notice-one notice-publish-problem-comment'>
     <navigator class='notice-url-wrap' open-type='navigateTo' url='../notice-secondary/index?title=我发布的问题&name=tempmyproblem'>
       <view class='notice-two notice-publish-problem'>
@@ -64,7 +64,7 @@
           <image src='../../images/notice-img/myproblem.png'></image>
         </view>
         <view class='notice-text notice-publish-problem-text'>
-          我发布的问题
+          发布的问题
         </view>
       </view>
     </navigator>
@@ -77,7 +77,7 @@
           <image src='../../images/notice-img/comment.png'></image>
         </view>
         <view class='notice-text notice-publish-comment-text'>
-          我发布的回答
+          发布的回答
         </view>
       </view>
     </navigator>

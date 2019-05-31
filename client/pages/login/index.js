@@ -1,6 +1,6 @@
 // pages/login/index.js
 let app = getApp()
-let sno = null;
+// let sno = null;
 let academic = null;
 let major = null;
 let openid = null;
@@ -153,15 +153,15 @@ Page({
       mask: true
     })
   },
-  inputSno: function(event) {
-    sno = event.detail.value
-  },
+  // inputSno: function(event) {
+  //   sno = event.detail.value
+  // },
   bindgetuserinfo(e) {
     // console.log(e.detail.userInfo)
     var userInfo = e.detail.userInfo
     var firstTimeToSeeNotice =util.formatTime(new Date)
     let that = this;
-    if (major != '请选择' && academic != '请选择' && major && academic && sno) {
+    if (major != '请选择' && academic != '请选择' && major && academic) {
       wechat.login()
         .then(data => {
           return wechat.wxcloudcallfunction()
@@ -183,15 +183,15 @@ Page({
           return wechat.findUserInfo(app)
         }).then(res=>{
           // console.log(res)
-          console.log(res.data._id)
+          // console.log(res.data._id)
           if(res.data._id){
-            return wechat.updateUserInfo(app, major, sno, academic)
+            return wechat.updateUserInfo(app, major,academic)
           }
           else{
-            return wechat.setUserInfo(app, major, sno, academic,firstTimeToSeeNotice)
+            return wechat.setUserInfo(app, major,academic,firstTimeToSeeNotice)
           }
         }).then(data => {
-          console.log(data)
+          // console.log(data)
           wx.navigateBack({
             delta: 2
           })

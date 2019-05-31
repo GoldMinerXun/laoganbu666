@@ -84,14 +84,14 @@ Page({
   insertDivider() {
     this.editorCtx.insertDivider({
       success: function() {
-        console.log('insert divider success')
+        // console.log('insert divider success')
       }
     })
   },
   clear() {
     this.editorCtx.clear({
       success: function(res) {
-        console.log("clear success")
+        // console.log("clear success")
       }
     })
   },
@@ -446,7 +446,7 @@ Page({
 
   },
   bindDateChange: function(e) {
-    console.log('1picker发送选择改变，携带值为', e.detail.value)
+    // console.log('1picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       date: e.detail.value
     })
@@ -459,6 +459,7 @@ Page({
         success: function(res) {
           that.data.content = res.text;
           const content = res.text;
+          const html = res.html
           if (content && title && academic && major && subject) {
             wx.showLoading({
               title: '正在发布...',
@@ -486,6 +487,7 @@ Page({
                   data: {
                     title: that.data.title,
                     content: that.data.content,
+                    html : html,
                     tags: [academic, major, subject],
                     time: util.formatTime(new Date()),
                     type: false,
@@ -495,7 +497,7 @@ Page({
                     expectResolveDate: that.data.date
                   }
                 }).then(res => {
-                  console.log(res)
+                  // console.log(res)
                   wx.showToast({
                     title: '发布成功',
                     icon: 'succes',
@@ -522,6 +524,7 @@ Page({
                 data: {
                   title: that.data.title,
                   content: that.data.content,
+                  html : html,
                   tags: [academic, major, subject],
                   time: util.formatTime(new Date()),
                   type: false,

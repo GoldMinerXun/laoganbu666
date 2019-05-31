@@ -106,7 +106,7 @@ Page({
       // 得到最后一次看短评的时间。。。
       userDB.doc(openid).get().then(res => {
         var timetmp = res.data.lastSeenReplyTime
-        console.log(openid,timetmp)
+        // console.log(openid,timetmp)
         return wx.cloud.callFunction({
           name:'getNoticeNum',
           data:{
@@ -115,7 +115,7 @@ Page({
           }
         })
       }).then(res => {
-        console.log(res.result.data)
+        // console.log(res.result.data)
         if (res.result.data.length > 0) {
           that.setData({
             noticeReplyNum: res.result.data.length

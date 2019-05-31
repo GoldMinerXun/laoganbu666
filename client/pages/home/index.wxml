@@ -1,5 +1,5 @@
 <!--pages/home/index.wxml-->
-
+<import src="../../wxParse/wxParse.wxml" />
 <view class='home-top-wrap'>
   <view class='home-top-name-wrap'>
     <view class='home-top-name'> 知之</view>
@@ -9,14 +9,17 @@
     <view class='home-panel-hot'>
       <view class='home-panel-hot-left-div'></view>
       <view class='home-panel-hot-text'>
-        热门内容
+        最新内容
       </view>
     </view>
     <block wx:for="{{hotList}}" wx:key="{{index}}">
       <view class='home-panel-list' bindtap='jumpTo' data-id='{{item._id}}'>
         <view class='home-panel-intro-wrap'>
           <view class='home-panel-intro-title'>{{item.title}}</view>
-          <view class='home-panel-intro-detail'>{{detailList[index]}}</view>
+          <view class='home-panel-intro-detail'>
+          <!-- <template is="wxParse" data="{{wxParseData:newArr[index].nodes}}" /> -->
+          {{item.content}}
+          </view>
           <view class='home-panel-hr'></view>
           <view class='home-panel-intro-bottom'>
             <view class='home-panel-qname'>By {{item.qNickName}}</view>

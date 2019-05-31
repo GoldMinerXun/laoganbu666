@@ -1,4 +1,5 @@
 <!--index.wxml-->
+<import src="../../wxParse/wxParse.wxml" />
 <view class="container">
   <view class='share-head'>
     <view class='share-head-content-wrap'>
@@ -30,7 +31,10 @@
             <view class="card-item-resolve-tag {{item.type==true?'card-item-resolve-tag-false':'card-item-resolve-tag-true'}}">{{item.type==true?'已解决':'未解决'}}</view>
           </view>
           <view class='card-item-hr'></view>
-          <view class='card-item-body'>{{slice.sub(item.content,'content')}}</view>
+          <view class='card-item-body'>
+          <template is="wxParse" data="{{wxParseData:newArr[index].nodes}}" />
+          {{slice.sub(item.content,'content')}}
+          </view>
           <wxs module="slice">
             var sub = function(val, type) {
               if (type == 'title') {

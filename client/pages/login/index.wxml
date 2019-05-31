@@ -11,10 +11,10 @@
     <text class='login-waring-content'>获得你的公开信息（昵称，头像等）</text>
   </view>
   <form class='login-info'>
-    <view class='login-row'>
+    <!-- <view class='login-row'>
       <text class='login-text'>学号</text>
       <input class='login-sno login-input' type='number' bindinput='inputSno' confirm-type='next' placeholder='请输入学号'></input>
-    </view>
+    </view> -->
     <view class="section">
   <picker mode="multiSelector" class='picker' bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
     <view class="picker">

@@ -38,12 +38,11 @@ class Wechat {
   // 登陆查数据库
   // 第一次登陆用set方法
   // 第二次登陆用update方法
-  static setUserInfo(app, major, sno, academic, firstTimeToSeeNotice){
+  static setUserInfo(app, major,academic, firstTimeToSeeNotice){
     return new Promise((resolve, reject) => userDB.doc(app.globalData.openid).set({
       data: {
         avatorurl: app.globalData.userInfo.avatarUrl,
         uname: app.globalData.userInfo.nickname,
-        sno: sno,
         academic: academic,
         major: major,
         lastSeenCommentTime: firstTimeToSeeNotice,
@@ -55,12 +54,11 @@ class Wechat {
       }
     }))
   }
-  static updateUserInfo(app, major, sno, academic){
+  static updateUserInfo(app, major,academic){
     return new Promise((resolve, reject) => userDB.doc(app.globalData.openid).update({
       data: {
         avatorurl: app.globalData.userInfo.avatarUrl,
         uname: app.globalData.userInfo.nickname,
-        sno: sno,
         academic: academic,
         major: major
       }, complete: res => {
