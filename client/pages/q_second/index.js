@@ -372,6 +372,9 @@ Page({
     }
     // console.log(id, replyid, bereplyid, replyname, bereplyname, replyavator, bereplyavator, replytime)
     if (this.data.hasUserInfo) {
+      if(shortcomment.length==0){
+        return
+      }
       //BUG： 使用云函数更新字段无效
       wx.cloud.callFunction({
         name: 'getreply',
